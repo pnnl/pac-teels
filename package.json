@@ -1,0 +1,58 @@
+{
+  "name": "svelte-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "start": "sirv public --no-clear --port 5000",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "format": "prettier --write ./src/**/*.{js,svelte,html,ts}",
+    "lint": "eslint \"./src/**/*.{js,ts,svelte}\"",
+    "lint:fix": "eslint --fix \"./src/**/*.{js,ts,svelte}\"",
+    "prelint": "npm run format",
+    "precommit-msg": "echo 'Beginning Pre-commit checks - Formatting...' && exit 0",
+    "midcommit-msg": "echo 'Finished formatting! Beginning linting...' && exit 0",
+    "postcommit-msg": "echo 'Finished commit hooks! Good to go!"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
+    "@rollup/plugin-typescript": "^8.0.0",
+    "@tsconfig/svelte": "^2.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
+    "eslint": "^8.7.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-svelte3": "^3.4.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.5.1",
+    "prettier-plugin-svelte": "^2.6.0",
+    "rollup": "^2.3.4",
+    "rollup-plugin-css-only": "^3.1.0",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-svelte": "^7.0.0",
+    "rollup-plugin-terser": "^7.0.0",
+    "svelte-check": "^2.0.0",
+    "svelte-preprocess": "^4.10.2",
+    "tslib": "^2.0.0",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "eslint-config-prettier": "^8.3.0",
+    "sirv-cli": "^2.0.0",
+    "svelte": "^3.0.0"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix"
+  },
+  "pre-commit": [
+    "precommit-msg",
+    "prelint",
+    "midcommit-msg",
+    "lint",
+    "postcommit-msg"
+  ]
+}
