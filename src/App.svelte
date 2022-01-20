@@ -26,7 +26,6 @@
   const store = writable([]);
   $store.length; // incorrect no-unsafe-member-access error
   export let title: string;
-  console.log("TestAgain");
 </script>
 
 <main>

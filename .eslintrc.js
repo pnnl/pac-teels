@@ -30,7 +30,14 @@ module.exports = {
     // See https://github.com/sveltejs/eslint-plugin-svelte3/issues/70
     "svelte3/ignore-styles": () => true
   },
-  ignorePatterns: ["node_modules", ".eslintrc.js", "rollup.config.js"],
+  ignorePatterns: [
+    "node_modules",
+    ".eslintrc.js",
+    "rollup.config.js",
+    ".gitignore",
+    ".prettierignore",
+    ".package.json"
+  ],
   rules: {
     "no-use-before-define": "off",
     "no-console": "error",

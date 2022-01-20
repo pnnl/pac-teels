@@ -1,0 +1,6 @@
+**/*.json
+.eslintignore
+.gitignore
+.prettierignore
+.eslintrc.json
+.husky\.gitignore
