@@ -23,11 +23,16 @@
 <!-- App.svelte -->
 <script lang="ts">
   import { writable } from "svelte/store";
+  import Header from "./components/Header.svelte"
   const store = writable([]);
   $store.length; // incorrect no-unsafe-member-access error
   export let title: string;
 </script>
 
+<Header
+title={"PACTEEL"}
+hasLogo={false}
+/>
 <main>
   <h1>Welcome to {title}!</h1>
 </main>
