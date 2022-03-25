@@ -7,7 +7,6 @@
     display: flex;
     align-items: center;
     z-index: 10;
-    position: absolute;
     top: 0;
     left: 0;
     color: #ffffff;

@@ -131,7 +131,8 @@ const commonConfig = merge([
       chunkModules: false,
       modules: false,
       assets: true,
-      entrypoints: false
+      entrypoints: false,
+	  warnings: false,
     },
     module: {
       rules: [
@@ -187,7 +188,11 @@ const commonConfig = merge([
       hot: true,
       port: 3000,
       static: "public",
-      proxy: {}
+      proxy: {},
+	  client: {
+		logging: 'info',
+		overlay: false
+	  },
     }
   }
 ]);
@@ -203,7 +208,6 @@ const productionConfig = merge([
         // Rule: Svelte
         {
           test: /\.svelte$/,
-          exclude: /node_modules/,
           use: {
             loader: "svelte-loader",
             options: {
@@ -249,7 +253,6 @@ const developmentConfig = merge([
         // Rule: Svelte
         {
           test: /\.svelte$/,
-          exclude: /node_modules/,
           use: {
             loader: "svelte-loader",
             options: {
@@ -284,7 +287,6 @@ const localDevelopmentConfig = merge([
         // Rule: Svelte
         {
           test: /\.svelte$/,
-          exclude: /node_modules/,
           use: {
             loader: "svelte-loader",
             options: {

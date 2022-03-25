@@ -11,3 +11,4 @@
 .husky\.gitignore
 webpack.config.ts
 public
+node_modules
