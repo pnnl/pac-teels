@@ -9,7 +9,7 @@
     z-index: 10;
     position: absolute;
     top: 0;
-    left:0;
+    left: 0;
     color: #ffffff;
     background-color: #1d70f3;
   }
@@ -52,19 +52,6 @@
     margin-top: 0.25rem;
     align-items: center;
   }
-  .user {
-    display: inline-flex;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    background: #1d70f3;
-    color: #fff;
-  }
-
-  .user-icon {
-    margin-right: 0.5rem;
-  }
 
   .button {
     display: inline-flex;
@@ -92,23 +79,17 @@
     font-size: 1rem;
   }
 
-  .button.disabled {
-    opacity: 0.35;
-    user-select: none;
-    cursor: not-allowed;
-  }
   .primary {
     color: #1d70f3;
     background: white;
   }
-
 </style>
 
 <script lang="ts">
   export let title = "";
   export let hasLogo = false;
-  export let logo: any;
-  export let logoLabel: any;
+  export let logo: any = undefined;
+  export let logoLabel: any = undefined;
 
   let name = "";
   $: {
@@ -128,7 +109,7 @@
   </span>
   <div class="right">
     <button class="button primary" on:click={() => window.alert("Not Implemented")}>
-       Log in
+      Log in
     </button>
   </div>
 </div>

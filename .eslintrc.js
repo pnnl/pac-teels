@@ -33,7 +33,6 @@ module.exports = {
   ignorePatterns: [
     "node_modules",
     ".eslintrc.js",
-    "rollup.config.js",
     ".gitignore",
     ".prettierignore",
     ".package.json"

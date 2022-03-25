@@ -1,6 +1,13 @@
 **/*.json
+**/*.png
+**/*.jpeg
+**/*.jpg
+**/*.svg
+
 .eslintignore
 .gitignore
 .prettierignore
 .eslintrc.json
 .husky\.gitignore
+webpack.config.ts
+public

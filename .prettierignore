@@ -2,3 +2,6 @@
 .prettierignore
 .husky\.gitignore
 .eslintignore
+public
+public\assets\favicon.png
+webpack.config.ts
