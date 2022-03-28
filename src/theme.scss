@@ -1,0 +1,23 @@
+:root {
+  --headerColor: #1e90ff;
+  --white: #ffffff;
+  --black: #000000;
+}
+
+/* Svelte Material UI Theme colors. */
+:root {
+  --mdc-theme-primary: #1e90ff;
+}
+
+/* Svelte Material UI Layout grid spacing. */
+:root {
+  --mdc-layout-grid-margin-desktop: 24px;
+  --mdc-layout-grid-gutter-desktop: 24px;
+  --mdc-layout-grid-column-width-desktop: 72px;
+  --mdc-layout-grid-margin-tablet: 16px;
+  --mdc-layout-grid-gutter-tablet: 16px;
+  --mdc-layout-grid-column-width-tablet: 72px;
+  --mdc-layout-grid-margin-phone: 16px;
+  --mdc-layout-grid-gutter-phone: 16px;
+  --mdc-layout-grid-column-width-phone: 72px;
+}

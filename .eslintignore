@@ -3,6 +3,8 @@
 **/*.jpeg
 **/*.jpg
 **/*.svg
+**/*.scss
+**/*.css
 
 .eslintignore
 .gitignore
@@ -12,3 +14,5 @@
 webpack.config.ts
 public
 node_modules
+.env
+

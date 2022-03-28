@@ -53,6 +53,7 @@ import { merge } from "webpack-merge";
 
 const output = dotenv.config();
 
+
 const environmentReplacements = {};
 for (const key in output.parsed) {
   if (process.env[key] === undefined) {
@@ -66,6 +67,9 @@ for (const key in output.parsed) {
 const mode = process.env.DEPLOYMENT_TYPE || "localDevelopment";
 const isProduction = mode === "production";
 const isDevelopment = !isProduction;
+
+const currEnvFile = mode === "localDevelopment" ? "/.env.local" : mode === "production" ? "/.env.production" : "/.env";
+const dotenv2 = require("dotenv").config({ path: __dirname + currEnvFile });
 
 console.log({
   configuration: {
@@ -102,6 +106,9 @@ const commonConfig = merge([
     },
 
     plugins: [
+      new Webpack.DefinePlugin({
+        "process.env": JSON.stringify(dotenv2.parsed),
+      }),
       new MiniCssExtractPlugin({
         filename: "assets/[name].[contenthash].css"
       }),

@@ -38,6 +38,7 @@ module.exports = {
     ".package.json"
   ],
   rules: {
+    "no-undef": "off",
     "no-use-before-define": "off",
     "no-console": "error",
     "no-unused-vars": "off",
@@ -54,6 +55,7 @@ module.exports = {
     "no-param-reassign": "off",
     "prettier/prettier": "off",
     "no-shadow": "off",
-    "@typescript-eslint/no-shadow": ["error"]
+    "@typescript-eslint/no-shadow": ["error"],
+    "@typescript-eslint/restrict-template-expressions": "off"
   }
 };

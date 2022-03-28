@@ -9,8 +9,8 @@
     z-index: 10;
     top: 0;
     left: 0;
-    color: #ffffff;
-    background-color: #1d70f3;
+    color: var(--white);
+    background-color: var(--headerColor);
   }
 
   .logo-wrapper {
@@ -23,7 +23,7 @@
   .nav-left-logo {
     height: 2rem;
     margin-right: 0.5rem;
-    color: #fff;
+    color: var(--white);
   }
   .title {
     font-weight: 400;
@@ -31,7 +31,7 @@
     align-items: center;
     margin-left: 1rem;
     font-size: 2rem;
-    color: #fff;
+    color: var(--white);
   }
   .title.with-logo {
     margin: 0;
@@ -79,8 +79,8 @@
   }
 
   .primary {
-    color: #1d70f3;
-    background: white;
+    color: var(--headerColor);
+    background: var(--white);
   }
 </style>
 
