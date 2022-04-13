@@ -1,0 +1,9 @@
+.gitignore
+.prettierignore
+.husky\.gitignore
+.eslintignore
+.env
+public
+public\assets\favicon.png
+webpack.config.ts
+tsconfig.json
