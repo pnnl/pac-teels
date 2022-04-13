@@ -1,6 +1,7 @@
 /node_modules/
 /public/build/
 /package-lock.json
+/build
 .env.local
 .env.production
 
