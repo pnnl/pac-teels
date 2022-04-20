@@ -55,21 +55,6 @@
 <Header  {logo} hasLogo={true} title={"EMI SIG"} />
 <main>
   <div style="width: 80rem">
-    <!--
-      Note: tabs must be unique. (They cannot === each other.)
-    -->
-    <!-- <TabBar {tabs} let:tab bind:active> -->
-      <!-- Note: the `tab` property is required! -->
-      <!-- <Tab
-        {tab}
-        on:click={() => {
-          return (active = tab);
-        }}
-        href={tab.path}
-      >
-        <Label>{tab.name}</Label>
-      </Tab>
-    </TabBar> -->
     <Router />
   </div>
 </main>

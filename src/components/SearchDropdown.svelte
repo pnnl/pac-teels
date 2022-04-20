@@ -4,24 +4,24 @@
         margin: 0;
         box-sizing: border-box;
         height: 2.5rem;
-        background-color: #ffffff;
+        background-color: var(--white);
         border: none;
         padding: 0 1rem;
         font-size: 1rem;
         width: 100%;
-        color: black;
+        color: var(--font);
     }
 
     .search-icon {
         margin-left: 1rem;
-        color: #dadada;
+        color: var(--lightgrey);
         background-color: var(--white);
         font-size: 1.25rem;
         user-select: none;
     }
 
     .search-bar::placeholder {
-        color: #b7b7b7;
+        color: var(--placeholder);
     }
 
     .search-bar:focus {

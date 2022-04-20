@@ -27,15 +27,13 @@ h1{
 .version{
     font-weight:400;
     font-size:1.25rem;
-    color: #70768E;
+    color: var(--caption);
     margin-bottom:.7rem;
 }
 .label{
-    color: #4C5060;
     font-size:1rem;
 }
 h4{
-    color:#4C5060;
     margin-top:5rem;
 }
 </style>
