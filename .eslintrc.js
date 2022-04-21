@@ -35,7 +35,11 @@ module.exports = {
     ".eslintrc.js",
     ".gitignore",
     ".prettierignore",
-    ".package.json"
+    ".package.json",
+    "package.json",
+    "package-lock.json",
+    ".env",
+    ".eslintignore"
   ],
   rules: {
     "no-undef": "off",
@@ -56,6 +60,8 @@ module.exports = {
     "prettier/prettier": "off",
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],
-    "@typescript-eslint/restrict-template-expressions": "off"
+    "@typescript-eslint/restrict-template-expressions": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-empty-function": "off"
   }
 };
