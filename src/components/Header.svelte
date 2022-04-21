@@ -2,17 +2,20 @@
   .header {
     width: 100%;
     height: 4rem;
-    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.06), 0px 3px 14px rgba(0, 0, 0, 0.06),
-      0px 4px 5px rgba(0, 0, 0, 0.08);
+    box-shadow: none;
     display: flex;
     align-items: center;
     z-index: 10;
     top: 0;
     left: 0;
-    color: var(--white);
-    background-color: var(--headerColor);
+    color: var(--blue);
+    background-color: var(--white);
   }
 
+  .header.account-details{
+      box-shadow:0px 8px 10px rgba(0, 0, 0, 0.06), 0px 3px 14px rgba(0, 0, 0, 0.06),
+      0px 4px 5px rgba(0, 0, 0, 0.08);;
+  }
   .logo-wrapper {
     display: flex;
     align-items: center;
@@ -23,7 +26,7 @@
   .nav-left-logo {
     height: 2rem;
     margin-right: 0.5rem;
-    color: var(--white);
+    color: var(--blue);
   }
   .title {
     font-weight: 400;
@@ -31,7 +34,7 @@
     align-items: center;
     margin-left: 1rem;
     font-size: 2rem;
-    color: var(--white);
+    color: var(--blue);
   }
   .title.with-logo {
     margin: 0;
@@ -63,6 +66,7 @@
     vertical-align: middle;
     width: auto;
     line-height: 1.2;
+    border:transparent;
     border-radius: 0.25rem;
     cursor: pointer;
     text-transform: uppercase;
@@ -79,13 +83,14 @@
   }
 
   .primary {
-    color: var(--headerColor);
+    color: var(--blue);
     background: var(--white);
   }
 </style>
 
 <script lang="ts">
-  export let title = "";
+import Button, {Icon, Label} from '@smui/button';
+export let title = "";
   export let hasLogo = false;
   export let logo: any = undefined;
   export let logoLabel: any = undefined;
@@ -94,6 +99,7 @@
   $: {
     name = "user.name";
   }
+
 </script>
 
 <div class="header">
@@ -107,8 +113,13 @@
     <slot />
   </span>
   <div class="right">
-    <button class="button primary" on:click={() => window.alert("Not Implemented")}>
-      Log in
-    </button>
+    <Button  on:click={() => window.alert("Not Implemented")}>
+        <Icon class="material-icons">feedback</Icon>
+     <Label>send feedback</Label>
+    </Button>
+    <Button  on:click={() => window.alert("Not Implemented")}>
+        <Icon class="material-icons">login</Icon>
+     <Label>Admin Login</Label>
+    </Button>
   </div>
 </div>
