@@ -6,7 +6,6 @@
     margin: 0 auto;
   }
 
-
   h1 {
     text-transform: uppercase;
     font-size: 4em;
@@ -35,7 +34,7 @@
   const store = writable([]);
   $store.length; // incorrect no-unsafe-member-access error
 
-  let logo = "assets/logo.svg"
+  let logo = "assets/logo.svg";
   let tabs = [
     { id: "home", name: "Home", path: `${process.env.SVELTE_APP_BASEURL}` },
     {
@@ -52,7 +51,7 @@
   let active = tabs[0];
 </script>
 
-<Header  {logo} hasLogo={true} title={"EMI SIG"} />
+<Header {logo} hasLogo={true} title={"EMI SIG"} />
 <main>
   <div style="width: 80rem">
     <Router />
