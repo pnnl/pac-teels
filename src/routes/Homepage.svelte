@@ -1,10 +1,15 @@
 <style>
   .content {
     margin: 1rem;
+    width: -webkit-fill-available;
     display: flex;
     color: var(--font);
     flex-direction: column;
     text-align: left;
+    justify-self: center;
+    align-self: center;
+    align-items: center;
+    align-content: center;
   }
   .title {
     display: flex;
@@ -36,8 +41,11 @@
   }
 </style>
 
-<script>
+<script lang="ts">
+  //ToDo: Why is ignore required here when node src specified in env
+  //@ts-ignore
   import SearchDropdown from "components/SearchDropdown.svelte";
+  //@ts-ignore
   import ItemSearches from "components/ItemSearches.svelte";
 
   let stubbedItems = new Map([
@@ -55,15 +63,16 @@
     <h1>PAC Database</h1>
     <div class="version">Rev. 29A, June 2018</div>
   </div>
-  <SearchDropdown
-    style={"width:75rem;"}
-    items={stubbedItems}
-    placeholder={"Search chemicals"}
-  />
-  <div class="label">
-    Search by CAS number, chemical name, chemical formula, or UN number
+  <div>
+    <SearchDropdown
+      style={"width:75rem;"}
+      items={stubbedItems}
+      placeholder={"Search chemicals"}
+    />
+    <div class="label">
+      Search by CAS number, chemical name, chemical formula, or UN number
+    </div>
   </div>
-
   <div>
     <h4>Suggestion</h4>
     <ItemSearches

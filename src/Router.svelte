@@ -1,12 +1,39 @@
 <script>
   import Router from "svelte-spa-router";
+  import { wrap } from "svelte-spa-router/wrap";
   import Homepage from "./routes/Homepage.svelte";
-  import Definitions from "./routes/Definitions.svelte";
+  import ChangeLog from "./routes/ChangeLog.svelte";
+  import ChemicalDatabase from "./routes/ChemicalDatabase.svelte";
+  import UserManagement from "./routes/UserManagement.svelte";
+
+  // import Administration from "./routes/Administration.svelte";
+  export let onRouteLoaded;
+  export let onConditionsFailed;
 
   const routes = {
     // Exact path
-    "/": Homepage,
-    "/definitions": Definitions
+    "/": wrap({
+      component: Homepage,
+      userData: { route: "homepage" }
+    }),
+    "/admin": wrap({
+      asyncComponent: () => import("./routes/Administration.svelte"),
+      userData: { route: "admin" }
+      // Add route pre conditions to ensure users are logged in https://github.com/ItalyPaleAle/svelte-spa-router/blob/master/Advanced%20Usage.md
+      // conditions: []
+    }),
+    "/admin/chemicalDatabase": wrap({
+      component: ChemicalDatabase,
+      userData: { route: "chemicalDatabase" }
+    }),
+    "/admin/userManagement": wrap({
+      component: UserManagement,
+      userData: { route: "userManagement" }
+    }),
+    "/admin/changeLog": wrap({
+      component: ChangeLog,
+      userData: { route: "changeLog" }
+    })
 
     // Using named parameters, with last being optional
     // '/author/:first/:last?': Author,
@@ -20,4 +47,8 @@
   };
 </script>
 
-<Router {routes} />
+<Router
+  on:routeLoaded={onRouteLoaded}
+  on:onConditionsFailed={onConditionsFailed}
+  {routes}
+/>

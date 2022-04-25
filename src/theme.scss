@@ -1,18 +1,20 @@
 :root {
-  --blue: #1D70F3;
+  --blue: #1d70f3;
   --white: #ffffff;
   --black: #000000;
-  --font: #4C5060;
-  --hoverBlue: #4570E11A;
-  --darkBlue: #175AC2;
+  --font: #4c5060;
+  --hoverBlue: #4570e11a;
+  --darkBlue: #175ac2;
   --lightgrey: #dadada;
   --placeholder: #b7b7b7;
-  --caption:#70768E;
+  --caption: #70768e;
+  --lightBlue: #4570e1;
 }
 
 /* Svelte Material UI Theme colors. */
 :root {
   --mdc-theme-primary: #1e90ff;
+  --mdc-theme-secondary: #1e90ff;
 }
 
 /* Svelte Material UI Layout grid spacing. */
