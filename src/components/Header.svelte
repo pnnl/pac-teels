@@ -12,9 +12,9 @@
     background-color: var(--white);
   }
 
-  .header.account-details{
-      box-shadow:0px 8px 10px rgba(0, 0, 0, 0.06), 0px 3px 14px rgba(0, 0, 0, 0.06),
-      0px 4px 5px rgba(0, 0, 0, 0.08);;
+  .header.account-details {
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.06), 0px 3px 14px rgba(0, 0, 0, 0.06),
+      0px 4px 5px rgba(0, 0, 0, 0.08);
   }
   .logo-wrapper {
     display: flex;
@@ -66,7 +66,7 @@
     vertical-align: middle;
     width: auto;
     line-height: 1.2;
-    border:transparent;
+    border: transparent;
     border-radius: 0.25rem;
     cursor: pointer;
     text-transform: uppercase;
@@ -89,8 +89,8 @@
 </style>
 
 <script lang="ts">
-import Button, {Icon, Label} from '@smui/button';
-export let title = "";
+  import Button, { Icon, Label } from "@smui/button";
+  export let title = "";
   export let hasLogo = false;
   export let logo: any = undefined;
   export let logoLabel: any = undefined;
@@ -99,7 +99,6 @@ export let title = "";
   $: {
     name = "user.name";
   }
-
 </script>
 
 <div class="header">
@@ -113,13 +112,13 @@ export let title = "";
     <slot />
   </span>
   <div class="right">
-    <Button  on:click={() => window.alert("Not Implemented")}>
-        <Icon class="material-icons">feedback</Icon>
-     <Label>send feedback</Label>
+    <Button on:click={() => window.alert("Not Implemented")}>
+      <Icon class="material-icons">feedback</Icon>
+      <Label>send feedback</Label>
     </Button>
-    <Button  on:click={() => window.alert("Not Implemented")}>
-        <Icon class="material-icons">login</Icon>
-     <Label>Admin Login</Label>
+    <Button on:click={() => window.alert("Not Implemented")}>
+      <Icon class="material-icons">login</Icon>
+      <Label>Admin Login</Label>
     </Button>
   </div>
 </div>
