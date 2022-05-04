@@ -5,6 +5,9 @@
   import ChangeLog from "./routes/ChangeLog.svelte";
   import ChemicalDatabase from "./routes/ChemicalDatabase.svelte";
   import UserManagement from "./routes/UserManagement.svelte";
+  import AccountDetails from "./routes/AccountDetails.svelte";
+  import ChangeEmail from "./routes/ChangeEmail.svelte";
+  import ChangePassword from "./routes/ChangePassword.svelte";
 
   // import Administration from "./routes/Administration.svelte";
   export let onRouteLoaded;
@@ -33,6 +36,18 @@
     "/admin/changeLog": wrap({
       component: ChangeLog,
       userData: { route: "changeLog" }
+    }),
+    "/admin/accountDetails/changeEmail": wrap({
+      component: ChangeEmail,
+      userData: { route: "changeEmail" }
+    }),
+    "/admin/accountDetails/changePassword": wrap({
+      component: ChangePassword,
+      userData: { route: "changePassword" }
+    }),
+    "/admin/accountDetails": wrap({
+      component: AccountDetails,
+      userData: { route: "accountDetails" }
     })
 
     // Using named parameters, with last being optional

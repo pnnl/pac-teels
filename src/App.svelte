@@ -59,7 +59,13 @@
   let location = window.location.href;
 </script>
 
-<Header {logo} hasLogo={true} title={"EMI SIG"} adminPage={location.includes("admin")} />
+<Header
+  {logo}
+  hasLogo={true}
+  title={"EMI SIG"}
+  adminPage={location.includes("admin")}
+  {location}
+/>
 <main>
   <div style="display: flex; width: -webkit-fill-available;">
     <Router

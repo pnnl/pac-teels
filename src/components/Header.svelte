@@ -90,6 +90,10 @@
 </style>
 
 <script lang="ts">
+  import type { MenuComponentDev } from "@smui/menu";
+  import Menu from "@smui/menu";
+  import { Anchor } from "@smui/menu-surface";
+  import List, { Item, Separator, Text } from "@smui/list";
   import Button, { Icon, Label } from "@smui/button";
   import LoginModal from "./LoginModal.svelte";
   import Tab from "@smui/tab";
@@ -101,6 +105,7 @@
   export let logo: any = undefined;
   export let logoLabel: any = undefined;
   export let adminPage;
+  export let location;
 
   let tabs = [
     {
@@ -131,9 +136,17 @@
   let closeHandler = (e: CustomEvent<{ action: string }>) => {
     loginOpen = false;
   };
+
+  let userMenuOpen = false;
+  let closeUserHandler = (e: CustomEvent<{ action: string }>) => {
+    userMenuOpen = false;
+  };
+  let menu: MenuComponentDev;
+  let anchor: HTMLDivElement;
+  let anchorClasses: { [k: string]: boolean } = { right: true };
 </script>
 
-<div class="header">
+<div class={location.includes("accountDetails") ? "header account-details" : "header"}>
   {#if hasLogo}
     <div class="logo-wrapper" on:click={() => push("/")}>
       <img src={logo} class="nav-left-logo" alt={logoLabel} />
@@ -179,15 +192,42 @@
     </div>
   {/if}
   {#if adminPage}
-    <div class="right">
-      <Button
-        on:click={() => {
-          loginOpen = !loginOpen;
-        }}
-      >
+    <div
+      class={Object.keys(anchorClasses).join(" ")}
+      use:Anchor={{
+        addClass: className => {
+          if (!anchorClasses[className]) {
+            anchorClasses[className] = true;
+          }
+        },
+        removeClass: className => {
+          if (anchorClasses[className]) {
+            delete anchorClasses[className];
+            anchorClasses = anchorClasses;
+          }
+        }
+      }}
+      bind:this={anchor}
+    >
+      <Button on:click={() => menu.setOpen(!userMenuOpen)}>
         <Icon class="material-icons">account_circle</Icon>
         <Label>Name of User</Label>
       </Button>
+      <Menu
+        bind:this={menu}
+        anchor={false}
+        bind:anchorElement={anchor}
+        anchorCorner="BOTTOM_LEFT"
+      >
+        <List>
+          <Item on:click={() => push("/admin/accountDetails")}>
+            <Text>Account Details</Text>
+          </Item>
+          <Item on:click={() => {}}>
+            <Text>Log Out</Text>
+          </Item>
+        </List>
+      </Menu>
     </div>
   {/if}
   <LoginModal open={loginOpen} {closeHandler} setAdminPage={val => (adminPage = val)} />
