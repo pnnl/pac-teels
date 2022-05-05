@@ -30,19 +30,27 @@
       on:click={() => closeHandler(undefined)}>close</IconButton
     >
     <Header style={"display: flex;"}>
-      <Title id="fullscreen-title" style={"flex: 1;"}>Admin Login</Title>
+      <Title id="fullscreen-title" style={"flex: 1; font-weight: 400; font-size: 32px;"}
+        >Admin Login</Title
+      >
     </Header>
     <Content id="fullscreen-content" style={"display: flex; flex-direction: column;"}>
-      <div style={"margin-top: 1rem; color: var(--font);"}>
-        <div style={"font-size: 14px; line-height: 21px; font-weight: 500;"}>Email</div>
+      <div style={"margin-top: 2.2rem; color: var(--font);"}>
+        <div
+          style={"font-size: 14px; line-height: 21px; font-weight: 500;margin-bottom: 0.5rem;"}
+        >
+          Email
+        </div>
         <Textfield
           bind:value={email}
           variant="outlined"
           style={"width: -webkit-fill-available; height: var(--mdc-outlined-button-container-height, 36px);"}
         />
       </div>
-      <div style={"margin-top: 1rem;color: var(--font);"}>
-        <div style={"font-size: 14px; line-height: 21px; font-weight: 500;"}>
+      <div style={"margin-top: 2.2rem;color: var(--font);"}>
+        <div
+          style={"font-size: 14px; line-height: 21px; font-weight: 500;margin-bottom: 0.5rem;"}
+        >
           Password
         </div>
         <Textfield
@@ -52,7 +60,7 @@
           type={showPassChecked ? "text" : "password"}
         />
       </div>
-      <div style={"margin-top: 1rem;color: var(--font);"}>
+      <div style={"margin-top: 1.5rem;color: var(--font); margin-left: -11px;"}>
         <FormField>
           <Checkbox
             bind:showPassChecked
@@ -62,7 +70,7 @@
         </FormField>
       </div>
     </Content>
-    <Actions>
+    <Actions style="padding: 24px 20px;">
       <Button
         action="reject"
         style={"margin-right: auto;"}

@@ -47,24 +47,31 @@
   import Button, { Icon } from "@smui/button";
   import { Icon as CommonIcon } from "@smui/common";
 
-  type Todo = {
-    id: number;
-    title: string;
-    completed: boolean;
-    userId: number;
+  type ChangeLog = {
+    guid: string;
+    dateTime: string;
+    recordType: string;
+    recordName: string;
+    changeDescription: string;
+    changedBy: string;
+    oldValue: string;
+    newValue: string;
   };
-  let items: Todo[] = [];
-  let sort: keyof Todo = "id";
+  let items: ChangeLog[] = [];
+  let sort: keyof ChangeLog = "guid";
   let sortDirection: Lowercase<keyof typeof SortValue> = "ascending";
   let rowsPerPage = 10;
   let currentPage = 0;
   let search = "";
 
   const columnEnum = {
-    1: "id",
-    2: "title",
-    3: "completed",
-    4: "userId"
+    1: "dateTime",
+    2: "recordType",
+    3: "recordName",
+    4: "changeDescription",
+    5: "changedBy",
+    6: "oldValue",
+    7: "newValue"
   };
 
   $: start = currentPage * rowsPerPage;
@@ -76,14 +83,17 @@
     currentPage = lastPage;
   }
 
-  if (typeof fetch !== "undefined") {
-    // Slice a few off the end to show how the
-    // last page looks when it's not full.
-    fetch(
-      "https://gist.githubusercontent.com/hperrin/e24a4ebd9afdf2a8c283338ae5160a62/raw/dcbf8e6382db49b0dcab70b22f56b1cc444f26d4/todos.json"
-    )
-      .then(response => response.json())
-      .then(json => (items = json.slice(0, 197)));
+  for (let i = 0; i < 197; i++) {
+    items.push({
+      guid: i.toString(),
+      dateTime: "Apr 4, 2022 23:00",
+      recordType: "Account",
+      recordName: "firstname.lastname@pnnl.gov",
+      changeDescription: "Delete",
+      changedBy: "admin.user@pnnl.gov",
+      oldValue: "-",
+      newValue: "-"
+    });
   }
 
   function handleSort(e: any) {
@@ -126,7 +136,7 @@
             <Input
               bind:search
               on:keydown={() => {}}
-              placeholder="Search chemicals by CAS number, chemical name, chemical formula, or UN number"
+              placeholder="Search"
               class="solo-input"
             />
           </Paper>
@@ -143,33 +153,48 @@
       </Cell>
     </Row>
     <Row>
-      <Cell numeric>
-        <IconButton class="material-icons">arrow_upward</IconButton>
-        <Label>ID</Label>
-      </Cell>
-      <Cell style="width: 100%;">
-        <Label>Title</Label>
-        <IconButton class="material-icons">arrow_upward</IconButton>
+      <Cell>
+        <Label>Date / Time</Label>
+        <IconButton class="material-icons" size="button">sort</IconButton>
       </Cell>
       <Cell>
-        <Label>Completed</Label>
-        <IconButton class="material-icons">arrow_upward</IconButton>
+        <Label>Record Type</Label>
+        <IconButton class="material-icons" size="button">sort</IconButton>
       </Cell>
-      <Cell numeric>
-        <Label>User ID</Label>
-        <IconButton class="material-icons">arrow_upward</IconButton>
+      <Cell>
+        <Label>Record Name</Label>
+        <IconButton class="material-icons" size="button">sort</IconButton>
+      </Cell>
+      <Cell>
+        <Label>Change Description</Label>
+        <IconButton class="material-icons" size="button">sort</IconButton>
+      </Cell>
+      <Cell>
+        <Label>Changed By</Label>
+        <IconButton class="material-icons" size="button">sort</IconButton>
+      </Cell>
+      <Cell>
+        <Label>Old Value</Label>
+        <IconButton class="material-icons" size="button">sort</IconButton>
+      </Cell>
+      <Cell>
+        <Label>New Value</Label>
+        <IconButton class="material-icons" size="button">sort</IconButton>
       </Cell>
     </Row>
   </Head>
   <Body>
-    {#each slice as item (item.id)}
+    {#each slice as item (item.guid)}
       <Row>
-        <Cell numeric style="clip-path: inset(0rem 0rem 0rem 1rem);">
-          {item.id}</Cell
+        <Cell style="clip-path: inset(0rem 0rem 0rem 1rem);">
+          {item.dateTime}</Cell
         >
-        <Cell>{item.title}</Cell>
-        <Cell>{item.completed ? "Yes" : "No"}</Cell>
-        <Cell numeric style="clip-path: inset(0rem 1rem 0rem 0rem);">{item.userId}</Cell>
+        <Cell>{item.recordType}</Cell>
+        <Cell>{item.recordName}</Cell>
+        <Cell>{item.changeDescription}</Cell>
+        <Cell>{item.changedBy}</Cell>
+        <Cell>{item.oldValue}</Cell>
+        <Cell style="clip-path: inset(0rem 1rem 0rem 0rem);">{item.newValue}</Cell>
       </Row>
     {/each}
   </Body>

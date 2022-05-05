@@ -46,25 +46,30 @@
   import Paper from "@smui/paper";
   import Button, { Icon } from "@smui/button";
   import { Icon as CommonIcon } from "@smui/common";
+  //@ts-ignore
+  import Switch from "@smui/switch";
 
-  type Todo = {
-    id: number;
-    title: string;
-    completed: boolean;
-    userId: number;
+  type UserManagement = {
+    guid: string;
+    email: string;
+    chemicalDatabase: boolean;
+    userManagement: boolean;
+    created: string;
+    lastLogin: string;
   };
-  let items: Todo[] = [];
-  let sort: keyof Todo = "id";
+  let items: UserManagement[] = [];
+  let sort: keyof UserManagement = "email";
   let sortDirection: Lowercase<keyof typeof SortValue> = "ascending";
   let rowsPerPage = 10;
   let currentPage = 0;
   let search = "";
 
   const columnEnum = {
-    1: "id",
-    2: "title",
-    3: "completed",
-    4: "userId"
+    1: "email",
+    2: "chemicalDatabase",
+    3: "userManagement",
+    4: "created",
+    5: "lastLogin"
   };
 
   $: start = currentPage * rowsPerPage;
@@ -76,14 +81,15 @@
     currentPage = lastPage;
   }
 
-  if (typeof fetch !== "undefined") {
-    // Slice a few off the end to show how the
-    // last page looks when it's not full.
-    fetch(
-      "https://gist.githubusercontent.com/hperrin/e24a4ebd9afdf2a8c283338ae5160a62/raw/dcbf8e6382db49b0dcab70b22f56b1cc444f26d4/todos.json"
-    )
-      .then(response => response.json())
-      .then(json => (items = json.slice(0, 197)));
+  for (let i = 0; i < 197; i++) {
+    items.push({
+      guid: i.toString(),
+      email: "first.last@pnnl.gov",
+      chemicalDatabase: true,
+      userManagement: true,
+      created: "Apr 4, 2022 23:00",
+      lastLogin: "Apr 6, 2022 12:50"
+    });
   }
 
   function handleSort(e: any) {
@@ -126,7 +132,7 @@
             <Input
               bind:search
               on:keydown={() => {}}
-              placeholder="Search chemicals by CAS number, chemical name, chemical formula, or UN number"
+              placeholder="Search by account email"
               class="solo-input"
             />
           </Paper>
@@ -143,33 +149,38 @@
       </Cell>
     </Row>
     <Row>
-      <Cell numeric>
-        <IconButton class="material-icons">arrow_upward</IconButton>
-        <Label>ID</Label>
-      </Cell>
-      <Cell style="width: 100%;">
-        <Label>Title</Label>
-        <IconButton class="material-icons">arrow_upward</IconButton>
+      <Cell>
+        <Label style="width: 100%;">Email</Label>
+        <IconButton class="material-icons" size="button">sort</IconButton>
       </Cell>
       <Cell>
-        <Label>Completed</Label>
-        <IconButton class="material-icons">arrow_upward</IconButton>
+        <Label>Chemical Database</Label>
+        <IconButton class="material-icons" size="button">sort</IconButton>
       </Cell>
-      <Cell numeric>
-        <Label>User ID</Label>
-        <IconButton class="material-icons">arrow_upward</IconButton>
+      <Cell>
+        <Label>User Management</Label>
+        <IconButton class="material-icons" size="button">sort</IconButton>
+      </Cell>
+      <Cell>
+        <Label>Created</Label>
+        <IconButton class="material-icons" size="button">sort</IconButton>
+      </Cell>
+      <Cell>
+        <Label>Last Login</Label>
+        <IconButton class="material-icons" size="button">sort</IconButton>
       </Cell>
     </Row>
   </Head>
   <Body>
-    {#each slice as item (item.id)}
+    {#each slice as item (item.guid)}
       <Row>
-        <Cell numeric style="clip-path: inset(0rem 0rem 0rem 1rem);">
-          {item.id}</Cell
+        <Cell style="clip-path: inset(0rem 0rem 0rem 1rem);">
+          {item.email}</Cell
         >
-        <Cell>{item.title}</Cell>
-        <Cell>{item.completed ? "Yes" : "No"}</Cell>
-        <Cell numeric style="clip-path: inset(0rem 1rem 0rem 0rem);">{item.userId}</Cell>
+        <Cell><Switch bind:checked={item.chemicalDatabase} icons={false} /></Cell>
+        <Cell><Switch bind:checked={item.userManagement} icons={false} /></Cell>
+        <Cell>{item.created}</Cell>
+        <Cell style="clip-path: inset(0rem 1rem 0rem 0rem);">{item.lastLogin}</Cell>
       </Row>
     {/each}
   </Body>

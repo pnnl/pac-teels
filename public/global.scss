@@ -95,3 +95,39 @@ h2::before {
   .paginate-class {
     width: -webkit-fill-available;
   }
+
+  .mdc-switch:enabled .mdc-switch__track::after {
+	  background: var(--toggle);
+  }
+
+  .mdc-switch:enabled:hover:not(:focus):not(:active) .mdc-switch__track::after {
+	background: var(--toggle);
+  }
+
+  .mdc-switch.mdc-switch--selected:enabled .mdc-switch__handle::after {
+	background: var(--white);
+  }
+
+  .mdc-switch.mdc-switch--selected:enabled:hover:not(:focus):not(:active) .mdc-switch__handle::after {
+	  background: var(--white);
+  }
+
+  .mdc-switch.mdc-switch--unselected:enabled:hover:not(:focus):not(:active) .mdc-switch__handle::after {
+	background: var(--caption);
+  }
+
+	.mdc-switch:enabled:focus:not(:active) .mdc-switch__track::after {
+		background: var(--toggle);
+	}
+
+	.mdc-switch:enabled:active .mdc-switch__track::after {
+		background: var(--toggle);
+	}
+
+	.mdc-switch.mdc-switch--selected:enabled:active .mdc-switch__handle::after {
+		background: var(--white);
+	}
+
+	.mdc-switch.mdc-switch--selected:enabled:focus:not(:active) .mdc-switch__handle::after {
+		background: var(--white);
+	}
