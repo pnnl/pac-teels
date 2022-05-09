@@ -1,13 +1,17 @@
 <style>
-
-.content{
+  .content {
     margin: 1rem;
+    width: -webkit-fill-available;
     display: flex;
-    color:var(--font);
+    color: var(--font);
     flex-direction: column;
     text-align: left;
-}
-.title{
+    justify-self: center;
+    align-self: center;
+    align-items: center;
+    align-content: center;
+  }
+  .title {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -16,45 +20,65 @@
     align-items: flex-end;
     margin: 5rem 1rem 10rem 1rem;
     letter-spacing: -0.02em;
-}
-h1{
-    font-weight:300;
-    font-size:4rem;
-    margin:0;
-    color:var(--blue)
-
-}
-.version{
-    font-weight:400;
-    font-size:1.25rem;
+  }
+  h1 {
+    font-weight: 300;
+    font-size: 4rem;
+    margin: 0;
+    color: var(--blue);
+  }
+  .version {
+    font-weight: 400;
+    font-size: 1.25rem;
     color: var(--caption);
-    margin-bottom:.7rem;
-}
-.label{
-    font-size:1rem;
-}
-h4{
-    margin-top:5rem;
-}
+    margin-bottom: 0.7rem;
+  }
+  .label {
+    font-size: 1rem;
+  }
+  h4 {
+    margin-top: 5rem;
+  }
 </style>
 
-<script>
-import SearchDropdown from "components/SearchDropdown.svelte";
-import ItemSearches from "components/ItemSearches.svelte";
+<script lang="ts">
+  //ToDo: Why is ignore required here when node src specified in env
+  //@ts-ignore
+  import SearchDropdown from "components/SearchDropdown.svelte";
+  //@ts-ignore
+  import ItemSearches from "components/ItemSearches.svelte";
 
-let stubbedItems = new Map ([
-    ["7782-50-5",{ name:"Adipic acid, diethylene glycol, trimethylolpropane, phthalic anhydride, toluenediisocyanate polymer, isocyanate terminated"}],
-])
+  let stubbedItems = new Map([
+    [
+      "7782-50-5",
+      {
+        name: "Adipic acid, diethylene glycol, trimethylolpropane, phthalic anhydride, toluenediisocyanate polymer, isocyanate terminated"
+      }
+    ]
+  ]);
 </script>
 
 <div class="content">
- <div class="title"><h1>PAC Database</h1>
-  <div class="version">Rev. 29A, June 2018</div></div>
-    <SearchDropdown style={"width:75rem;"} items={stubbedItems} placeholder={"Search chemicals"}/>
-    <div class="label">Search by CAS number, chemical name, chemical formula, or UN number</div>
-
-    <div>
-        <h4>Suggestion</h4>
-        <ItemSearches style={"width:75rem;"} caption={"Your Recently Viewed"} items={stubbedItems}/>
+  <div class="title">
+    <h1>PAC Database</h1>
+    <div class="version">Rev. 29A, June 2018</div>
+  </div>
+  <div>
+    <SearchDropdown
+      style={"width:75rem;"}
+      items={stubbedItems}
+      placeholder={"Search chemicals"}
+    />
+    <div class="label">
+      Search by CAS number, chemical name, chemical formula, or UN number
     </div>
+  </div>
+  <div>
+    <h4>Suggestion</h4>
+    <ItemSearches
+      style={"width:75rem;"}
+      caption={"Your Recently Viewed"}
+      items={stubbedItems}
+    />
+  </div>
 </div>

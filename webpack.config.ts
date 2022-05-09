@@ -19,7 +19,7 @@ const useBabelInDevelopment = false;
  * specify paths to SCSS or SASS files, and they will be compiled automatically.
  */
 const stylesheets: string[] = [
-  "./public/assets/globals.css"
+  "./public/global.scss"
   //  './public/assets/OpenSans.css',
   //  './public/assets/Material-Icons.css',
 ];
@@ -130,7 +130,7 @@ const commonConfig = merge([
 
       // Add static js and css
       new HtmlWebpackTagsPlugin({
-        tags: ["scripts/config.js", "assets/global.css", "assets/Material-Icons.css"]
+        tags: ["scripts/config.js","global.scss", "assets/Material-Icons.css"]
       })
     ],
     stats: {

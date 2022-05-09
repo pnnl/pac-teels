@@ -9,15 +9,14 @@
     flex-wrap: nowrap;
     align-content: center;
     align-items: center;
-    cursor:pointer;
+    cursor: pointer;
   }
-  .search-item:hover{
-      background-color: var(--hoverBlue);
-      color: var(--darkBlue);
+  .search-item:hover {
+    background-color: var(--hoverBlue);
+    color: var(--darkBlue);
   }
-  .searched-name{
-    max-width:69rem;
-
+  .searched-name {
+    max-width: 69rem;
   }
 </style>
 

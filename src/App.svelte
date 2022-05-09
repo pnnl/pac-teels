@@ -1,11 +1,11 @@
 <style>
   main {
     text-align: center;
-    padding: 1em;
     max-width: 240px;
     margin: 0 auto;
+    width: -webkit-fill-available;
+    display: flex;
   }
-
 
   h1 {
     text-transform: uppercase;
@@ -29,13 +29,19 @@
   import TabBar from "@smui/tab-bar";
   import Button from "@smui/button";
   import "./theme.scss";
-  import "@smui/tab/bare.css";
-  import "@smui/tab-bar/bare.css";
-  import "@smui/button/bare.css";
+
+  // Import all smui component css here
+  // import "@smui/tab/bare.css";
+  // import "@smui/tab-bar/bare.css";
+  // import "@smui/button/bare.css";
+  // import "@smui/dialog/bare.css";
+  // import "@smui/icon-button/bare.css";
+  import "../public/global.scss";
+
   const store = writable([]);
   $store.length; // incorrect no-unsafe-member-access error
 
-  let logo = "assets/logo.svg"
+  let logo = "assets/logo.svg";
   let tabs = [
     { id: "home", name: "Home", path: `${process.env.SVELTE_APP_BASEURL}` },
     {
@@ -50,11 +56,23 @@
     }
   ];
   let active = tabs[0];
+  let location = window.location.href;
 </script>
 
-<Header  {logo} hasLogo={true} title={"EMI SIG"} />
+<Header
+  {logo}
+  hasLogo={true}
+  title={"EMI SIG"}
+  adminPage={location.includes("admin")}
+  {location}
+/>
 <main>
-  <div style="width: 80rem">
-    <Router />
+  <div style="display: flex; width: -webkit-fill-available;">
+    <Router
+      onRouteLoaded={event => {
+        location = window.location.href;
+      }}
+      onConditionsFailed={event => {}}
+    />
   </div>
 </main>
