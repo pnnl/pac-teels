@@ -45,7 +45,7 @@
   import SearchDropdown from "components/SearchDropdown.svelte";
   import ItemSearches from "components/ItemSearches.svelte";
   import RightPanel from "components/RightPanel/RightPanel.svelte";
-  import {STUBBED_HOMEPAGE_ITEMS} from "constants/constants"
+  import { STUBBED_HOMEPAGE_ITEMS } from "constants/constants";
 </script>
 
 <div class="content">
