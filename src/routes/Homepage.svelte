@@ -41,21 +41,11 @@
   }
 </style>
 
-<script lang="ts">
-  //ToDo: Why is ignore required here when node src specified in env
-  //@ts-ignore
+<script>
   import SearchDropdown from "components/SearchDropdown.svelte";
-  //@ts-ignore
   import ItemSearches from "components/ItemSearches.svelte";
-
-  let stubbedItems = new Map([
-    [
-      "7782-50-5",
-      {
-        name: "Adipic acid, diethylene glycol, trimethylolpropane, phthalic anhydride, toluenediisocyanate polymer, isocyanate terminated"
-      }
-    ]
-  ]);
+  import RightPanel from "components/RightPanel/RightPanel.svelte";
+  import {STUBBED_HOMEPAGE_ITEMS} from "constants/constants"
 </script>
 
 <div class="content">
@@ -63,22 +53,21 @@
     <h1>PAC Database</h1>
     <div class="version">Rev. 29A, June 2018</div>
   </div>
-  <div>
-    <SearchDropdown
-      style={"width:75rem;"}
-      items={stubbedItems}
-      placeholder={"Search chemicals"}
-    />
-    <div class="label">
-      Search by CAS number, chemical name, chemical formula, or UN number
-    </div>
+  <SearchDropdown
+    style={"width:75rem;"}
+    items={STUBBED_HOMEPAGE_ITEMS}
+    placeholder={"Search chemicals"}
+  />
+  <div class="label">
+    Search by CAS number, chemical name, chemical formula, or UN number
   </div>
+
   <div>
     <h4>Suggestion</h4>
     <ItemSearches
       style={"width:75rem;"}
       caption={"Your Recently Viewed"}
-      items={stubbedItems}
+      items={STUBBED_HOMEPAGE_ITEMS}
     />
   </div>
 </div>
