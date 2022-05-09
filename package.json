@@ -107,5 +107,8 @@
       "prettier --write ./src/**/*.{js,svelte,html,ts}",
       "eslint --fix \"./src/**/*.{js,ts,svelte}\""
     ]
+  },
+  "volta": {
+    "node": "17.7.1"
   }
 }
