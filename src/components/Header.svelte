@@ -13,14 +13,15 @@
   }
 
   .header.account-details {
-    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.06), 0px 3px 14px rgba(0, 0, 0, 0.06),
-      0px 4px 5px rgba(0, 0, 0, 0.08);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.07), 0px 4px 5px rgba(0, 0, 0, 0.06),
+      0px 1px 10px rgba(0, 0, 0, 0.1);
   }
   .logo-wrapper {
     display: flex;
     align-items: center;
     font-weight: bold;
     margin-left: 2rem;
+    cursor: pointer;
   }
 
   .nav-left-logo {
@@ -47,12 +48,12 @@
   }
 
   .right {
-    position: absolute;
-    right: 2rem;
     height: 4rem;
     display: inline-flex;
     margin-top: 0.25rem;
     align-items: center;
+    margin-left: auto;
+    margin-right: 2rem;
   }
 
   .button {
@@ -89,36 +90,145 @@
 </style>
 
 <script lang="ts">
+  import type { MenuComponentDev } from "@smui/menu";
+  import Menu from "@smui/menu";
+  import { Anchor } from "@smui/menu-surface";
+  import List, { Item, Separator, Text } from "@smui/list";
   import Button, { Icon, Label } from "@smui/button";
+  import LoginModal from "./LoginModal.svelte";
+  import Tab from "@smui/tab";
+  import TabBar from "@smui/tab-bar";
+  import { push, pop, replace } from "svelte-spa-router";
+
   export let title = "";
   export let hasLogo = false;
   export let logo: any = undefined;
   export let logoLabel: any = undefined;
+  export let adminPage;
+  export let location;
+
+  let tabs = [
+    {
+      id: "chemicalDatabase",
+      name: "Chemical Database",
+      path: `${process.env.SVELTE_APP_BASEURL}/#/admin/chemicalDatabase`
+    },
+    {
+      id: "userManagement",
+      name: "User Management",
+      path: `${process.env.SVELTE_APP_BASEURL}/#/admin/userManagement`
+    },
+    {
+      id: "changeLog",
+      name: "Change Log",
+      path: `${process.env.SVELTE_APP_BASEURL}/#/admin/changeLog`
+    }
+  ];
+
+  let active = tabs[0];
 
   let name = "";
   $: {
     name = "user.name";
   }
+
+  let loginOpen = false;
+  let closeHandler = (e: CustomEvent<{ action: string }>) => {
+    loginOpen = false;
+  };
+
+  let userMenuOpen = false;
+  let closeUserHandler = (e: CustomEvent<{ action: string }>) => {
+    userMenuOpen = false;
+  };
+  let menu: MenuComponentDev;
+  let anchor: HTMLDivElement;
+  let anchorClasses: { [k: string]: boolean } = { right: true };
 </script>
 
-<div class="header">
+<div class={location.includes("accountDetails") ? "header account-details" : "header"}>
   {#if hasLogo}
-    <div class="logo-wrapper">
+    <div class="logo-wrapper" on:click={() => push("/")}>
       <img src={logo} class="nav-left-logo" alt={logoLabel} />
+      <h1 class="title " class:with-logo={hasLogo === true}>{title}</h1>
     </div>
   {/if}
-  <h1 class="title " class:with-logo={hasLogo === true}>{title}</h1>
   <span class="nav-menu-wrapper ">
     <slot />
   </span>
-  <div class="right">
-    <Button on:click={() => window.alert("Not Implemented")}>
-      <Icon class="material-icons">feedback</Icon>
-      <Label>send feedback</Label>
-    </Button>
-    <Button on:click={() => window.alert("Not Implemented")}>
-      <Icon class="material-icons">login</Icon>
-      <Label>Admin Login</Label>
-    </Button>
-  </div>
+  {#if adminPage}
+    <h1
+      style={"margin-left: 3rem; font-weight: 400; font-size: 32px; color: var(--lightBlue)"}
+    >
+      PAC Database
+    </h1>
+    <TabBar {tabs} let:tab bind:active style={"width: unset; margin-left: auto;"}>
+      <!-- Note: the `tab` property is required! -->
+      <Tab
+        {tab}
+        on:click={() => {
+          return (active = tab);
+        }}
+        href={tab.path}
+      >
+        <Label>{tab.name}</Label>
+      </Tab>
+    </TabBar>
+  {/if}
+  {#if !adminPage}
+    <div class="right">
+      <Button on:click={() => window.alert("Not Implemented")}>
+        <Icon class="material-icons">feedback</Icon>
+        <Label>send feedback</Label>
+      </Button>
+      <Button
+        on:click={() => {
+          loginOpen = !loginOpen;
+        }}
+      >
+        <Icon class="material-icons">login</Icon>
+        <Label>Admin Login</Label>
+      </Button>
+    </div>
+  {/if}
+  {#if adminPage}
+    <div
+      class={Object.keys(anchorClasses).join(" ")}
+      use:Anchor={{
+        addClass: className => {
+          if (!anchorClasses[className]) {
+            anchorClasses[className] = true;
+          }
+        },
+        removeClass: className => {
+          if (anchorClasses[className]) {
+            delete anchorClasses[className];
+            anchorClasses = anchorClasses;
+          }
+        }
+      }}
+      bind:this={anchor}
+    >
+      <Button on:click={() => menu.setOpen(!userMenuOpen)}>
+        <Icon class="material-icons">account_circle</Icon>
+        <Label>Name of User</Label>
+      </Button>
+      <Menu
+        bind:this={menu}
+        anchor={false}
+        bind:anchorElement={anchor}
+        anchorCorner="BOTTOM_LEFT"
+      >
+        <List>
+          <Item on:click={() => push("/admin/accountDetails")}>
+            <Text>Account Details</Text>
+          </Item>
+          <Item on:click={() => {}}>
+            <Text>Log Out</Text>
+          </Item>
+        </List>
+      </Menu>
+    </div>
+  {/if}
+  <LoginModal open={loginOpen} {closeHandler} setAdminPage={val => (adminPage = val)} />
 </div>

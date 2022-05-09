@@ -1,10 +1,15 @@
 <style>
   .content {
     margin: 1rem;
+    width: -webkit-fill-available;
     display: flex;
     color: var(--font);
     flex-direction: column;
     text-align: left;
+    justify-self: center;
+    align-self: center;
+    align-items: center;
+    align-content: center;
   }
   .title {
     display: flex;
@@ -65,5 +70,4 @@
       items={STUBBED_HOMEPAGE_ITEMS}
     />
   </div>
-  <RightPanel />
 </div>
