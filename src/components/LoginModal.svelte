@@ -9,15 +9,34 @@
   import Textfield from "@smui/textfield";
   import Checkbox from "@smui/checkbox";
   import FormField from "@smui/form-field/src/FormField.svelte";
+  import { Auth } from "aws-amplify";
   import { push, pop, replace } from "svelte-spa-router";
+  import { user } from "../stores/stores";
 
   export let open;
   export let closeHandler;
   export let setAdminPage;
 
+  let loginLoading = false;
   let email = "";
   let password = "";
   let showPassChecked = false;
+
+  const handleSubmit = async () => {
+    // e.preventDefault();
+    loginLoading = true;
+
+    try {
+      const retrievedUser = await Auth.signIn(email, password);
+      user.update(currUser => retrievedUser);
+      setAdminPage(true);
+      push("/admin/chemicalDatabase");
+    } catch (error) {
+      console.log("Login failed");
+      console.log(error);
+    }
+    loginLoading = false;
+  };
 </script>
 
 <Dialog bind:open on:SMUIDialog:closed={closeHandler}>
@@ -84,8 +103,7 @@
         defaultAction
         disabled={email && password ? false : true}
         on:click={() => {
-          push("/admin/chemicalDatabase");
-          setAdminPage(true);
+          handleSubmit();
         }}
       >
         <Label>Log In</Label>
