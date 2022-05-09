@@ -21,8 +21,6 @@
 </style>
 
 <script>
-  import App from "../App.svelte";
-
   export let caption;
   export let items;
   export let style;
