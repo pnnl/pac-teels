@@ -46,21 +46,9 @@
 <script>
   import { createEventDispatcher, onMount, onDestroy } from "svelte";
   import Button, { Icon, Label } from "@smui/button";
-
+  import {CHEMICAL_IDENTITY} from "constants/constants"
   let expanded = false;
 
-  //stubbed data
-  let chemicalIdentity = {
-    CAS: "7782-505",
-    chemFormula: "Cl2",
-    UNumber: "1017",
-    Synonyms: `CHLORINE; BERTHOLITE; CHLORE (DOT FRENCH); CHLORINE MOL.;
-      CHLORINE MOLECULE (CL2); CLORO (DOT SPANISH); CHLORINE; BERTHOLITE;
-      CHLORE (DOT FRENCH); CHLORINE MOL.; CHLORINE MOLECULE (CL2); CLORO (DOT SPANISH);CHLORINE; BERTHOLITE;
-      CHLORE (DOT FRENCH); CHLORINE MOL.; CHLORINE MOLECULE (CL2); CLORO (DOT SPANISH);CHLORINE; BERTHOLITE;
-      CHLORE (DOT FRENCH); CHLORINE MOL.; CHLORINE MOLECULE (CL2); CLORO (DOT SPANISH);CHLORINE; BERTHOLITE;
-      CHLORE (DOT FRENCH); CHLORINE MOL.; CHLORINE MOLECULE (CL2); CLORO (DOT SPANISH);`
-  };
 </script>
 
 <div class="chemical-identity-container" class:expanded>
@@ -68,23 +56,23 @@
 
   <div class="chemical-identity-item">
     <div class="body-caption">CAS Number</div>
-    <div class="body-semibold">{chemicalIdentity.CAS}</div>
+    <div class="body-semibold">{CHEMICAL_IDENTITY.CAS}</div>
   </div>
 
   <div class="chemical-identity-item">
     <div class="body-caption">Chemical Formula</div>
-    <div class="body-semibold">{chemicalIdentity.chemFormula}</div>
+    <div class="body-semibold">{CHEMICAL_IDENTITY.chemFormula}</div>
   </div>
 
   <div class="chemical-identity-item">
     <div class="body-caption">UN Number</div>
-    <div class="body-semibold">{chemicalIdentity.UNumber}</div>
+    <div class="body-semibold">{CHEMICAL_IDENTITY.UNumber}</div>
   </div>
 
   <div class="chemical-identity-item">
     <div class="body-caption">Synonyms</div>
     <div class="body-semibold synonym-body" class:expanded>
-      {chemicalIdentity.Synonyms}
+      {CHEMICAL_IDENTITY.Synonyms}
     </div>
   </div>
 </div>

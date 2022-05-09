@@ -61,11 +61,7 @@
   import HealthCodes from "./HealthCodes/HealthCodes.svelte";
   import ChemicalIdentity from "./ChemicalIdentity/ChemicalIdentity.svelte";
   import PhysicalProperties from "./PhysicalProperties/PhysicalProperties.svelte";
-
-  const dispatch = createEventDispatcher();
-
-  //   placeholders
-  let placeholder = new Map();
+  import { UNIT_OPTIONS } from "constants/constants";
 
   let currentUnit = "mgm3";
   let calculation = 1.232;
@@ -86,7 +82,7 @@
   <h4>Protective Action Criteria Values</h4>
   <div class="body-caption">Unit</div>
   <FormField>
-    {#each ["ppm", "mgm3"] as option}
+    {#each UNIT_OPTIONS as option}
       <div class="radio-item">
         <Radio bind:group={currentUnit} value={option} />
         <span class="label">{option}</span>
