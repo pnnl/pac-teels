@@ -15,4 +15,6 @@ webpack.config.ts
 public
 node_modules
 .env
+package.json
+package-lock.json
 

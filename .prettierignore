@@ -7,3 +7,4 @@ public
 public\assets\favicon.png
 webpack.config.ts
 tsconfig.json
+package-lock.json
