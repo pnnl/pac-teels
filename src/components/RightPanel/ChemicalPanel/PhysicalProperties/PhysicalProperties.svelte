@@ -11,7 +11,7 @@
 </style>
 
 <script lang="ts">
-import {PHYSICAL_PROPERTY_MAP} from "constants/constants"
+  import { PHYSICAL_PROPERTY_MAP } from "constants/constants";
 </script>
 
 <div class="physical-property-container">

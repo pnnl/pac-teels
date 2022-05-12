@@ -46,9 +46,8 @@
 <script>
   import { createEventDispatcher, onMount, onDestroy } from "svelte";
   import Button, { Icon, Label } from "@smui/button";
-  import {CHEMICAL_IDENTITY} from "constants/constants"
+  import { CHEMICAL_IDENTITY } from "constants/constants";
   let expanded = false;
-
 </script>
 
 <div class="chemical-identity-container" class:expanded>

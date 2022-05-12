@@ -11,7 +11,7 @@
 </style>
 
 <script lang="ts">
- import {HEALTH_CODE_NUMBERS} from "constants/constants"
+  import { HEALTH_CODE_NUMBERS } from "constants/constants";
 </script>
 
 <div class="container">
