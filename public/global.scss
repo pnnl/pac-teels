@@ -116,11 +116,11 @@ h2::before {
 	background: var(--caption);
   }
 
-	.mdc-switch:enabled:focus:not(:active) .mdc-switch__track::after {
-		background: var(--toggle);
-	}
-
-	.mdc-switch:enabled:active .mdc-switch__track::after {
+  .mdc-switch:enabled:focus:not(:active) .mdc-switch__track::after {
+	background: var(--toggle);
+  }
+  
+  .mdc-switch:enabled:active .mdc-switch__track::after {
 		background: var(--toggle);
 	}
 
@@ -130,4 +130,7 @@ h2::before {
 
 	.mdc-switch.mdc-switch--selected:enabled:focus:not(:active) .mdc-switch__handle::after {
 		background: var(--white);
+	}
+	.mdc-button--unelevated:disabled {
+		background-color: var(--mdc-filled-button-disabled-container-color, rgba(0, 0, 0, 0.12)) !important;
 	}
