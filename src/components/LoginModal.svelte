@@ -9,9 +9,10 @@
   import Textfield from "@smui/textfield";
   import Checkbox from "@smui/checkbox";
   import FormField from "@smui/form-field/src/FormField.svelte";
+  import CircularProgress from "@smui/circular-progress";
   import { Auth } from "aws-amplify";
   import { push, pop, replace } from "svelte-spa-router";
-  import { user } from "../stores/stores";
+  import { user, currPass } from "../stores/stores";
 
   export let open;
   export let closeHandler;
@@ -22,20 +23,33 @@
   let password = "";
   let showPassChecked = false;
 
-  const handleSubmit = async () => {
-    // e.preventDefault();
+  const handleSubmit = async (e: any) => {
     loginLoading = true;
 
     try {
       const retrievedUser = await Auth.signIn(email, password);
       user.update(currUser => retrievedUser);
+      currPass.update(currPassword => password);
+      console.log(retrievedUser);
       setAdminPage(true);
+      // If a new password is required, first force them to reset their password.
+
+      if (
+        retrievedUser.challengeName &&
+        retrievedUser.challengeName === "NEW_PASSWORD_REQUIRED"
+      ) {
+        Auth.completeNewPassword(
+          retrievedUser, // the Cognito User Object
+          password // the new password
+        );
+      }
       push("/admin/chemicalDatabase");
     } catch (error) {
       console.log("Login failed");
       console.log(error);
     }
     loginLoading = false;
+    closeHandler(undefined);
   };
 </script>
 
@@ -89,26 +103,30 @@
         </FormField>
       </div>
     </Content>
-    <Actions style="padding: 24px 20px;">
+    <div style="padding: 24px 20px; display: flex;">
       <Button
-        action="reject"
         style={"margin-right: auto;"}
-        on:click={() => window.alert("Not Implemented")}
+        on:click={() => {
+          Auth.forgotPassword(email);
+          closeHandler(undefined);
+        }}
       >
         <Label>Forgot Password?</Label>
       </Button>
       <Button
-        action="accept"
         variant="unelevated"
-        defaultAction
-        disabled={email && password ? false : true}
-        on:click={() => {
-          handleSubmit();
+        disabled={email && password && !loginLoading ? false : true}
+        on:click={e => {
+          handleSubmit(e);
         }}
       >
-        <Label>Log In</Label>
-        <Icon class="material-icons">arrow_forward</Icon>
+        <Label style="margin-right: 0.5rem;">Log In</Label>
+        {#if !loginLoading}
+          <Icon class="material-icons" style="margin-left: 0px;">arrow_forward</Icon>
+        {:else}
+          <CircularProgress style="height: 1rem; width: 1rem;" indeterminate />
+        {/if}
       </Button>
-    </Actions>
+    </div>
   </div>
 </Dialog>

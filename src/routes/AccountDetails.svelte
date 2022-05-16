@@ -6,9 +6,21 @@
   import Button, { Label, Icon } from "@smui/button";
   import { push, pop, replace } from "svelte-spa-router";
   import Textfield from "@smui/textfield";
+  import { currPass, user } from "../stores/stores";
 
   let email = "";
   let password = "";
+
+  user.subscribe(currUser => {
+    if (currUser && currUser.attributes) {
+      email = currUser.attributes.email;
+    }
+  });
+  currPass.subscribe(currPassword => {
+    if (currPassword) {
+      password = currPassword;
+    }
+  });
 </script>
 
 <div
@@ -48,6 +60,7 @@
       variant="outlined"
       style={"width: 400px; height: var(--mdc-outlined-button-container-height, 36px); margin-right: 1rem;"}
       disabled
+      type="password"
     />
     <Button
       on:click={() => {
