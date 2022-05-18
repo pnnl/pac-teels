@@ -5,19 +5,12 @@
     display:flex;
     text-transform:capitalize;
   }
-  .email-notify-modal {
+  .email-modal-container {
     position: absolute;
     z-index: 99;
     background: #fff;
-    height: 13.5rem;
-    border-radius: 0.25rem;
-    box-shadow: 0rem 0.5rem 0.625rem rgba(0, 0, 0, 0.06),
-      0rem 0.1875rem 0.875rem rgba(0, 0, 0, 0.06),
-      0rem 0.25rem 0.3125rem rgba(0, 0, 0, 0.08);
-    width: 34rem;
-  }
-  .content{
-      padding:2rem;
+    width:32rem;
+    height:13.5rem;
   }
   .button-container{
       display:flex;
@@ -41,7 +34,7 @@
   import FormField from "@smui/form-field";
   import { createEventDispatcher, onMount, onDestroy } from "svelte";
   import { mainComponentHTMLSelector } from "constants/constants";
-
+  import Paper, {Content} from "@smui/paper"
   export let parentReference: HTMLElement;
 
   const dispatch = createEventDispatcher();
@@ -83,11 +76,13 @@
 </script>
 
 <div
-  class="email-notify-modal"
-  style="--top:{position.bottom}px; --left:{position.left + position.height}px"
-  bind:this={componentReference}
+style="--top:{position.bottom}px; --left:{position.left + position.height}px"
+bind:this={componentReference}
+class="email-modal-container"
 >
-<div class="content">
+<Paper
+>
+<Content>
   <label for="email-input" >email</label>
   <input class="email-input" id="email-input"/>
   <div class="caption bottom-label">You will be notified if this chemical gets updated in the future</div>
@@ -100,5 +95,6 @@
       <Label>sign up for email updates</Label>
     </Button>
   </div>
-</div>
+</Content>
+</Paper>
 </div>
