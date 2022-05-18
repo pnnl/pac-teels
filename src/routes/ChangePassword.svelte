@@ -8,11 +8,34 @@
   import Textfield from "@smui/textfield";
   import Checkbox from "@smui/checkbox";
   import FormField from "@smui/form-field/src/FormField.svelte";
+  import { currPass } from "../stores/stores";
 
   let newPassword = "";
   let password = "";
   let showPassChecked = false;
   let showNewPassChecked = false;
+
+  currPass.subscribe(currPassword => {
+    if (currPassword) {
+      password = currPassword;
+    }
+  });
+
+  const handleSubmit = async () => {
+    try {
+      const user = await Auth.currentAuthenticatedUser({ bypassCache: true });
+      await Auth.changePassword(
+        user, // the Cognito User Object
+        password,
+        newPassword // the new password
+      );
+      currPass.update(currentPassword => newPassword);
+      push("/admin/accountDetails");
+    } catch (error) {
+      console.log("Change password failed");
+      console.log(error);
+    }
+  };
 </script>
 
 <div
@@ -27,9 +50,9 @@
     <Label>Back</Label>
   </Button>
   <div
-    style="font-weight: 400; font-size: 32px; color: var(--blackFont); padding: 1.2rem 0rem;"
+    style="font-weight: 400; font-size: 32px; color: var(--blackFont); padding: 1.2rem 0rem; display: flex; flex-direction: column;align-items: start;"
   >
-    Change Password
+    <div>Change Password</div>
   </div>
   <div
     style={"margin-top: 1.2rem;color: var(--font);display: flex; flex-direction: column;align-items: start;width: 400px;"}
@@ -37,11 +60,20 @@
     <div style={"font-size: 14px; line-height: 21px; font-weight: 500;"}>
       Current Password
     </div>
-    <Textfield
-      bind:value={password}
-      variant="outlined"
-      style={"width: -webkit-fill-available; height: var(--mdc-outlined-button-container-height, 36px);"}
-    />
+    {#if showPassChecked}
+      <Textfield
+        bind:value={password}
+        variant="outlined"
+        style={"width: -webkit-fill-available; height: var(--mdc-outlined-button-container-height, 36px);"}
+      />
+    {:else}
+      <Textfield
+        bind:value={password}
+        variant="outlined"
+        type="password"
+        style={"width: -webkit-fill-available; height: var(--mdc-outlined-button-container-height, 36px);"}
+      />
+    {/if}
   </div>
   <div
     style={"margin-top: 1.2rem;color: var(--font);display: flex; flex-direction: column;align-items: start;width: 400px;"}
@@ -60,11 +92,20 @@
     <div style={"font-size: 14px; line-height: 21px; font-weight: 500;"}>
       New Password
     </div>
-    <Textfield
-      bind:value={newPassword}
-      variant="outlined"
-      style={"width: -webkit-fill-available; height: var(--mdc-outlined-button-container-height, 36px);"}
-    />
+    {#if showNewPassChecked}
+      <Textfield
+        bind:value={newPassword}
+        variant="outlined"
+        style={"width: -webkit-fill-available; height: var(--mdc-outlined-button-container-height, 36px);"}
+      />
+    {:else}
+      <Textfield
+        bind:value={newPassword}
+        variant="outlined"
+        style={"width: -webkit-fill-available; height: var(--mdc-outlined-button-container-height, 36px);"}
+        type="password"
+      />
+    {/if}
   </div>
   <div
     style={"margin-top: 1.2rem;color: var(--font);display: flex; flex-direction: column;align-items: start;width: 400px;"}
@@ -81,7 +122,7 @@
   <Button
     variant="unelevated"
     on:click={() => {
-      push("/admin/accountDetails");
+      handleSubmit();
     }}
     style="margin-top: 1.2rem;"
   >

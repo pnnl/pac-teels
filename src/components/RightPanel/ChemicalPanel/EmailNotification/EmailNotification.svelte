@@ -1,32 +1,31 @@
 <style>
   label {
     font-weight: 500;
-    margin-bottom:.5rem;
-    display:flex;
-    text-transform:capitalize;
+    margin-bottom: 0.5rem;
+    display: flex;
+    text-transform: capitalize;
   }
   .email-modal-container {
     position: absolute;
     z-index: 99;
     background: #fff;
-    width:32rem;
-    height:13.5rem;
+    width: 32rem;
+    height: 13.5rem;
   }
-  .button-container{
-      display:flex;
-      justify-content:flex-end;
-      gap:1rem;
-      margin-top:1.5rem;
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
   }
-  .bottom-label{
-      display:flex;
+  .bottom-label {
+    display: flex;
   }
-  .email-input{
-      height:2.5rem;
-      border-radius:.25rem;
-      width:-webkit-fill-available;
+  .email-input {
+    height: 2.5rem;
+    border-radius: 0.25rem;
+    width: -webkit-fill-available;
   }
-
 </style>
 
 <script lang="ts">
@@ -34,7 +33,7 @@
   import FormField from "@smui/form-field";
   import { createEventDispatcher, onMount, onDestroy } from "svelte";
   import { mainComponentHTMLSelector } from "constants/constants";
-  import Paper, {Content} from "@smui/paper"
+  import Paper, { Content } from "@smui/paper";
   export let parentReference: HTMLElement;
 
   const dispatch = createEventDispatcher();
@@ -76,25 +75,26 @@
 </script>
 
 <div
-style="--top:{position.bottom}px; --left:{position.left + position.height}px"
-bind:this={componentReference}
-class="email-modal-container"
+  style="--top:{position.bottom}px; --left:{position.left + position.height}px"
+  bind:this={componentReference}
+  class="email-modal-container"
 >
-<Paper
->
-<Content>
-  <label for="email-input" >email</label>
-  <input class="email-input" id="email-input"/>
-  <div class="caption bottom-label">You will be notified if this chemical gets updated in the future</div>
-  <div class="button-container">
-    <Button variant="outlined" on:click={() => dispatch("close", {})}>
-      <Label>cancel</Label>
-    </Button>
-    <Button variant="unelevated" on:click={() => window.alert("Not Implemented")}>
-      <Icon class="material-icons">check</Icon>
-      <Label>sign up for email updates</Label>
-    </Button>
-  </div>
-</Content>
-</Paper>
+  <Paper>
+    <Content>
+      <label for="email-input">email</label>
+      <input class="email-input" id="email-input" />
+      <div class="caption bottom-label">
+        You will be notified if this chemical gets updated in the future
+      </div>
+      <div class="button-container">
+        <Button variant="outlined" on:click={() => dispatch("close", {})}>
+          <Label>cancel</Label>
+        </Button>
+        <Button variant="unelevated" on:click={() => window.alert("Not Implemented")}>
+          <Icon class="material-icons">check</Icon>
+          <Label>sign up for email updates</Label>
+        </Button>
+      </div>
+    </Content>
+  </Paper>
 </div>

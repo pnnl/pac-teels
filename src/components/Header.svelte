@@ -144,8 +144,11 @@
   let anchorClasses: { [k: string]: boolean } = { right: true };
 
   user.subscribe(currUser => {
-    if (currUser) {
+    if (currUser && currUser.challengeParam) {
       userName = currUser.challengeParam.userAttributes.email;
+    } else if (currUser && currUser.attributes) {
+      // Fully logged in user
+      userName = currUser.attributes.email;
     }
   });
 </script>

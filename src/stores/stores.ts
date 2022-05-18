@@ -23,3 +23,5 @@ user.subscribe(value => {
     deleteItem("user");
   }
 });
+
+export const currPass: any = writable();
