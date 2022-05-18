@@ -134,3 +134,29 @@ h2::before {
 	.mdc-button--unelevated:disabled {
 		background-color: var(--mdc-filled-button-disabled-container-color, rgba(0, 0, 0, 0.12)) !important;
 	}
+
+    .caption{
+        color:var(--caption);
+        font-size:.75rem;
+        font-weight:400,regular;
+    }
+
+    .body-caption{
+        color:var(--caption);
+        font-size:1rem;
+        font-weight:400,regular;
+    }
+
+    .body-semibold{
+        color:#4C5060;
+        font-size:1rem;
+        font-weight:600;
+    }
+
+    .divider {
+        border-bottom: #d3d3d3 solid 0.125rem;
+      }
+
+    .mdc-button--outlined .mdc-button__ripple{
+        border-color:var(--blue)
+    }

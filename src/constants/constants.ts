@@ -1,3 +1,5 @@
+export const mainComponentHTMLSelector = "main.app-main-component";
+
 export const UNIT_OPTIONS = [["ppm"], ["mg/m"]];
 
 /** Stubbed Data Section **/
