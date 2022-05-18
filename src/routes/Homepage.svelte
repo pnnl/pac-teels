@@ -48,6 +48,7 @@
   import { STUBBED_HOMEPAGE_ITEMS } from "constants/constants";
 </script>
 
+<RightPanel />
 <div class="content">
   <div class="title">
     <h1>PAC Database</h1>
