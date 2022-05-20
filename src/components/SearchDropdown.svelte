@@ -46,11 +46,15 @@
 </style>
 
 <script lang="ts">
+  import CircularProgress from "@smui/circular-progress";
+
   export let placeholder;
-  export let searchBarFilter: string;
+  export let searchBarFilter = "";
   export let style;
-  let searchDropDownVisible;
   export let items;
+  export let itemsLoading = false;
+
+  let searchDropDownVisible;
 
   const handleFilterBySearch = () => {
     window.alert("Not yet implemented");
@@ -67,6 +71,12 @@
     bind:value={searchBarFilter}
     on:input={handleFilterBySearch}
   />
+  {#if itemsLoading}
+    <CircularProgress
+      style="height: 1rem; width: 1rem; margin-right: 16px;"
+      indeterminate
+    />
+  {/if}
 </div>
 {#if searchDropDownVisible}
   <div class="search-drop-down">
