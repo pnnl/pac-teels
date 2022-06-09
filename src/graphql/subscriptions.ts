@@ -6,6 +6,11 @@ export const onCreateChemical = /* GraphQL */ `
   subscription OnCreateChemical {
     onCreateChemical {
       id
+      casNumber
+      chemicalFormula
+      unNumber
+      createdAt
+      updatedAt
       name
       pac1
       pac2
@@ -51,23 +56,21 @@ export const onCreateChemical = /* GraphQL */ `
       idlh
       element {
         name
-        weight
-        id
         createdAt
         updatedAt
+        weight
+        id
       }
       toldoc {
+        createdAt
+        updatedAt
         toxicOrLethal
         exposureMethod
         threshold
         dosePPM
         doseMGM3
         id
-        createdAt
-        updatedAt
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -75,6 +78,11 @@ export const onUpdateChemical = /* GraphQL */ `
   subscription OnUpdateChemical {
     onUpdateChemical {
       id
+      casNumber
+      chemicalFormula
+      unNumber
+      createdAt
+      updatedAt
       name
       pac1
       pac2
@@ -120,23 +128,21 @@ export const onUpdateChemical = /* GraphQL */ `
       idlh
       element {
         name
-        weight
-        id
         createdAt
         updatedAt
+        weight
+        id
       }
       toldoc {
+        createdAt
+        updatedAt
         toxicOrLethal
         exposureMethod
         threshold
         dosePPM
         doseMGM3
         id
-        createdAt
-        updatedAt
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -144,6 +150,11 @@ export const onDeleteChemical = /* GraphQL */ `
   subscription OnDeleteChemical {
     onDeleteChemical {
       id
+      casNumber
+      chemicalFormula
+      unNumber
+      createdAt
+      updatedAt
       name
       pac1
       pac2
@@ -189,23 +200,21 @@ export const onDeleteChemical = /* GraphQL */ `
       idlh
       element {
         name
-        weight
-        id
         createdAt
         updatedAt
+        weight
+        id
       }
       toldoc {
+        createdAt
+        updatedAt
         toxicOrLethal
         exposureMethod
         threshold
         dosePPM
         doseMGM3
         id
-        createdAt
-        updatedAt
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -213,10 +222,10 @@ export const onCreateElement = /* GraphQL */ `
   subscription OnCreateElement {
     onCreateElement {
       name
-      weight
-      id
       createdAt
       updatedAt
+      weight
+      id
     }
   }
 `;
@@ -224,10 +233,10 @@ export const onUpdateElement = /* GraphQL */ `
   subscription OnUpdateElement {
     onUpdateElement {
       name
-      weight
-      id
       createdAt
       updatedAt
+      weight
+      id
     }
   }
 `;
@@ -235,172 +244,172 @@ export const onDeleteElement = /* GraphQL */ `
   subscription OnDeleteElement {
     onDeleteElement {
       name
-      weight
-      id
       createdAt
       updatedAt
+      weight
+      id
     }
   }
 `;
 export const onCreateToldoc = /* GraphQL */ `
   subscription OnCreateToldoc {
     onCreateToldoc {
+      createdAt
+      updatedAt
       toxicOrLethal
       exposureMethod
       threshold
       dosePPM
       doseMGM3
       species {
+        createdAt
+        updatedAt
         name
         meanBodyWeight
         meanBreathingRate
         exposureTime
         id
-        createdAt
-        updatedAt
       }
       route {
+        createdAt
+        updatedAt
         name
         adjustmentFactor
         id
-        createdAt
-        updatedAt
       }
       id
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onUpdateToldoc = /* GraphQL */ `
   subscription OnUpdateToldoc {
     onUpdateToldoc {
+      createdAt
+      updatedAt
       toxicOrLethal
       exposureMethod
       threshold
       dosePPM
       doseMGM3
       species {
+        createdAt
+        updatedAt
         name
         meanBodyWeight
         meanBreathingRate
         exposureTime
         id
-        createdAt
-        updatedAt
       }
       route {
+        createdAt
+        updatedAt
         name
         adjustmentFactor
         id
-        createdAt
-        updatedAt
       }
       id
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onDeleteToldoc = /* GraphQL */ `
   subscription OnDeleteToldoc {
     onDeleteToldoc {
+      createdAt
+      updatedAt
       toxicOrLethal
       exposureMethod
       threshold
       dosePPM
       doseMGM3
       species {
+        createdAt
+        updatedAt
         name
         meanBodyWeight
         meanBreathingRate
         exposureTime
         id
-        createdAt
-        updatedAt
       }
       route {
+        createdAt
+        updatedAt
         name
         adjustmentFactor
         id
-        createdAt
-        updatedAt
       }
       id
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onCreateSpecies = /* GraphQL */ `
   subscription OnCreateSpecies {
     onCreateSpecies {
+      createdAt
+      updatedAt
       name
       meanBodyWeight
       meanBreathingRate
       exposureTime
       id
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onUpdateSpecies = /* GraphQL */ `
   subscription OnUpdateSpecies {
     onUpdateSpecies {
+      createdAt
+      updatedAt
       name
       meanBodyWeight
       meanBreathingRate
       exposureTime
       id
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onDeleteSpecies = /* GraphQL */ `
   subscription OnDeleteSpecies {
     onDeleteSpecies {
+      createdAt
+      updatedAt
       name
       meanBodyWeight
       meanBreathingRate
       exposureTime
       id
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onCreateRoute = /* GraphQL */ `
   subscription OnCreateRoute {
     onCreateRoute {
+      createdAt
+      updatedAt
       name
       adjustmentFactor
       id
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onUpdateRoute = /* GraphQL */ `
   subscription OnUpdateRoute {
     onUpdateRoute {
+      createdAt
+      updatedAt
       name
       adjustmentFactor
       id
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onDeleteRoute = /* GraphQL */ `
   subscription OnDeleteRoute {
     onDeleteRoute {
+      createdAt
+      updatedAt
       name
       adjustmentFactor
       id
-      createdAt
-      updatedAt
     }
   }
 `;

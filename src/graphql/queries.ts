@@ -6,6 +6,11 @@ export const getChemical = /* GraphQL */ `
   query GetChemical($id: ID!) {
     getChemical(id: $id) {
       id
+      casNumber
+      chemicalFormula
+      unNumber
+      createdAt
+      updatedAt
       name
       pac1
       pac2
@@ -51,23 +56,21 @@ export const getChemical = /* GraphQL */ `
       idlh
       element {
         name
-        weight
-        id
         createdAt
         updatedAt
+        weight
+        id
       }
       toldoc {
+        createdAt
+        updatedAt
         toxicOrLethal
         exposureMethod
         threshold
         dosePPM
         doseMGM3
         id
-        createdAt
-        updatedAt
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -80,6 +83,11 @@ export const listChemicals = /* GraphQL */ `
     listChemicals(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        casNumber
+        chemicalFormula
+        unNumber
+        createdAt
+        updatedAt
         name
         pac1
         pac2
@@ -123,8 +131,6 @@ export const listChemicals = /* GraphQL */ `
         pelceiling
         eegl30
         idlh
-        createdAt
-        updatedAt
       }
       nextToken
     }
@@ -134,10 +140,10 @@ export const getElement = /* GraphQL */ `
   query GetElement($id: ID!) {
     getElement(id: $id) {
       name
-      weight
-      id
       createdAt
       updatedAt
+      weight
+      id
     }
   }
 `;
@@ -146,10 +152,10 @@ export const listElements = /* GraphQL */ `
     listElements(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         name
-        weight
-        id
         createdAt
         updatedAt
+        weight
+        id
       }
       nextToken
     }
@@ -158,30 +164,30 @@ export const listElements = /* GraphQL */ `
 export const getToldoc = /* GraphQL */ `
   query GetToldoc($id: ID!) {
     getToldoc(id: $id) {
+      createdAt
+      updatedAt
       toxicOrLethal
       exposureMethod
       threshold
       dosePPM
       doseMGM3
       species {
+        createdAt
+        updatedAt
         name
         meanBodyWeight
         meanBreathingRate
         exposureTime
         id
-        createdAt
-        updatedAt
       }
       route {
+        createdAt
+        updatedAt
         name
         adjustmentFactor
         id
-        createdAt
-        updatedAt
       }
       id
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -189,14 +195,14 @@ export const listToldocs = /* GraphQL */ `
   query ListToldocs($filter: ModelToldocFilterInput, $limit: Int, $nextToken: String) {
     listToldocs(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
+        createdAt
+        updatedAt
         toxicOrLethal
         exposureMethod
         threshold
         dosePPM
         doseMGM3
         id
-        createdAt
-        updatedAt
       }
       nextToken
     }
@@ -205,13 +211,13 @@ export const listToldocs = /* GraphQL */ `
 export const getSpecies = /* GraphQL */ `
   query GetSpecies($id: ID!) {
     getSpecies(id: $id) {
+      createdAt
+      updatedAt
       name
       meanBodyWeight
       meanBreathingRate
       exposureTime
       id
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -219,13 +225,13 @@ export const listSpecies = /* GraphQL */ `
   query ListSpecies($filter: ModelSpeciesFilterInput, $limit: Int, $nextToken: String) {
     listSpecies(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
+        createdAt
+        updatedAt
         name
         meanBodyWeight
         meanBreathingRate
         exposureTime
         id
-        createdAt
-        updatedAt
       }
       nextToken
     }
@@ -234,11 +240,11 @@ export const listSpecies = /* GraphQL */ `
 export const getRoute = /* GraphQL */ `
   query GetRoute($id: ID!) {
     getRoute(id: $id) {
+      createdAt
+      updatedAt
       name
       adjustmentFactor
       id
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -246,11 +252,11 @@ export const listRoutes = /* GraphQL */ `
   query ListRoutes($filter: ModelRouteFilterInput, $limit: Int, $nextToken: String) {
     listRoutes(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
+        createdAt
+        updatedAt
         name
         adjustmentFactor
         id
-        createdAt
-        updatedAt
       }
       nextToken
     }

@@ -4,7 +4,12 @@
 
 export type CreateChemicalInput = {
   id?: string | null;
-  name: string;
+  casNumber?: string | null;
+  chemicalFormula?: string | null;
+  unNumber?: string | null;
+  createdAt?: string | null;
+  updatedAt?: string | null;
+  name?: string | null;
   pac1?: number | null;
   pac2?: number | null;
   pac3?: number | null;
@@ -50,6 +55,11 @@ export type CreateChemicalInput = {
 };
 
 export type ModelChemicalConditionInput = {
+  casNumber?: ModelStringInput | null;
+  chemicalFormula?: ModelStringInput | null;
+  unNumber?: ModelStringInput | null;
+  createdAt?: ModelStringInput | null;
+  updatedAt?: ModelStringInput | null;
   name?: ModelStringInput | null;
   pac1?: ModelFloatInput | null;
   pac2?: ModelFloatInput | null;
@@ -159,7 +169,12 @@ export type ModelBooleanInput = {
 export type Chemical = {
   __typename: "Chemical";
   id: string;
-  name: string;
+  casNumber?: string | null;
+  chemicalFormula?: string | null;
+  unNumber?: string | null;
+  createdAt?: string | null;
+  updatedAt?: string | null;
+  name?: string | null;
   pac1?: number | null;
   pac2?: number | null;
   pac3?: number | null;
@@ -204,21 +219,21 @@ export type Chemical = {
   idlh?: number | null;
   element?: Element | null;
   toldoc?: Toldoc | null;
-  createdAt: string;
-  updatedAt: string;
 };
 
 export type Element = {
   __typename: "Element";
   name?: string | null;
+  createdAt?: string | null;
+  updatedAt?: string | null;
   weight?: number | null;
   id: string;
-  createdAt: string;
-  updatedAt: string;
 };
 
 export type Toldoc = {
   __typename: "Toldoc";
+  createdAt?: string | null;
+  updatedAt?: string | null;
   toxicOrLethal?: string | null;
   exposureMethod?: string | null;
   threshold?: string | null;
@@ -227,32 +242,35 @@ export type Toldoc = {
   species?: Species | null;
   route?: Route | null;
   id: string;
-  createdAt: string;
-  updatedAt: string;
 };
 
 export type Species = {
   __typename: "Species";
+  createdAt?: string | null;
+  updatedAt?: string | null;
   name?: string | null;
   meanBodyWeight?: number | null;
   meanBreathingRate?: number | null;
   exposureTime?: string | null;
   id: string;
-  createdAt: string;
-  updatedAt: string;
 };
 
 export type Route = {
   __typename: "Route";
+  createdAt?: string | null;
+  updatedAt?: string | null;
   name?: string | null;
   adjustmentFactor?: number | null;
   id: string;
-  createdAt: string;
-  updatedAt: string;
 };
 
 export type UpdateChemicalInput = {
   id: string;
+  casNumber?: string | null;
+  chemicalFormula?: string | null;
+  unNumber?: string | null;
+  createdAt?: string | null;
+  updatedAt?: string | null;
   name?: string | null;
   pac1?: number | null;
   pac2?: number | null;
@@ -304,12 +322,16 @@ export type DeleteChemicalInput = {
 
 export type CreateElementInput = {
   name?: string | null;
+  createdAt?: string | null;
+  updatedAt?: string | null;
   weight?: number | null;
   id?: string | null;
 };
 
 export type ModelElementConditionInput = {
   name?: ModelStringInput | null;
+  createdAt?: ModelStringInput | null;
+  updatedAt?: ModelStringInput | null;
   weight?: ModelFloatInput | null;
   and?: Array<ModelElementConditionInput | null> | null;
   or?: Array<ModelElementConditionInput | null> | null;
@@ -318,6 +340,8 @@ export type ModelElementConditionInput = {
 
 export type UpdateElementInput = {
   name?: string | null;
+  createdAt?: string | null;
+  updatedAt?: string | null;
   weight?: number | null;
   id: string;
 };
@@ -327,6 +351,8 @@ export type DeleteElementInput = {
 };
 
 export type CreateToldocInput = {
+  createdAt?: string | null;
+  updatedAt?: string | null;
   toxicOrLethal?: string | null;
   exposureMethod?: string | null;
   threshold?: string | null;
@@ -336,6 +362,8 @@ export type CreateToldocInput = {
 };
 
 export type ModelToldocConditionInput = {
+  createdAt?: ModelStringInput | null;
+  updatedAt?: ModelStringInput | null;
   toxicOrLethal?: ModelStringInput | null;
   exposureMethod?: ModelStringInput | null;
   threshold?: ModelStringInput | null;
@@ -347,6 +375,8 @@ export type ModelToldocConditionInput = {
 };
 
 export type UpdateToldocInput = {
+  createdAt?: string | null;
+  updatedAt?: string | null;
   toxicOrLethal?: string | null;
   exposureMethod?: string | null;
   threshold?: string | null;
@@ -360,6 +390,8 @@ export type DeleteToldocInput = {
 };
 
 export type CreateSpeciesInput = {
+  createdAt?: string | null;
+  updatedAt?: string | null;
   name?: string | null;
   meanBodyWeight?: number | null;
   meanBreathingRate?: number | null;
@@ -368,6 +400,8 @@ export type CreateSpeciesInput = {
 };
 
 export type ModelSpeciesConditionInput = {
+  createdAt?: ModelStringInput | null;
+  updatedAt?: ModelStringInput | null;
   name?: ModelStringInput | null;
   meanBodyWeight?: ModelFloatInput | null;
   meanBreathingRate?: ModelFloatInput | null;
@@ -378,6 +412,8 @@ export type ModelSpeciesConditionInput = {
 };
 
 export type UpdateSpeciesInput = {
+  createdAt?: string | null;
+  updatedAt?: string | null;
   name?: string | null;
   meanBodyWeight?: number | null;
   meanBreathingRate?: number | null;
@@ -390,12 +426,16 @@ export type DeleteSpeciesInput = {
 };
 
 export type CreateRouteInput = {
+  createdAt?: string | null;
+  updatedAt?: string | null;
   name?: string | null;
   adjustmentFactor?: number | null;
   id?: string | null;
 };
 
 export type ModelRouteConditionInput = {
+  createdAt?: ModelStringInput | null;
+  updatedAt?: ModelStringInput | null;
   name?: ModelStringInput | null;
   adjustmentFactor?: ModelFloatInput | null;
   and?: Array<ModelRouteConditionInput | null> | null;
@@ -404,6 +444,8 @@ export type ModelRouteConditionInput = {
 };
 
 export type UpdateRouteInput = {
+  createdAt?: string | null;
+  updatedAt?: string | null;
   name?: string | null;
   adjustmentFactor?: number | null;
   id: string;
@@ -415,6 +457,11 @@ export type DeleteRouteInput = {
 
 export type ModelChemicalFilterInput = {
   id?: ModelIDInput | null;
+  casNumber?: ModelStringInput | null;
+  chemicalFormula?: ModelStringInput | null;
+  unNumber?: ModelStringInput | null;
+  createdAt?: ModelStringInput | null;
+  updatedAt?: ModelStringInput | null;
   name?: ModelStringInput | null;
   pac1?: ModelFloatInput | null;
   pac2?: ModelFloatInput | null;
@@ -487,6 +534,8 @@ export type ModelChemicalConnection = {
 
 export type ModelElementFilterInput = {
   name?: ModelStringInput | null;
+  createdAt?: ModelStringInput | null;
+  updatedAt?: ModelStringInput | null;
   weight?: ModelFloatInput | null;
   and?: Array<ModelElementFilterInput | null> | null;
   or?: Array<ModelElementFilterInput | null> | null;
@@ -500,6 +549,8 @@ export type ModelElementConnection = {
 };
 
 export type ModelToldocFilterInput = {
+  createdAt?: ModelStringInput | null;
+  updatedAt?: ModelStringInput | null;
   toxicOrLethal?: ModelStringInput | null;
   exposureMethod?: ModelStringInput | null;
   threshold?: ModelStringInput | null;
@@ -517,6 +568,8 @@ export type ModelToldocConnection = {
 };
 
 export type ModelSpeciesFilterInput = {
+  createdAt?: ModelStringInput | null;
+  updatedAt?: ModelStringInput | null;
   name?: ModelStringInput | null;
   meanBodyWeight?: ModelFloatInput | null;
   meanBreathingRate?: ModelFloatInput | null;
@@ -533,6 +586,8 @@ export type ModelSpeciesConnection = {
 };
 
 export type ModelRouteFilterInput = {
+  createdAt?: ModelStringInput | null;
+  updatedAt?: ModelStringInput | null;
   name?: ModelStringInput | null;
   adjustmentFactor?: ModelFloatInput | null;
   and?: Array<ModelRouteFilterInput | null> | null;
@@ -555,7 +610,12 @@ export type CreateChemicalMutation = {
   createChemical?: {
     __typename: "Chemical";
     id: string;
-    name: string;
+    casNumber?: string | null;
+    chemicalFormula?: string | null;
+    unNumber?: string | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    name?: string | null;
     pac1?: number | null;
     pac2?: number | null;
     pac3?: number | null;
@@ -601,24 +661,22 @@ export type CreateChemicalMutation = {
     element?: {
       __typename: "Element";
       name?: string | null;
+      createdAt?: string | null;
+      updatedAt?: string | null;
       weight?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
     toldoc?: {
       __typename: "Toldoc";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       toxicOrLethal?: string | null;
       exposureMethod?: string | null;
       threshold?: string | null;
       dosePPM?: number | null;
       doseMGM3?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -631,7 +689,12 @@ export type UpdateChemicalMutation = {
   updateChemical?: {
     __typename: "Chemical";
     id: string;
-    name: string;
+    casNumber?: string | null;
+    chemicalFormula?: string | null;
+    unNumber?: string | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    name?: string | null;
     pac1?: number | null;
     pac2?: number | null;
     pac3?: number | null;
@@ -677,24 +740,22 @@ export type UpdateChemicalMutation = {
     element?: {
       __typename: "Element";
       name?: string | null;
+      createdAt?: string | null;
+      updatedAt?: string | null;
       weight?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
     toldoc?: {
       __typename: "Toldoc";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       toxicOrLethal?: string | null;
       exposureMethod?: string | null;
       threshold?: string | null;
       dosePPM?: number | null;
       doseMGM3?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -707,7 +768,12 @@ export type DeleteChemicalMutation = {
   deleteChemical?: {
     __typename: "Chemical";
     id: string;
-    name: string;
+    casNumber?: string | null;
+    chemicalFormula?: string | null;
+    unNumber?: string | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    name?: string | null;
     pac1?: number | null;
     pac2?: number | null;
     pac3?: number | null;
@@ -753,24 +819,22 @@ export type DeleteChemicalMutation = {
     element?: {
       __typename: "Element";
       name?: string | null;
+      createdAt?: string | null;
+      updatedAt?: string | null;
       weight?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
     toldoc?: {
       __typename: "Toldoc";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       toxicOrLethal?: string | null;
       exposureMethod?: string | null;
       threshold?: string | null;
       dosePPM?: number | null;
       doseMGM3?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -783,10 +847,10 @@ export type CreateElementMutation = {
   createElement?: {
     __typename: "Element";
     name?: string | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
     weight?: number | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -799,10 +863,10 @@ export type UpdateElementMutation = {
   updateElement?: {
     __typename: "Element";
     name?: string | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
     weight?: number | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -815,10 +879,10 @@ export type DeleteElementMutation = {
   deleteElement?: {
     __typename: "Element";
     name?: string | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
     weight?: number | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -830,6 +894,8 @@ export type CreateToldocMutationVariables = {
 export type CreateToldocMutation = {
   createToldoc?: {
     __typename: "Toldoc";
+    createdAt?: string | null;
+    updatedAt?: string | null;
     toxicOrLethal?: string | null;
     exposureMethod?: string | null;
     threshold?: string | null;
@@ -837,25 +903,23 @@ export type CreateToldocMutation = {
     doseMGM3?: number | null;
     species?: {
       __typename: "Species";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       name?: string | null;
       meanBodyWeight?: number | null;
       meanBreathingRate?: number | null;
       exposureTime?: string | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
     route?: {
       __typename: "Route";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       name?: string | null;
       adjustmentFactor?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -867,6 +931,8 @@ export type UpdateToldocMutationVariables = {
 export type UpdateToldocMutation = {
   updateToldoc?: {
     __typename: "Toldoc";
+    createdAt?: string | null;
+    updatedAt?: string | null;
     toxicOrLethal?: string | null;
     exposureMethod?: string | null;
     threshold?: string | null;
@@ -874,25 +940,23 @@ export type UpdateToldocMutation = {
     doseMGM3?: number | null;
     species?: {
       __typename: "Species";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       name?: string | null;
       meanBodyWeight?: number | null;
       meanBreathingRate?: number | null;
       exposureTime?: string | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
     route?: {
       __typename: "Route";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       name?: string | null;
       adjustmentFactor?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -904,6 +968,8 @@ export type DeleteToldocMutationVariables = {
 export type DeleteToldocMutation = {
   deleteToldoc?: {
     __typename: "Toldoc";
+    createdAt?: string | null;
+    updatedAt?: string | null;
     toxicOrLethal?: string | null;
     exposureMethod?: string | null;
     threshold?: string | null;
@@ -911,25 +977,23 @@ export type DeleteToldocMutation = {
     doseMGM3?: number | null;
     species?: {
       __typename: "Species";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       name?: string | null;
       meanBodyWeight?: number | null;
       meanBreathingRate?: number | null;
       exposureTime?: string | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
     route?: {
       __typename: "Route";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       name?: string | null;
       adjustmentFactor?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -941,13 +1005,13 @@ export type CreateSpeciesMutationVariables = {
 export type CreateSpeciesMutation = {
   createSpecies?: {
     __typename: "Species";
+    createdAt?: string | null;
+    updatedAt?: string | null;
     name?: string | null;
     meanBodyWeight?: number | null;
     meanBreathingRate?: number | null;
     exposureTime?: string | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -959,13 +1023,13 @@ export type UpdateSpeciesMutationVariables = {
 export type UpdateSpeciesMutation = {
   updateSpecies?: {
     __typename: "Species";
+    createdAt?: string | null;
+    updatedAt?: string | null;
     name?: string | null;
     meanBodyWeight?: number | null;
     meanBreathingRate?: number | null;
     exposureTime?: string | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -977,13 +1041,13 @@ export type DeleteSpeciesMutationVariables = {
 export type DeleteSpeciesMutation = {
   deleteSpecies?: {
     __typename: "Species";
+    createdAt?: string | null;
+    updatedAt?: string | null;
     name?: string | null;
     meanBodyWeight?: number | null;
     meanBreathingRate?: number | null;
     exposureTime?: string | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -995,11 +1059,11 @@ export type CreateRouteMutationVariables = {
 export type CreateRouteMutation = {
   createRoute?: {
     __typename: "Route";
+    createdAt?: string | null;
+    updatedAt?: string | null;
     name?: string | null;
     adjustmentFactor?: number | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -1011,11 +1075,11 @@ export type UpdateRouteMutationVariables = {
 export type UpdateRouteMutation = {
   updateRoute?: {
     __typename: "Route";
+    createdAt?: string | null;
+    updatedAt?: string | null;
     name?: string | null;
     adjustmentFactor?: number | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -1027,11 +1091,11 @@ export type DeleteRouteMutationVariables = {
 export type DeleteRouteMutation = {
   deleteRoute?: {
     __typename: "Route";
+    createdAt?: string | null;
+    updatedAt?: string | null;
     name?: string | null;
     adjustmentFactor?: number | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -1043,7 +1107,12 @@ export type GetChemicalQuery = {
   getChemical?: {
     __typename: "Chemical";
     id: string;
-    name: string;
+    casNumber?: string | null;
+    chemicalFormula?: string | null;
+    unNumber?: string | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    name?: string | null;
     pac1?: number | null;
     pac2?: number | null;
     pac3?: number | null;
@@ -1089,24 +1158,22 @@ export type GetChemicalQuery = {
     element?: {
       __typename: "Element";
       name?: string | null;
+      createdAt?: string | null;
+      updatedAt?: string | null;
       weight?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
     toldoc?: {
       __typename: "Toldoc";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       toxicOrLethal?: string | null;
       exposureMethod?: string | null;
       threshold?: string | null;
       dosePPM?: number | null;
       doseMGM3?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -1122,7 +1189,12 @@ export type ListChemicalsQuery = {
     items: Array<{
       __typename: "Chemical";
       id: string;
-      name: string;
+      casNumber?: string | null;
+      chemicalFormula?: string | null;
+      unNumber?: string | null;
+      createdAt?: string | null;
+      updatedAt?: string | null;
+      name?: string | null;
       pac1?: number | null;
       pac2?: number | null;
       pac3?: number | null;
@@ -1165,8 +1237,6 @@ export type ListChemicalsQuery = {
       pelceiling?: number | null;
       eegl30?: number | null;
       idlh?: number | null;
-      createdAt: string;
-      updatedAt: string;
     } | null>;
     nextToken?: string | null;
   } | null;
@@ -1180,10 +1250,10 @@ export type GetElementQuery = {
   getElement?: {
     __typename: "Element";
     name?: string | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
     weight?: number | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -1199,10 +1269,10 @@ export type ListElementsQuery = {
     items: Array<{
       __typename: "Element";
       name?: string | null;
+      createdAt?: string | null;
+      updatedAt?: string | null;
       weight?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null>;
     nextToken?: string | null;
   } | null;
@@ -1215,6 +1285,8 @@ export type GetToldocQueryVariables = {
 export type GetToldocQuery = {
   getToldoc?: {
     __typename: "Toldoc";
+    createdAt?: string | null;
+    updatedAt?: string | null;
     toxicOrLethal?: string | null;
     exposureMethod?: string | null;
     threshold?: string | null;
@@ -1222,25 +1294,23 @@ export type GetToldocQuery = {
     doseMGM3?: number | null;
     species?: {
       __typename: "Species";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       name?: string | null;
       meanBodyWeight?: number | null;
       meanBreathingRate?: number | null;
       exposureTime?: string | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
     route?: {
       __typename: "Route";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       name?: string | null;
       adjustmentFactor?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -1255,14 +1325,14 @@ export type ListToldocsQuery = {
     __typename: "ModelToldocConnection";
     items: Array<{
       __typename: "Toldoc";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       toxicOrLethal?: string | null;
       exposureMethod?: string | null;
       threshold?: string | null;
       dosePPM?: number | null;
       doseMGM3?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null>;
     nextToken?: string | null;
   } | null;
@@ -1275,13 +1345,13 @@ export type GetSpeciesQueryVariables = {
 export type GetSpeciesQuery = {
   getSpecies?: {
     __typename: "Species";
+    createdAt?: string | null;
+    updatedAt?: string | null;
     name?: string | null;
     meanBodyWeight?: number | null;
     meanBreathingRate?: number | null;
     exposureTime?: string | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -1296,13 +1366,13 @@ export type ListSpeciesQuery = {
     __typename: "ModelSpeciesConnection";
     items: Array<{
       __typename: "Species";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       name?: string | null;
       meanBodyWeight?: number | null;
       meanBreathingRate?: number | null;
       exposureTime?: string | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null>;
     nextToken?: string | null;
   } | null;
@@ -1315,11 +1385,11 @@ export type GetRouteQueryVariables = {
 export type GetRouteQuery = {
   getRoute?: {
     __typename: "Route";
+    createdAt?: string | null;
+    updatedAt?: string | null;
     name?: string | null;
     adjustmentFactor?: number | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -1334,11 +1404,11 @@ export type ListRoutesQuery = {
     __typename: "ModelRouteConnection";
     items: Array<{
       __typename: "Route";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       name?: string | null;
       adjustmentFactor?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null>;
     nextToken?: string | null;
   } | null;
@@ -1348,7 +1418,12 @@ export type OnCreateChemicalSubscription = {
   onCreateChemical?: {
     __typename: "Chemical";
     id: string;
-    name: string;
+    casNumber?: string | null;
+    chemicalFormula?: string | null;
+    unNumber?: string | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    name?: string | null;
     pac1?: number | null;
     pac2?: number | null;
     pac3?: number | null;
@@ -1394,24 +1469,22 @@ export type OnCreateChemicalSubscription = {
     element?: {
       __typename: "Element";
       name?: string | null;
+      createdAt?: string | null;
+      updatedAt?: string | null;
       weight?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
     toldoc?: {
       __typename: "Toldoc";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       toxicOrLethal?: string | null;
       exposureMethod?: string | null;
       threshold?: string | null;
       dosePPM?: number | null;
       doseMGM3?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -1419,7 +1492,12 @@ export type OnUpdateChemicalSubscription = {
   onUpdateChemical?: {
     __typename: "Chemical";
     id: string;
-    name: string;
+    casNumber?: string | null;
+    chemicalFormula?: string | null;
+    unNumber?: string | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    name?: string | null;
     pac1?: number | null;
     pac2?: number | null;
     pac3?: number | null;
@@ -1465,24 +1543,22 @@ export type OnUpdateChemicalSubscription = {
     element?: {
       __typename: "Element";
       name?: string | null;
+      createdAt?: string | null;
+      updatedAt?: string | null;
       weight?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
     toldoc?: {
       __typename: "Toldoc";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       toxicOrLethal?: string | null;
       exposureMethod?: string | null;
       threshold?: string | null;
       dosePPM?: number | null;
       doseMGM3?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -1490,7 +1566,12 @@ export type OnDeleteChemicalSubscription = {
   onDeleteChemical?: {
     __typename: "Chemical";
     id: string;
-    name: string;
+    casNumber?: string | null;
+    chemicalFormula?: string | null;
+    unNumber?: string | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    name?: string | null;
     pac1?: number | null;
     pac2?: number | null;
     pac3?: number | null;
@@ -1536,24 +1617,22 @@ export type OnDeleteChemicalSubscription = {
     element?: {
       __typename: "Element";
       name?: string | null;
+      createdAt?: string | null;
+      updatedAt?: string | null;
       weight?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
     toldoc?: {
       __typename: "Toldoc";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       toxicOrLethal?: string | null;
       exposureMethod?: string | null;
       threshold?: string | null;
       dosePPM?: number | null;
       doseMGM3?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -1561,10 +1640,10 @@ export type OnCreateElementSubscription = {
   onCreateElement?: {
     __typename: "Element";
     name?: string | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
     weight?: number | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -1572,10 +1651,10 @@ export type OnUpdateElementSubscription = {
   onUpdateElement?: {
     __typename: "Element";
     name?: string | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
     weight?: number | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
@@ -1583,16 +1662,18 @@ export type OnDeleteElementSubscription = {
   onDeleteElement?: {
     __typename: "Element";
     name?: string | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
     weight?: number | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
 export type OnCreateToldocSubscription = {
   onCreateToldoc?: {
     __typename: "Toldoc";
+    createdAt?: string | null;
+    updatedAt?: string | null;
     toxicOrLethal?: string | null;
     exposureMethod?: string | null;
     threshold?: string | null;
@@ -1600,31 +1681,31 @@ export type OnCreateToldocSubscription = {
     doseMGM3?: number | null;
     species?: {
       __typename: "Species";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       name?: string | null;
       meanBodyWeight?: number | null;
       meanBreathingRate?: number | null;
       exposureTime?: string | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
     route?: {
       __typename: "Route";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       name?: string | null;
       adjustmentFactor?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
 export type OnUpdateToldocSubscription = {
   onUpdateToldoc?: {
     __typename: "Toldoc";
+    createdAt?: string | null;
+    updatedAt?: string | null;
     toxicOrLethal?: string | null;
     exposureMethod?: string | null;
     threshold?: string | null;
@@ -1632,31 +1713,31 @@ export type OnUpdateToldocSubscription = {
     doseMGM3?: number | null;
     species?: {
       __typename: "Species";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       name?: string | null;
       meanBodyWeight?: number | null;
       meanBreathingRate?: number | null;
       exposureTime?: string | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
     route?: {
       __typename: "Route";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       name?: string | null;
       adjustmentFactor?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
 export type OnDeleteToldocSubscription = {
   onDeleteToldoc?: {
     __typename: "Toldoc";
+    createdAt?: string | null;
+    updatedAt?: string | null;
     toxicOrLethal?: string | null;
     exposureMethod?: string | null;
     threshold?: string | null;
@@ -1664,96 +1745,94 @@ export type OnDeleteToldocSubscription = {
     doseMGM3?: number | null;
     species?: {
       __typename: "Species";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       name?: string | null;
       meanBodyWeight?: number | null;
       meanBreathingRate?: number | null;
       exposureTime?: string | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
     route?: {
       __typename: "Route";
+      createdAt?: string | null;
+      updatedAt?: string | null;
       name?: string | null;
       adjustmentFactor?: number | null;
       id: string;
-      createdAt: string;
-      updatedAt: string;
     } | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
 export type OnCreateSpeciesSubscription = {
   onCreateSpecies?: {
     __typename: "Species";
+    createdAt?: string | null;
+    updatedAt?: string | null;
     name?: string | null;
     meanBodyWeight?: number | null;
     meanBreathingRate?: number | null;
     exposureTime?: string | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
 export type OnUpdateSpeciesSubscription = {
   onUpdateSpecies?: {
     __typename: "Species";
+    createdAt?: string | null;
+    updatedAt?: string | null;
     name?: string | null;
     meanBodyWeight?: number | null;
     meanBreathingRate?: number | null;
     exposureTime?: string | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
 export type OnDeleteSpeciesSubscription = {
   onDeleteSpecies?: {
     __typename: "Species";
+    createdAt?: string | null;
+    updatedAt?: string | null;
     name?: string | null;
     meanBodyWeight?: number | null;
     meanBreathingRate?: number | null;
     exposureTime?: string | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
 export type OnCreateRouteSubscription = {
   onCreateRoute?: {
     __typename: "Route";
+    createdAt?: string | null;
+    updatedAt?: string | null;
     name?: string | null;
     adjustmentFactor?: number | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
 export type OnUpdateRouteSubscription = {
   onUpdateRoute?: {
     __typename: "Route";
+    createdAt?: string | null;
+    updatedAt?: string | null;
     name?: string | null;
     adjustmentFactor?: number | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };
 
 export type OnDeleteRouteSubscription = {
   onDeleteRoute?: {
     __typename: "Route";
+    createdAt?: string | null;
+    updatedAt?: string | null;
     name?: string | null;
     adjustmentFactor?: number | null;
     id: string;
-    createdAt: string;
-    updatedAt: string;
   } | null;
 };

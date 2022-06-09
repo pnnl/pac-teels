@@ -53,7 +53,7 @@
   };
 </script>
 
-<Dialog bind:open on:SMUIDialog:closed={closeHandler}>
+<Dialog bind:open on:SMUIDialog:closed={closeHandler} style="z-index: 13;">
   <div style={"padding: 2rem; width: 30rem;"}>
     <IconButton
       action="close"

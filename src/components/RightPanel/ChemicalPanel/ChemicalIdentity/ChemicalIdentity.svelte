@@ -47,6 +47,14 @@
   import { createEventDispatcher, onMount, onDestroy } from "svelte";
   import Button, { Icon, Label } from "@smui/button";
   import { CHEMICAL_IDENTITY } from "constants/constants";
+  import { selectedChemical } from "stores/stores";
+  let currentChemical;
+
+  selectedChemical.subscribe(currChemical => {
+    if (currChemical) {
+      currentChemical = currChemical;
+    }
+  });
   let expanded = false;
 </script>
 
@@ -55,17 +63,17 @@
 
   <div class="chemical-identity-item">
     <div class="body-caption">CAS Number</div>
-    <div class="body-semibold">{CHEMICAL_IDENTITY.CAS}</div>
+    <div class="body-semibold">{currentChemical.casNumber || "N/A"}</div>
   </div>
 
   <div class="chemical-identity-item">
     <div class="body-caption">Chemical Formula</div>
-    <div class="body-semibold">{CHEMICAL_IDENTITY.chemFormula}</div>
+    <div class="body-semibold">{currentChemical.chemicalFormula || "N/A"}</div>
   </div>
 
   <div class="chemical-identity-item">
     <div class="body-caption">UN Number</div>
-    <div class="body-semibold">{CHEMICAL_IDENTITY.UNumber}</div>
+    <div class="body-semibold">{currentChemical.unNumber || "N/A"}</div>
   </div>
 
   <div class="chemical-identity-item">

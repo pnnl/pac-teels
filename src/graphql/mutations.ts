@@ -9,6 +9,11 @@ export const createChemical = /* GraphQL */ `
   ) {
     createChemical(input: $input, condition: $condition) {
       id
+      casNumber
+      chemicalFormula
+      unNumber
+      createdAt
+      updatedAt
       name
       pac1
       pac2
@@ -54,23 +59,21 @@ export const createChemical = /* GraphQL */ `
       idlh
       element {
         name
-        weight
-        id
         createdAt
         updatedAt
+        weight
+        id
       }
       toldoc {
+        createdAt
+        updatedAt
         toxicOrLethal
         exposureMethod
         threshold
         dosePPM
         doseMGM3
         id
-        createdAt
-        updatedAt
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -81,6 +84,11 @@ export const updateChemical = /* GraphQL */ `
   ) {
     updateChemical(input: $input, condition: $condition) {
       id
+      casNumber
+      chemicalFormula
+      unNumber
+      createdAt
+      updatedAt
       name
       pac1
       pac2
@@ -126,23 +134,21 @@ export const updateChemical = /* GraphQL */ `
       idlh
       element {
         name
-        weight
-        id
         createdAt
         updatedAt
+        weight
+        id
       }
       toldoc {
+        createdAt
+        updatedAt
         toxicOrLethal
         exposureMethod
         threshold
         dosePPM
         doseMGM3
         id
-        createdAt
-        updatedAt
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -153,6 +159,11 @@ export const deleteChemical = /* GraphQL */ `
   ) {
     deleteChemical(input: $input, condition: $condition) {
       id
+      casNumber
+      chemicalFormula
+      unNumber
+      createdAt
+      updatedAt
       name
       pac1
       pac2
@@ -198,23 +209,21 @@ export const deleteChemical = /* GraphQL */ `
       idlh
       element {
         name
-        weight
-        id
         createdAt
         updatedAt
+        weight
+        id
       }
       toldoc {
+        createdAt
+        updatedAt
         toxicOrLethal
         exposureMethod
         threshold
         dosePPM
         doseMGM3
         id
-        createdAt
-        updatedAt
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -225,10 +234,10 @@ export const createElement = /* GraphQL */ `
   ) {
     createElement(input: $input, condition: $condition) {
       name
-      weight
-      id
       createdAt
       updatedAt
+      weight
+      id
     }
   }
 `;
@@ -239,10 +248,10 @@ export const updateElement = /* GraphQL */ `
   ) {
     updateElement(input: $input, condition: $condition) {
       name
-      weight
-      id
       createdAt
       updatedAt
+      weight
+      id
     }
   }
 `;
@@ -253,10 +262,10 @@ export const deleteElement = /* GraphQL */ `
   ) {
     deleteElement(input: $input, condition: $condition) {
       name
-      weight
-      id
       createdAt
       updatedAt
+      weight
+      id
     }
   }
 `;
@@ -266,30 +275,30 @@ export const createToldoc = /* GraphQL */ `
     $condition: ModelToldocConditionInput
   ) {
     createToldoc(input: $input, condition: $condition) {
+      createdAt
+      updatedAt
       toxicOrLethal
       exposureMethod
       threshold
       dosePPM
       doseMGM3
       species {
+        createdAt
+        updatedAt
         name
         meanBodyWeight
         meanBreathingRate
         exposureTime
         id
-        createdAt
-        updatedAt
       }
       route {
+        createdAt
+        updatedAt
         name
         adjustmentFactor
         id
-        createdAt
-        updatedAt
       }
       id
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -299,30 +308,30 @@ export const updateToldoc = /* GraphQL */ `
     $condition: ModelToldocConditionInput
   ) {
     updateToldoc(input: $input, condition: $condition) {
+      createdAt
+      updatedAt
       toxicOrLethal
       exposureMethod
       threshold
       dosePPM
       doseMGM3
       species {
+        createdAt
+        updatedAt
         name
         meanBodyWeight
         meanBreathingRate
         exposureTime
         id
-        createdAt
-        updatedAt
       }
       route {
+        createdAt
+        updatedAt
         name
         adjustmentFactor
         id
-        createdAt
-        updatedAt
       }
       id
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -332,30 +341,30 @@ export const deleteToldoc = /* GraphQL */ `
     $condition: ModelToldocConditionInput
   ) {
     deleteToldoc(input: $input, condition: $condition) {
+      createdAt
+      updatedAt
       toxicOrLethal
       exposureMethod
       threshold
       dosePPM
       doseMGM3
       species {
+        createdAt
+        updatedAt
         name
         meanBodyWeight
         meanBreathingRate
         exposureTime
         id
-        createdAt
-        updatedAt
       }
       route {
+        createdAt
+        updatedAt
         name
         adjustmentFactor
         id
-        createdAt
-        updatedAt
       }
       id
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -365,13 +374,13 @@ export const createSpecies = /* GraphQL */ `
     $condition: ModelSpeciesConditionInput
   ) {
     createSpecies(input: $input, condition: $condition) {
+      createdAt
+      updatedAt
       name
       meanBodyWeight
       meanBreathingRate
       exposureTime
       id
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -381,13 +390,13 @@ export const updateSpecies = /* GraphQL */ `
     $condition: ModelSpeciesConditionInput
   ) {
     updateSpecies(input: $input, condition: $condition) {
+      createdAt
+      updatedAt
       name
       meanBodyWeight
       meanBreathingRate
       exposureTime
       id
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -397,46 +406,46 @@ export const deleteSpecies = /* GraphQL */ `
     $condition: ModelSpeciesConditionInput
   ) {
     deleteSpecies(input: $input, condition: $condition) {
+      createdAt
+      updatedAt
       name
       meanBodyWeight
       meanBreathingRate
       exposureTime
       id
-      createdAt
-      updatedAt
     }
   }
 `;
 export const createRoute = /* GraphQL */ `
   mutation CreateRoute($input: CreateRouteInput!, $condition: ModelRouteConditionInput) {
     createRoute(input: $input, condition: $condition) {
+      createdAt
+      updatedAt
       name
       adjustmentFactor
       id
-      createdAt
-      updatedAt
     }
   }
 `;
 export const updateRoute = /* GraphQL */ `
   mutation UpdateRoute($input: UpdateRouteInput!, $condition: ModelRouteConditionInput) {
     updateRoute(input: $input, condition: $condition) {
+      createdAt
+      updatedAt
       name
       adjustmentFactor
       id
-      createdAt
-      updatedAt
     }
   }
 `;
 export const deleteRoute = /* GraphQL */ `
   mutation DeleteRoute($input: DeleteRouteInput!, $condition: ModelRouteConditionInput) {
     deleteRoute(input: $input, condition: $condition) {
+      createdAt
+      updatedAt
       name
       adjustmentFactor
       id
-      createdAt
-      updatedAt
     }
   }
 `;

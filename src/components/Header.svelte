@@ -5,7 +5,7 @@
     box-shadow: none;
     display: flex;
     align-items: center;
-    z-index: 10;
+    z-index: 11;
     top: 0;
     left: 0;
     color: var(--blue);
@@ -99,7 +99,7 @@
   import Tab from "@smui/tab";
   import TabBar from "@smui/tab-bar";
   import { push, pop, replace } from "svelte-spa-router";
-  import { user } from "../stores/stores";
+  import { user } from "stores/stores";
 
   export let title = "";
   export let hasLogo = false;
@@ -243,5 +243,5 @@
       </Menu>
     </div>
   {/if}
-  <LoginModal open={loginOpen} {closeHandler} setAdminPage={val => (adminPage = val)} />
 </div>
+<LoginModal open={loginOpen} {closeHandler} setAdminPage={val => (adminPage = val)} />

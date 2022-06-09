@@ -3,9 +3,14 @@
 input AMPLIFY {
   globalAuthRule: AuthRule = { allow: public }
 } # FOR TESTING ONLY!
-type Chemical @model {
+type Chemical @model @aws_api_key {
   id: ID!
-  name: String!
+  casNumber: String
+  chemicalFormula: String
+  unNumber: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+  name: String
   pac1: Float
   pac2: Float
   pac3: Float
@@ -52,12 +57,16 @@ type Chemical @model {
   toldoc: Toldoc
 }
 
-type Element @model {
+type Element @model @aws_api_key {
   name: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
   weight: Float
 }
 
-type Toldoc @model {
+type Toldoc @model @aws_api_key {
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
   toxicOrLethal: String
   exposureMethod: String
   threshold: String
@@ -67,14 +76,18 @@ type Toldoc @model {
   route: Route
 }
 
-type Species @model {
+type Species @model @aws_api_key {
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
   name: String
   meanBodyWeight: Float
   meanBreathingRate: Float
   exposureTime: AWSDateTime
 }
 
-type Route @model {
+type Route @model @aws_api_key {
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
   name: String
   adjustmentFactor: Float
 }
