@@ -219,6 +219,12 @@ export type Chemical = {
   idlh?: number | null;
   element?: Element | null;
   toldoc?: Toldoc | null;
+  tclo?: TCLO | null;
+  tdlo?: TDLO | null;
+  lc50?: LC50 | null;
+  lclo?: LCLO | null;
+  ld50?: LD50 | null;
+  ldlo?: LDLO | null;
 };
 
 export type Element = {
@@ -262,6 +268,70 @@ export type Route = {
   name?: string | null;
   adjustmentFactor?: number | null;
   id: string;
+};
+
+export type TCLO = {
+  __typename: "TCLO";
+  dosePPM?: number | null;
+  doseMGM3?: number | null;
+  species?: string | null;
+  exposureTime?: number | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type TDLO = {
+  __typename: "TDLO";
+  dose?: number | null;
+  route?: string | null;
+  species?: string | null;
+  exposureTime?: number | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type LC50 = {
+  __typename: "LC50";
+  dosePPM?: number | null;
+  doseMGM3?: number | null;
+  species?: string | null;
+  exposureTime?: number | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type LCLO = {
+  __typename: "LCLO";
+  dosePPM?: number | null;
+  doseMGM3?: number | null;
+  species?: string | null;
+  exposureTime?: number | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type LD50 = {
+  __typename: "LD50";
+  dose?: number | null;
+  species?: string | null;
+  route?: string | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type LDLO = {
+  __typename: "LDLO";
+  dose?: number | null;
+  species?: string | null;
+  route?: string | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type UpdateChemicalInput = {
@@ -455,6 +525,180 @@ export type DeleteRouteInput = {
   id: string;
 };
 
+export type CreateTCLOInput = {
+  dosePPM?: number | null;
+  doseMGM3?: number | null;
+  species?: string | null;
+  exposureTime?: number | null;
+  id?: string | null;
+};
+
+export type ModelTCLOConditionInput = {
+  dosePPM?: ModelFloatInput | null;
+  doseMGM3?: ModelFloatInput | null;
+  species?: ModelStringInput | null;
+  exposureTime?: ModelFloatInput | null;
+  and?: Array<ModelTCLOConditionInput | null> | null;
+  or?: Array<ModelTCLOConditionInput | null> | null;
+  not?: ModelTCLOConditionInput | null;
+};
+
+export type UpdateTCLOInput = {
+  dosePPM?: number | null;
+  doseMGM3?: number | null;
+  species?: string | null;
+  exposureTime?: number | null;
+  id: string;
+};
+
+export type DeleteTCLOInput = {
+  id: string;
+};
+
+export type CreateTDLOInput = {
+  dose?: number | null;
+  route?: string | null;
+  species?: string | null;
+  exposureTime?: number | null;
+  id?: string | null;
+};
+
+export type ModelTDLOConditionInput = {
+  dose?: ModelFloatInput | null;
+  route?: ModelStringInput | null;
+  species?: ModelStringInput | null;
+  exposureTime?: ModelFloatInput | null;
+  and?: Array<ModelTDLOConditionInput | null> | null;
+  or?: Array<ModelTDLOConditionInput | null> | null;
+  not?: ModelTDLOConditionInput | null;
+};
+
+export type UpdateTDLOInput = {
+  dose?: number | null;
+  route?: string | null;
+  species?: string | null;
+  exposureTime?: number | null;
+  id: string;
+};
+
+export type DeleteTDLOInput = {
+  id: string;
+};
+
+export type CreateLC50Input = {
+  dosePPM?: number | null;
+  doseMGM3?: number | null;
+  species?: string | null;
+  exposureTime?: number | null;
+  id?: string | null;
+};
+
+export type ModelLC50ConditionInput = {
+  dosePPM?: ModelFloatInput | null;
+  doseMGM3?: ModelFloatInput | null;
+  species?: ModelStringInput | null;
+  exposureTime?: ModelFloatInput | null;
+  and?: Array<ModelLC50ConditionInput | null> | null;
+  or?: Array<ModelLC50ConditionInput | null> | null;
+  not?: ModelLC50ConditionInput | null;
+};
+
+export type UpdateLC50Input = {
+  dosePPM?: number | null;
+  doseMGM3?: number | null;
+  species?: string | null;
+  exposureTime?: number | null;
+  id: string;
+};
+
+export type DeleteLC50Input = {
+  id: string;
+};
+
+export type CreateLCLOInput = {
+  dosePPM?: number | null;
+  doseMGM3?: number | null;
+  species?: string | null;
+  exposureTime?: number | null;
+  id?: string | null;
+};
+
+export type ModelLCLOConditionInput = {
+  dosePPM?: ModelFloatInput | null;
+  doseMGM3?: ModelFloatInput | null;
+  species?: ModelStringInput | null;
+  exposureTime?: ModelFloatInput | null;
+  and?: Array<ModelLCLOConditionInput | null> | null;
+  or?: Array<ModelLCLOConditionInput | null> | null;
+  not?: ModelLCLOConditionInput | null;
+};
+
+export type UpdateLCLOInput = {
+  dosePPM?: number | null;
+  doseMGM3?: number | null;
+  species?: string | null;
+  exposureTime?: number | null;
+  id: string;
+};
+
+export type DeleteLCLOInput = {
+  id: string;
+};
+
+export type CreateLD50Input = {
+  dose?: number | null;
+  species?: string | null;
+  route?: string | null;
+  id?: string | null;
+};
+
+export type ModelLD50ConditionInput = {
+  dose?: ModelFloatInput | null;
+  species?: ModelStringInput | null;
+  route?: ModelStringInput | null;
+  and?: Array<ModelLD50ConditionInput | null> | null;
+  or?: Array<ModelLD50ConditionInput | null> | null;
+  not?: ModelLD50ConditionInput | null;
+};
+
+export type UpdateLD50Input = {
+  dose?: number | null;
+  species?: string | null;
+  route?: string | null;
+  id: string;
+};
+
+export type DeleteLD50Input = {
+  id: string;
+};
+
+export type CreateLDLOInput = {
+  dose?: number | null;
+  species?: string | null;
+  route?: string | null;
+  id?: string | null;
+};
+
+export type ModelLDLOConditionInput = {
+  dose?: ModelFloatInput | null;
+  species?: ModelStringInput | null;
+  route?: ModelStringInput | null;
+  and?: Array<ModelLDLOConditionInput | null> | null;
+  or?: Array<ModelLDLOConditionInput | null> | null;
+  not?: ModelLDLOConditionInput | null;
+};
+
+export type UpdateLDLOInput = {
+  dose?: number | null;
+  species?: string | null;
+  route?: string | null;
+  id: string;
+};
+
+export type DeleteLDLOInput = {
+  id: string;
+};
+
 export type ModelChemicalFilterInput = {
   id?: ModelIDInput | null;
   casNumber?: ModelStringInput | null;
@@ -601,6 +845,100 @@ export type ModelRouteConnection = {
   nextToken?: string | null;
 };
 
+export type ModelTCLOFilterInput = {
+  dosePPM?: ModelFloatInput | null;
+  doseMGM3?: ModelFloatInput | null;
+  species?: ModelStringInput | null;
+  exposureTime?: ModelFloatInput | null;
+  and?: Array<ModelTCLOFilterInput | null> | null;
+  or?: Array<ModelTCLOFilterInput | null> | null;
+  not?: ModelTCLOFilterInput | null;
+};
+
+export type ModelTCLOConnection = {
+  __typename: "ModelTCLOConnection";
+  items: Array<TCLO | null>;
+  nextToken?: string | null;
+};
+
+export type ModelTDLOFilterInput = {
+  dose?: ModelFloatInput | null;
+  route?: ModelStringInput | null;
+  species?: ModelStringInput | null;
+  exposureTime?: ModelFloatInput | null;
+  and?: Array<ModelTDLOFilterInput | null> | null;
+  or?: Array<ModelTDLOFilterInput | null> | null;
+  not?: ModelTDLOFilterInput | null;
+};
+
+export type ModelTDLOConnection = {
+  __typename: "ModelTDLOConnection";
+  items: Array<TDLO | null>;
+  nextToken?: string | null;
+};
+
+export type ModelLC50FilterInput = {
+  dosePPM?: ModelFloatInput | null;
+  doseMGM3?: ModelFloatInput | null;
+  species?: ModelStringInput | null;
+  exposureTime?: ModelFloatInput | null;
+  and?: Array<ModelLC50FilterInput | null> | null;
+  or?: Array<ModelLC50FilterInput | null> | null;
+  not?: ModelLC50FilterInput | null;
+};
+
+export type ModelLC50Connection = {
+  __typename: "ModelLC50Connection";
+  items: Array<LC50 | null>;
+  nextToken?: string | null;
+};
+
+export type ModelLCLOFilterInput = {
+  dosePPM?: ModelFloatInput | null;
+  doseMGM3?: ModelFloatInput | null;
+  species?: ModelStringInput | null;
+  exposureTime?: ModelFloatInput | null;
+  and?: Array<ModelLCLOFilterInput | null> | null;
+  or?: Array<ModelLCLOFilterInput | null> | null;
+  not?: ModelLCLOFilterInput | null;
+};
+
+export type ModelLCLOConnection = {
+  __typename: "ModelLCLOConnection";
+  items: Array<LCLO | null>;
+  nextToken?: string | null;
+};
+
+export type ModelLD50FilterInput = {
+  dose?: ModelFloatInput | null;
+  species?: ModelStringInput | null;
+  route?: ModelStringInput | null;
+  and?: Array<ModelLD50FilterInput | null> | null;
+  or?: Array<ModelLD50FilterInput | null> | null;
+  not?: ModelLD50FilterInput | null;
+};
+
+export type ModelLD50Connection = {
+  __typename: "ModelLD50Connection";
+  items: Array<LD50 | null>;
+  nextToken?: string | null;
+};
+
+export type ModelLDLOFilterInput = {
+  dose?: ModelFloatInput | null;
+  species?: ModelStringInput | null;
+  route?: ModelStringInput | null;
+  and?: Array<ModelLDLOFilterInput | null> | null;
+  or?: Array<ModelLDLOFilterInput | null> | null;
+  not?: ModelLDLOFilterInput | null;
+};
+
+export type ModelLDLOConnection = {
+  __typename: "ModelLDLOConnection";
+  items: Array<LDLO | null>;
+  nextToken?: string | null;
+};
+
 export type CreateChemicalMutationVariables = {
   input: CreateChemicalInput;
   condition?: ModelChemicalConditionInput | null;
@@ -676,6 +1014,64 @@ export type CreateChemicalMutation = {
       dosePPM?: number | null;
       doseMGM3?: number | null;
       id: string;
+    } | null;
+    tclo?: {
+      __typename: "TCLO";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    tdlo?: {
+      __typename: "TDLO";
+      dose?: number | null;
+      route?: string | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    lc50?: {
+      __typename: "LC50";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    lclo?: {
+      __typename: "LCLO";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    ld50?: {
+      __typename: "LD50";
+      dose?: number | null;
+      species?: string | null;
+      route?: string | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    ldlo?: {
+      __typename: "LDLO";
+      dose?: number | null;
+      species?: string | null;
+      route?: string | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
     } | null;
   } | null;
 };
@@ -756,6 +1152,64 @@ export type UpdateChemicalMutation = {
       doseMGM3?: number | null;
       id: string;
     } | null;
+    tclo?: {
+      __typename: "TCLO";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    tdlo?: {
+      __typename: "TDLO";
+      dose?: number | null;
+      route?: string | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    lc50?: {
+      __typename: "LC50";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    lclo?: {
+      __typename: "LCLO";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    ld50?: {
+      __typename: "LD50";
+      dose?: number | null;
+      species?: string | null;
+      route?: string | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    ldlo?: {
+      __typename: "LDLO";
+      dose?: number | null;
+      species?: string | null;
+      route?: string | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
   } | null;
 };
 
@@ -834,6 +1288,64 @@ export type DeleteChemicalMutation = {
       dosePPM?: number | null;
       doseMGM3?: number | null;
       id: string;
+    } | null;
+    tclo?: {
+      __typename: "TCLO";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    tdlo?: {
+      __typename: "TDLO";
+      dose?: number | null;
+      route?: string | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    lc50?: {
+      __typename: "LC50";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    lclo?: {
+      __typename: "LCLO";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    ld50?: {
+      __typename: "LD50";
+      dose?: number | null;
+      species?: string | null;
+      route?: string | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    ldlo?: {
+      __typename: "LDLO";
+      dose?: number | null;
+      species?: string | null;
+      route?: string | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
     } | null;
   } | null;
 };
@@ -1099,6 +1611,324 @@ export type DeleteRouteMutation = {
   } | null;
 };
 
+export type CreateTCLOMutationVariables = {
+  input: CreateTCLOInput;
+  condition?: ModelTCLOConditionInput | null;
+};
+
+export type CreateTCLOMutation = {
+  createTCLO?: {
+    __typename: "TCLO";
+    dosePPM?: number | null;
+    doseMGM3?: number | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type UpdateTCLOMutationVariables = {
+  input: UpdateTCLOInput;
+  condition?: ModelTCLOConditionInput | null;
+};
+
+export type UpdateTCLOMutation = {
+  updateTCLO?: {
+    __typename: "TCLO";
+    dosePPM?: number | null;
+    doseMGM3?: number | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type DeleteTCLOMutationVariables = {
+  input: DeleteTCLOInput;
+  condition?: ModelTCLOConditionInput | null;
+};
+
+export type DeleteTCLOMutation = {
+  deleteTCLO?: {
+    __typename: "TCLO";
+    dosePPM?: number | null;
+    doseMGM3?: number | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type CreateTDLOMutationVariables = {
+  input: CreateTDLOInput;
+  condition?: ModelTDLOConditionInput | null;
+};
+
+export type CreateTDLOMutation = {
+  createTDLO?: {
+    __typename: "TDLO";
+    dose?: number | null;
+    route?: string | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type UpdateTDLOMutationVariables = {
+  input: UpdateTDLOInput;
+  condition?: ModelTDLOConditionInput | null;
+};
+
+export type UpdateTDLOMutation = {
+  updateTDLO?: {
+    __typename: "TDLO";
+    dose?: number | null;
+    route?: string | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type DeleteTDLOMutationVariables = {
+  input: DeleteTDLOInput;
+  condition?: ModelTDLOConditionInput | null;
+};
+
+export type DeleteTDLOMutation = {
+  deleteTDLO?: {
+    __typename: "TDLO";
+    dose?: number | null;
+    route?: string | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type CreateLC50MutationVariables = {
+  input: CreateLC50Input;
+  condition?: ModelLC50ConditionInput | null;
+};
+
+export type CreateLC50Mutation = {
+  createLC50?: {
+    __typename: "LC50";
+    dosePPM?: number | null;
+    doseMGM3?: number | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type UpdateLC50MutationVariables = {
+  input: UpdateLC50Input;
+  condition?: ModelLC50ConditionInput | null;
+};
+
+export type UpdateLC50Mutation = {
+  updateLC50?: {
+    __typename: "LC50";
+    dosePPM?: number | null;
+    doseMGM3?: number | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type DeleteLC50MutationVariables = {
+  input: DeleteLC50Input;
+  condition?: ModelLC50ConditionInput | null;
+};
+
+export type DeleteLC50Mutation = {
+  deleteLC50?: {
+    __typename: "LC50";
+    dosePPM?: number | null;
+    doseMGM3?: number | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type CreateLCLOMutationVariables = {
+  input: CreateLCLOInput;
+  condition?: ModelLCLOConditionInput | null;
+};
+
+export type CreateLCLOMutation = {
+  createLCLO?: {
+    __typename: "LCLO";
+    dosePPM?: number | null;
+    doseMGM3?: number | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type UpdateLCLOMutationVariables = {
+  input: UpdateLCLOInput;
+  condition?: ModelLCLOConditionInput | null;
+};
+
+export type UpdateLCLOMutation = {
+  updateLCLO?: {
+    __typename: "LCLO";
+    dosePPM?: number | null;
+    doseMGM3?: number | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type DeleteLCLOMutationVariables = {
+  input: DeleteLCLOInput;
+  condition?: ModelLCLOConditionInput | null;
+};
+
+export type DeleteLCLOMutation = {
+  deleteLCLO?: {
+    __typename: "LCLO";
+    dosePPM?: number | null;
+    doseMGM3?: number | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type CreateLD50MutationVariables = {
+  input: CreateLD50Input;
+  condition?: ModelLD50ConditionInput | null;
+};
+
+export type CreateLD50Mutation = {
+  createLD50?: {
+    __typename: "LD50";
+    dose?: number | null;
+    species?: string | null;
+    route?: string | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type UpdateLD50MutationVariables = {
+  input: UpdateLD50Input;
+  condition?: ModelLD50ConditionInput | null;
+};
+
+export type UpdateLD50Mutation = {
+  updateLD50?: {
+    __typename: "LD50";
+    dose?: number | null;
+    species?: string | null;
+    route?: string | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type DeleteLD50MutationVariables = {
+  input: DeleteLD50Input;
+  condition?: ModelLD50ConditionInput | null;
+};
+
+export type DeleteLD50Mutation = {
+  deleteLD50?: {
+    __typename: "LD50";
+    dose?: number | null;
+    species?: string | null;
+    route?: string | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type CreateLDLOMutationVariables = {
+  input: CreateLDLOInput;
+  condition?: ModelLDLOConditionInput | null;
+};
+
+export type CreateLDLOMutation = {
+  createLDLO?: {
+    __typename: "LDLO";
+    dose?: number | null;
+    species?: string | null;
+    route?: string | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type UpdateLDLOMutationVariables = {
+  input: UpdateLDLOInput;
+  condition?: ModelLDLOConditionInput | null;
+};
+
+export type UpdateLDLOMutation = {
+  updateLDLO?: {
+    __typename: "LDLO";
+    dose?: number | null;
+    species?: string | null;
+    route?: string | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type DeleteLDLOMutationVariables = {
+  input: DeleteLDLOInput;
+  condition?: ModelLDLOConditionInput | null;
+};
+
+export type DeleteLDLOMutation = {
+  deleteLDLO?: {
+    __typename: "LDLO";
+    dose?: number | null;
+    species?: string | null;
+    route?: string | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
 export type GetChemicalQueryVariables = {
   id: string;
 };
@@ -1173,6 +2003,64 @@ export type GetChemicalQuery = {
       dosePPM?: number | null;
       doseMGM3?: number | null;
       id: string;
+    } | null;
+    tclo?: {
+      __typename: "TCLO";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    tdlo?: {
+      __typename: "TDLO";
+      dose?: number | null;
+      route?: string | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    lc50?: {
+      __typename: "LC50";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    lclo?: {
+      __typename: "LCLO";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    ld50?: {
+      __typename: "LD50";
+      dose?: number | null;
+      species?: string | null;
+      route?: string | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    ldlo?: {
+      __typename: "LDLO";
+      dose?: number | null;
+      species?: string | null;
+      route?: string | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
     } | null;
   } | null;
 };
@@ -1414,6 +2302,242 @@ export type ListRoutesQuery = {
   } | null;
 };
 
+export type GetTCLOQueryVariables = {
+  id: string;
+};
+
+export type GetTCLOQuery = {
+  getTCLO?: {
+    __typename: "TCLO";
+    dosePPM?: number | null;
+    doseMGM3?: number | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type ListTCLOSQueryVariables = {
+  filter?: ModelTCLOFilterInput | null;
+  limit?: number | null;
+  nextToken?: string | null;
+};
+
+export type ListTCLOSQuery = {
+  listTCLOS?: {
+    __typename: "ModelTCLOConnection";
+    items: Array<{
+      __typename: "TCLO";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null>;
+    nextToken?: string | null;
+  } | null;
+};
+
+export type GetTDLOQueryVariables = {
+  id: string;
+};
+
+export type GetTDLOQuery = {
+  getTDLO?: {
+    __typename: "TDLO";
+    dose?: number | null;
+    route?: string | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type ListTDLOSQueryVariables = {
+  filter?: ModelTDLOFilterInput | null;
+  limit?: number | null;
+  nextToken?: string | null;
+};
+
+export type ListTDLOSQuery = {
+  listTDLOS?: {
+    __typename: "ModelTDLOConnection";
+    items: Array<{
+      __typename: "TDLO";
+      dose?: number | null;
+      route?: string | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null>;
+    nextToken?: string | null;
+  } | null;
+};
+
+export type GetLC50QueryVariables = {
+  id: string;
+};
+
+export type GetLC50Query = {
+  getLC50?: {
+    __typename: "LC50";
+    dosePPM?: number | null;
+    doseMGM3?: number | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type ListLC50sQueryVariables = {
+  filter?: ModelLC50FilterInput | null;
+  limit?: number | null;
+  nextToken?: string | null;
+};
+
+export type ListLC50sQuery = {
+  listLC50s?: {
+    __typename: "ModelLC50Connection";
+    items: Array<{
+      __typename: "LC50";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null>;
+    nextToken?: string | null;
+  } | null;
+};
+
+export type GetLCLOQueryVariables = {
+  id: string;
+};
+
+export type GetLCLOQuery = {
+  getLCLO?: {
+    __typename: "LCLO";
+    dosePPM?: number | null;
+    doseMGM3?: number | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type ListLCLOSQueryVariables = {
+  filter?: ModelLCLOFilterInput | null;
+  limit?: number | null;
+  nextToken?: string | null;
+};
+
+export type ListLCLOSQuery = {
+  listLCLOS?: {
+    __typename: "ModelLCLOConnection";
+    items: Array<{
+      __typename: "LCLO";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null>;
+    nextToken?: string | null;
+  } | null;
+};
+
+export type GetLD50QueryVariables = {
+  id: string;
+};
+
+export type GetLD50Query = {
+  getLD50?: {
+    __typename: "LD50";
+    dose?: number | null;
+    species?: string | null;
+    route?: string | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type ListLD50sQueryVariables = {
+  filter?: ModelLD50FilterInput | null;
+  limit?: number | null;
+  nextToken?: string | null;
+};
+
+export type ListLD50sQuery = {
+  listLD50s?: {
+    __typename: "ModelLD50Connection";
+    items: Array<{
+      __typename: "LD50";
+      dose?: number | null;
+      species?: string | null;
+      route?: string | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null>;
+    nextToken?: string | null;
+  } | null;
+};
+
+export type GetLDLOQueryVariables = {
+  id: string;
+};
+
+export type GetLDLOQuery = {
+  getLDLO?: {
+    __typename: "LDLO";
+    dose?: number | null;
+    species?: string | null;
+    route?: string | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type ListLDLOSQueryVariables = {
+  filter?: ModelLDLOFilterInput | null;
+  limit?: number | null;
+  nextToken?: string | null;
+};
+
+export type ListLDLOSQuery = {
+  listLDLOS?: {
+    __typename: "ModelLDLOConnection";
+    items: Array<{
+      __typename: "LDLO";
+      dose?: number | null;
+      species?: string | null;
+      route?: string | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null>;
+    nextToken?: string | null;
+  } | null;
+};
+
 export type OnCreateChemicalSubscription = {
   onCreateChemical?: {
     __typename: "Chemical";
@@ -1484,6 +2608,64 @@ export type OnCreateChemicalSubscription = {
       dosePPM?: number | null;
       doseMGM3?: number | null;
       id: string;
+    } | null;
+    tclo?: {
+      __typename: "TCLO";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    tdlo?: {
+      __typename: "TDLO";
+      dose?: number | null;
+      route?: string | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    lc50?: {
+      __typename: "LC50";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    lclo?: {
+      __typename: "LCLO";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    ld50?: {
+      __typename: "LD50";
+      dose?: number | null;
+      species?: string | null;
+      route?: string | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    ldlo?: {
+      __typename: "LDLO";
+      dose?: number | null;
+      species?: string | null;
+      route?: string | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
     } | null;
   } | null;
 };
@@ -1559,6 +2741,64 @@ export type OnUpdateChemicalSubscription = {
       doseMGM3?: number | null;
       id: string;
     } | null;
+    tclo?: {
+      __typename: "TCLO";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    tdlo?: {
+      __typename: "TDLO";
+      dose?: number | null;
+      route?: string | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    lc50?: {
+      __typename: "LC50";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    lclo?: {
+      __typename: "LCLO";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    ld50?: {
+      __typename: "LD50";
+      dose?: number | null;
+      species?: string | null;
+      route?: string | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    ldlo?: {
+      __typename: "LDLO";
+      dose?: number | null;
+      species?: string | null;
+      route?: string | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
   } | null;
 };
 
@@ -1632,6 +2872,64 @@ export type OnDeleteChemicalSubscription = {
       dosePPM?: number | null;
       doseMGM3?: number | null;
       id: string;
+    } | null;
+    tclo?: {
+      __typename: "TCLO";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    tdlo?: {
+      __typename: "TDLO";
+      dose?: number | null;
+      route?: string | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    lc50?: {
+      __typename: "LC50";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    lclo?: {
+      __typename: "LCLO";
+      dosePPM?: number | null;
+      doseMGM3?: number | null;
+      species?: string | null;
+      exposureTime?: number | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    ld50?: {
+      __typename: "LD50";
+      dose?: number | null;
+      species?: string | null;
+      route?: string | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    ldlo?: {
+      __typename: "LDLO";
+      dose?: number | null;
+      species?: string | null;
+      route?: string | null;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
     } | null;
   } | null;
 };
@@ -1834,5 +3132,233 @@ export type OnDeleteRouteSubscription = {
     name?: string | null;
     adjustmentFactor?: number | null;
     id: string;
+  } | null;
+};
+
+export type OnCreateTCLOSubscription = {
+  onCreateTCLO?: {
+    __typename: "TCLO";
+    dosePPM?: number | null;
+    doseMGM3?: number | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type OnUpdateTCLOSubscription = {
+  onUpdateTCLO?: {
+    __typename: "TCLO";
+    dosePPM?: number | null;
+    doseMGM3?: number | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type OnDeleteTCLOSubscription = {
+  onDeleteTCLO?: {
+    __typename: "TCLO";
+    dosePPM?: number | null;
+    doseMGM3?: number | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type OnCreateTDLOSubscription = {
+  onCreateTDLO?: {
+    __typename: "TDLO";
+    dose?: number | null;
+    route?: string | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type OnUpdateTDLOSubscription = {
+  onUpdateTDLO?: {
+    __typename: "TDLO";
+    dose?: number | null;
+    route?: string | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type OnDeleteTDLOSubscription = {
+  onDeleteTDLO?: {
+    __typename: "TDLO";
+    dose?: number | null;
+    route?: string | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type OnCreateLC50Subscription = {
+  onCreateLC50?: {
+    __typename: "LC50";
+    dosePPM?: number | null;
+    doseMGM3?: number | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type OnUpdateLC50Subscription = {
+  onUpdateLC50?: {
+    __typename: "LC50";
+    dosePPM?: number | null;
+    doseMGM3?: number | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type OnDeleteLC50Subscription = {
+  onDeleteLC50?: {
+    __typename: "LC50";
+    dosePPM?: number | null;
+    doseMGM3?: number | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type OnCreateLCLOSubscription = {
+  onCreateLCLO?: {
+    __typename: "LCLO";
+    dosePPM?: number | null;
+    doseMGM3?: number | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type OnUpdateLCLOSubscription = {
+  onUpdateLCLO?: {
+    __typename: "LCLO";
+    dosePPM?: number | null;
+    doseMGM3?: number | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type OnDeleteLCLOSubscription = {
+  onDeleteLCLO?: {
+    __typename: "LCLO";
+    dosePPM?: number | null;
+    doseMGM3?: number | null;
+    species?: string | null;
+    exposureTime?: number | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type OnCreateLD50Subscription = {
+  onCreateLD50?: {
+    __typename: "LD50";
+    dose?: number | null;
+    species?: string | null;
+    route?: string | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type OnUpdateLD50Subscription = {
+  onUpdateLD50?: {
+    __typename: "LD50";
+    dose?: number | null;
+    species?: string | null;
+    route?: string | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type OnDeleteLD50Subscription = {
+  onDeleteLD50?: {
+    __typename: "LD50";
+    dose?: number | null;
+    species?: string | null;
+    route?: string | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type OnCreateLDLOSubscription = {
+  onCreateLDLO?: {
+    __typename: "LDLO";
+    dose?: number | null;
+    species?: string | null;
+    route?: string | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type OnUpdateLDLOSubscription = {
+  onUpdateLDLO?: {
+    __typename: "LDLO";
+    dose?: number | null;
+    species?: string | null;
+    route?: string | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+};
+
+export type OnDeleteLDLOSubscription = {
+  onDeleteLDLO?: {
+    __typename: "LDLO";
+    dose?: number | null;
+    species?: string | null;
+    route?: string | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
   } | null;
 };

@@ -55,6 +55,12 @@ type Chemical @model @aws_api_key {
   idlh: Float
   element: Element
   toldoc: Toldoc
+  tclo: TCLO
+  tdlo: TDLO
+  lc50: LC50
+  lclo: LCLO
+  ld50: LD50
+  ldlo: LDLO
 }
 
 type Element @model @aws_api_key {
@@ -90,4 +96,44 @@ type Route @model @aws_api_key {
   updatedAt: AWSDateTime
   name: String
   adjustmentFactor: Float
+}
+
+type TCLO @model @aws_api_key {
+  dosePPM: Float
+  doseMGM3: Float
+  species: String
+  exposureTime: Float
+}
+
+type TDLO @model @aws_api_key {
+  dose: Float
+  route: String
+  species: String
+  exposureTime: Float
+}
+
+type LC50 @model @aws_api_key {
+  dosePPM: Float
+  doseMGM3: Float
+  species: String
+  exposureTime: Float
+}
+
+type LCLO @model @aws_api_key {
+  dosePPM: Float
+  doseMGM3: Float
+  species: String
+  exposureTime: Float
+}
+
+type LD50 @model @aws_api_key {
+  dose: Float
+  species: String
+  route: String
+}
+
+type LDLO @model @aws_api_key {
+  dose: Float
+  species: String
+  route: String
 }

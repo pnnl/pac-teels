@@ -71,6 +71,58 @@ export const getChemical = /* GraphQL */ `
         doseMGM3
         id
       }
+      tclo {
+        dosePPM
+        doseMGM3
+        species
+        exposureTime
+        id
+        createdAt
+        updatedAt
+      }
+      tdlo {
+        dose
+        route
+        species
+        exposureTime
+        id
+        createdAt
+        updatedAt
+      }
+      lc50 {
+        dosePPM
+        doseMGM3
+        species
+        exposureTime
+        id
+        createdAt
+        updatedAt
+      }
+      lclo {
+        dosePPM
+        doseMGM3
+        species
+        exposureTime
+        id
+        createdAt
+        updatedAt
+      }
+      ld50 {
+        dose
+        species
+        route
+        id
+        createdAt
+        updatedAt
+      }
+      ldlo {
+        dose
+        species
+        route
+        id
+        createdAt
+        updatedAt
+      }
     }
   }
 `;
@@ -257,6 +309,176 @@ export const listRoutes = /* GraphQL */ `
         name
         adjustmentFactor
         id
+      }
+      nextToken
+    }
+  }
+`;
+export const getTCLO = /* GraphQL */ `
+  query GetTCLO($id: ID!) {
+    getTCLO(id: $id) {
+      dosePPM
+      doseMGM3
+      species
+      exposureTime
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listTCLOS = /* GraphQL */ `
+  query ListTCLOS($filter: ModelTCLOFilterInput, $limit: Int, $nextToken: String) {
+    listTCLOS(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        dosePPM
+        doseMGM3
+        species
+        exposureTime
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getTDLO = /* GraphQL */ `
+  query GetTDLO($id: ID!) {
+    getTDLO(id: $id) {
+      dose
+      route
+      species
+      exposureTime
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listTDLOS = /* GraphQL */ `
+  query ListTDLOS($filter: ModelTDLOFilterInput, $limit: Int, $nextToken: String) {
+    listTDLOS(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        dose
+        route
+        species
+        exposureTime
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getLC50 = /* GraphQL */ `
+  query GetLC50($id: ID!) {
+    getLC50(id: $id) {
+      dosePPM
+      doseMGM3
+      species
+      exposureTime
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listLC50s = /* GraphQL */ `
+  query ListLC50s($filter: ModelLC50FilterInput, $limit: Int, $nextToken: String) {
+    listLC50s(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        dosePPM
+        doseMGM3
+        species
+        exposureTime
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getLCLO = /* GraphQL */ `
+  query GetLCLO($id: ID!) {
+    getLCLO(id: $id) {
+      dosePPM
+      doseMGM3
+      species
+      exposureTime
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listLCLOS = /* GraphQL */ `
+  query ListLCLOS($filter: ModelLCLOFilterInput, $limit: Int, $nextToken: String) {
+    listLCLOS(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        dosePPM
+        doseMGM3
+        species
+        exposureTime
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getLD50 = /* GraphQL */ `
+  query GetLD50($id: ID!) {
+    getLD50(id: $id) {
+      dose
+      species
+      route
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listLD50s = /* GraphQL */ `
+  query ListLD50s($filter: ModelLD50FilterInput, $limit: Int, $nextToken: String) {
+    listLD50s(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        dose
+        species
+        route
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getLDLO = /* GraphQL */ `
+  query GetLDLO($id: ID!) {
+    getLDLO(id: $id) {
+      dose
+      species
+      route
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listLDLOS = /* GraphQL */ `
+  query ListLDLOS($filter: ModelLDLOFilterInput, $limit: Int, $nextToken: String) {
+    listLDLOS(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        dose
+        species
+        route
+        id
+        createdAt
+        updatedAt
       }
       nextToken
     }

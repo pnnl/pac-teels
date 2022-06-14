@@ -71,6 +71,58 @@ export const onCreateChemical = /* GraphQL */ `
         doseMGM3
         id
       }
+      tclo {
+        dosePPM
+        doseMGM3
+        species
+        exposureTime
+        id
+        createdAt
+        updatedAt
+      }
+      tdlo {
+        dose
+        route
+        species
+        exposureTime
+        id
+        createdAt
+        updatedAt
+      }
+      lc50 {
+        dosePPM
+        doseMGM3
+        species
+        exposureTime
+        id
+        createdAt
+        updatedAt
+      }
+      lclo {
+        dosePPM
+        doseMGM3
+        species
+        exposureTime
+        id
+        createdAt
+        updatedAt
+      }
+      ld50 {
+        dose
+        species
+        route
+        id
+        createdAt
+        updatedAt
+      }
+      ldlo {
+        dose
+        species
+        route
+        id
+        createdAt
+        updatedAt
+      }
     }
   }
 `;
@@ -143,6 +195,58 @@ export const onUpdateChemical = /* GraphQL */ `
         doseMGM3
         id
       }
+      tclo {
+        dosePPM
+        doseMGM3
+        species
+        exposureTime
+        id
+        createdAt
+        updatedAt
+      }
+      tdlo {
+        dose
+        route
+        species
+        exposureTime
+        id
+        createdAt
+        updatedAt
+      }
+      lc50 {
+        dosePPM
+        doseMGM3
+        species
+        exposureTime
+        id
+        createdAt
+        updatedAt
+      }
+      lclo {
+        dosePPM
+        doseMGM3
+        species
+        exposureTime
+        id
+        createdAt
+        updatedAt
+      }
+      ld50 {
+        dose
+        species
+        route
+        id
+        createdAt
+        updatedAt
+      }
+      ldlo {
+        dose
+        species
+        route
+        id
+        createdAt
+        updatedAt
+      }
     }
   }
 `;
@@ -214,6 +318,58 @@ export const onDeleteChemical = /* GraphQL */ `
         dosePPM
         doseMGM3
         id
+      }
+      tclo {
+        dosePPM
+        doseMGM3
+        species
+        exposureTime
+        id
+        createdAt
+        updatedAt
+      }
+      tdlo {
+        dose
+        route
+        species
+        exposureTime
+        id
+        createdAt
+        updatedAt
+      }
+      lc50 {
+        dosePPM
+        doseMGM3
+        species
+        exposureTime
+        id
+        createdAt
+        updatedAt
+      }
+      lclo {
+        dosePPM
+        doseMGM3
+        species
+        exposureTime
+        id
+        createdAt
+        updatedAt
+      }
+      ld50 {
+        dose
+        species
+        route
+        id
+        createdAt
+        updatedAt
+      }
+      ldlo {
+        dose
+        species
+        route
+        id
+        createdAt
+        updatedAt
       }
     }
   }
@@ -410,6 +566,234 @@ export const onDeleteRoute = /* GraphQL */ `
       name
       adjustmentFactor
       id
+    }
+  }
+`;
+export const onCreateTCLO = /* GraphQL */ `
+  subscription OnCreateTCLO {
+    onCreateTCLO {
+      dosePPM
+      doseMGM3
+      species
+      exposureTime
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateTCLO = /* GraphQL */ `
+  subscription OnUpdateTCLO {
+    onUpdateTCLO {
+      dosePPM
+      doseMGM3
+      species
+      exposureTime
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteTCLO = /* GraphQL */ `
+  subscription OnDeleteTCLO {
+    onDeleteTCLO {
+      dosePPM
+      doseMGM3
+      species
+      exposureTime
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateTDLO = /* GraphQL */ `
+  subscription OnCreateTDLO {
+    onCreateTDLO {
+      dose
+      route
+      species
+      exposureTime
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateTDLO = /* GraphQL */ `
+  subscription OnUpdateTDLO {
+    onUpdateTDLO {
+      dose
+      route
+      species
+      exposureTime
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteTDLO = /* GraphQL */ `
+  subscription OnDeleteTDLO {
+    onDeleteTDLO {
+      dose
+      route
+      species
+      exposureTime
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateLC50 = /* GraphQL */ `
+  subscription OnCreateLC50 {
+    onCreateLC50 {
+      dosePPM
+      doseMGM3
+      species
+      exposureTime
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateLC50 = /* GraphQL */ `
+  subscription OnUpdateLC50 {
+    onUpdateLC50 {
+      dosePPM
+      doseMGM3
+      species
+      exposureTime
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteLC50 = /* GraphQL */ `
+  subscription OnDeleteLC50 {
+    onDeleteLC50 {
+      dosePPM
+      doseMGM3
+      species
+      exposureTime
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateLCLO = /* GraphQL */ `
+  subscription OnCreateLCLO {
+    onCreateLCLO {
+      dosePPM
+      doseMGM3
+      species
+      exposureTime
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateLCLO = /* GraphQL */ `
+  subscription OnUpdateLCLO {
+    onUpdateLCLO {
+      dosePPM
+      doseMGM3
+      species
+      exposureTime
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteLCLO = /* GraphQL */ `
+  subscription OnDeleteLCLO {
+    onDeleteLCLO {
+      dosePPM
+      doseMGM3
+      species
+      exposureTime
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateLD50 = /* GraphQL */ `
+  subscription OnCreateLD50 {
+    onCreateLD50 {
+      dose
+      species
+      route
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateLD50 = /* GraphQL */ `
+  subscription OnUpdateLD50 {
+    onUpdateLD50 {
+      dose
+      species
+      route
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteLD50 = /* GraphQL */ `
+  subscription OnDeleteLD50 {
+    onDeleteLD50 {
+      dose
+      species
+      route
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateLDLO = /* GraphQL */ `
+  subscription OnCreateLDLO {
+    onCreateLDLO {
+      dose
+      species
+      route
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateLDLO = /* GraphQL */ `
+  subscription OnUpdateLDLO {
+    onUpdateLDLO {
+      dose
+      species
+      route
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteLDLO = /* GraphQL */ `
+  subscription OnDeleteLDLO {
+    onDeleteLDLO {
+      dose
+      species
+      route
+      id
+      createdAt
+      updatedAt
     }
   }
 `;
