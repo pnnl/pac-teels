@@ -1,0 +1,139 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY {
+  globalAuthRule: AuthRule = { allow: public }
+} # FOR TESTING ONLY!
+type Chemical @model @aws_api_key {
+  id: ID!
+  casNumber: String
+  chemicalFormula: String
+  unNumber: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+  name: String
+  pac1: Float
+  pac2: Float
+  pac3: Float
+  pac1Source: String
+  pac2Source: String
+  pac3Source: String
+  teel1: Float
+  teel2: Float
+  teel3: Float
+  teel1Source: String
+  teel2Source: String
+  teel3Source: String
+  isAsphyxiant: Boolean
+  molecularWeight: Float
+  originalUnit: String
+  compoundAdjustmentFactor: Float
+  isYChemical: Boolean
+  aegl1: Float
+  aegl2: Float
+  aegl3: Float
+  erpg1: Float
+  erpg2: Float
+  erpg3: Float
+  tlvstel: Float
+  weelstel: Float
+  makstel: Float
+  relstel: Float
+  pelstel: Float
+  eegl60: Float
+  loc: Float
+  concentrationLimit: Float
+  tlvtwa: Float
+  weeltwa: Float
+  maktwa: Float
+  reltwa: Float
+  peltwa: Float
+  weelceiling: Float
+  makceiling: Float
+  relceiling: Float
+  pelceiling: Float
+  eegl30: Float
+  idlh: Float
+  element: Element
+  toldoc: Toldoc
+  tclo: TCLO
+  tdlo: TDLO
+  lc50: LC50
+  lclo: LCLO
+  ld50: LD50
+  ldlo: LDLO
+}
+
+type Element @model @aws_api_key {
+  name: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+  weight: Float
+}
+
+type Toldoc @model @aws_api_key {
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+  toxicOrLethal: String
+  exposureMethod: String
+  threshold: String
+  dosePPM: Float
+  doseMGM3: Float
+  species: Species
+  route: Route
+}
+
+type Species @model @aws_api_key {
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+  name: String
+  meanBodyWeight: Float
+  meanBreathingRate: Float
+  exposureTime: AWSDateTime
+}
+
+type Route @model @aws_api_key {
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+  name: String
+  adjustmentFactor: Float
+}
+
+type TCLO @model @aws_api_key {
+  dosePPM: Float
+  doseMGM3: Float
+  species: String
+  exposureTime: Float
+}
+
+type TDLO @model @aws_api_key {
+  dose: Float
+  route: String
+  species: String
+  exposureTime: Float
+}
+
+type LC50 @model @aws_api_key {
+  dosePPM: Float
+  doseMGM3: Float
+  species: String
+  exposureTime: Float
+}
+
+type LCLO @model @aws_api_key {
+  dosePPM: Float
+  doseMGM3: Float
+  species: String
+  exposureTime: Float
+}
+
+type LD50 @model @aws_api_key {
+  dose: Float
+  species: String
+  route: String
+}
+
+type LDLO @model @aws_api_key {
+  dose: Float
+  species: String
+  route: String
+}

@@ -71,15 +71,23 @@
   import { UNIT_OPTIONS } from "constants/constants";
   import Modal from "components/Modal/Modal.svelte";
   import EmailNotification from "./EmailNotification/EmailNotification.svelte";
+  import { selectedChemical } from "stores/stores";
 
   let currentUnit = "mgm3";
   let calculation = 1.232;
   let showEmailNotification = false;
   let componentReference: HTMLElement;
+  let currentChemical;
+
+  selectedChemical.subscribe(currChemical => {
+    if (currChemical) {
+      currentChemical = currChemical;
+    }
+  });
 </script>
 
 <div class="panel-header">
-  <h2>Stubbed Name</h2>
+  <h2>{currentChemical.name || "No Name in Database"}</h2>
   <div bind:this={componentReference} class="button-container">
     <Button on:click={() => window.alert("Not Implemented")}>
       <Icon class="material-icons">open_in_new</Icon>
@@ -115,21 +123,21 @@
     </FormField>
     <div class="body-caption">PAC-1</div>
     <div class="pac-item">
-      <h3>{calculation}<span class="unit">{currentUnit}</span></h3>
+      <h3>{currentChemical.pac1 || "N/A"}<span class="unit">{currentUnit}</span></h3>
       <div class="caption">Corresponds to 60-minute AEGL values</div>
     </div>
 
     <div class="body-caption">PAC-2</div>
 
     <div class="pac-item">
-      <h3>{calculation} {currentUnit}</h3>
+      <h3>{currentChemical.pac2 || "N/A"} {currentUnit}</h3>
       <div class="caption">Corresponds to 60-minute AEGL values</div>
     </div>
 
     <div class="body-caption">PAC-3</div>
 
     <div class="pac-item">
-      <h3>{calculation} {currentUnit}</h3>
+      <h3>{currentChemical.pac2 || "N/A"} {currentUnit}</h3>
       <div class="caption">Corresponds to 60-minute AEGL values</div>
     </div>
   </div>

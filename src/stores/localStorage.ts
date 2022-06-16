@@ -13,12 +13,14 @@ export const setItem = (key, data, passphrase) => {
 export const getItem = (key, passphrase) => {
   return localforage.getItem(key).then(data => {
     // If passphrase is present, decrypt string and parse JSON
-    if (passphrase) {
-      const newData = CryptoJS.AES.decrypt(data, passphrase);
-      const finalData = newData.toString(CryptoJS.enc.Utf8);
-      return JSON.parse(finalData);
-    }
-    return data;
+    if (data) {
+      if (passphrase) {
+        const newData = CryptoJS.AES.decrypt(data, passphrase);
+        const finalData = newData.toString(CryptoJS.enc.Utf8);
+        return JSON.parse(finalData);
+      }
+      return data;
+    } else return null;
   });
 };
 

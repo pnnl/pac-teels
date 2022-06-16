@@ -1,0 +1,25 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-pacteels-staging-202330-authRole",
+      "UnauthRoleArn": "arn:aws:iam::789057416651:role/amplify-pacteels-staging-202330-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::789057416651:role/amplify-pacteels-staging-202330-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-pacteels-staging-202330-deployment",
+      "UnauthRoleName": "amplify-pacteels-staging-202330-unauthRole",
+      "StackName": "amplify-pacteels-staging-202330",
+      "StackId": "arn:aws:cloudformation:us-west-2:789057416651:stack/amplify-pacteels-staging-202330/701ef4e0-ac79-11ec-ace6-0a9e2937d9bb",
+      "AmplifyAppId": "dp80zslttuead"
+    },
+    "categories": {
+      "auth": {
+        "pacteels": {
+          "userPoolId": "us-west-2_Sze2YdTje",
+          "userPoolName": "PACTEEL",
+          "webClientId": "7h08294tbio8r1a72evt8se8k8",
+          "nativeClientId": "7h08294tbio8r1a72evt8se8k8"
+        }
+      }
+    }
+  }
+}

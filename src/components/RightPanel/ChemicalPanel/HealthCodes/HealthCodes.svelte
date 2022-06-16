@@ -12,6 +12,14 @@
 
 <script lang="ts">
   import { HEALTH_CODE_NUMBERS } from "constants/constants";
+  import { selectedChemical } from "stores/stores";
+  let currentChemical;
+
+  selectedChemical.subscribe(currChemical => {
+    if (currChemical) {
+      currentChemical = currChemical;
+    }
+  });
 </script>
 
 <div class="container">
