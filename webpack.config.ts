@@ -132,7 +132,10 @@ const commonConfig = merge([
       // Add static js and css
       new HtmlWebpackTagsPlugin({
         tags: ["scripts/config.js","global.scss", "assets/Material-Icons.css"]
-      })
+      }),
+      new Webpack.IgnorePlugin({
+        resourceRegExp: /^redux$/
+    }),
     ],
     stats: {
       chunks: false,
