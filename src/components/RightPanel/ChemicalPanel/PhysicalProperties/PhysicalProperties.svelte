@@ -11,7 +11,15 @@
 </style>
 
 <script lang="ts">
-import {PHYSICAL_PROPERTY_MAP} from "constants/constants"
+  import { PHYSICAL_PROPERTY_MAP } from "constants/constants";
+  import { selectedChemical } from "stores/stores";
+  let currentChemical;
+
+  selectedChemical.subscribe(currChemical => {
+    if (currChemical) {
+      currentChemical = currChemical;
+    }
+  });
 </script>
 
 <div class="physical-property-container">

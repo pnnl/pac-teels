@@ -14,6 +14,7 @@
   .search-item:hover {
     background-color: var(--hoverBlue);
     color: var(--darkBlue);
+    cursor: pointer;
   }
   .searched-name {
     max-width: 69rem;
@@ -21,15 +22,24 @@
 </style>
 
 <script>
+  import { rightPanelOpened, selectedChemical } from "stores/stores";
+
   export let caption;
   export let items;
   export let style;
 </script>
 
 <div class="caption">{caption}</div>
-{#each [...items] as [key, value]}
-  <div class="search-item" {style}>
+{#each [...items].reverse() as [key, value]}
+  <div
+    class="search-item"
+    {style}
+    on:click={() => {
+      selectedChemical.update(currSelectedChem => value);
+      rightPanelOpened.update(currOpen => !currOpen);
+    }}
+  >
     <div>{key}</div>
-    <div class="searched-name">{value.name}</div>
+    <div class="searched-name">{value.id}</div>
   </div>
 {/each}

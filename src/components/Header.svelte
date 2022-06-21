@@ -5,7 +5,7 @@
     box-shadow: none;
     display: flex;
     align-items: center;
-    z-index: 10;
+    z-index: 11;
     top: 0;
     left: 0;
     color: var(--blue);
@@ -99,6 +99,7 @@
   import Tab from "@smui/tab";
   import TabBar from "@smui/tab-bar";
   import { push, pop, replace } from "svelte-spa-router";
+  import { user } from "stores/stores";
 
   export let title = "";
   export let hasLogo = false;
@@ -127,10 +128,7 @@
 
   let active = tabs[0];
 
-  let name = "";
-  $: {
-    name = "user.name";
-  }
+  let userName = "";
 
   let loginOpen = false;
   let closeHandler = (e: CustomEvent<{ action: string }>) => {
@@ -144,6 +142,15 @@
   let menu: MenuComponentDev;
   let anchor: HTMLDivElement;
   let anchorClasses: { [k: string]: boolean } = { right: true };
+
+  user.subscribe(currUser => {
+    if (currUser && currUser.challengeParam) {
+      userName = currUser.challengeParam.userAttributes.email;
+    } else if (currUser && currUser.attributes) {
+      // Fully logged in user
+      userName = currUser.attributes.email;
+    }
+  });
 </script>
 
 <div class={location.includes("accountDetails") ? "header account-details" : "header"}>
@@ -211,7 +218,7 @@
     >
       <Button on:click={() => menu.setOpen(!userMenuOpen)}>
         <Icon class="material-icons">account_circle</Icon>
-        <Label>Name of User</Label>
+        <Label>{userName}</Label>
       </Button>
       <Menu
         bind:this={menu}
@@ -223,12 +230,18 @@
           <Item on:click={() => push("/admin/accountDetails")}>
             <Text>Account Details</Text>
           </Item>
-          <Item on:click={() => {}}>
+          <Item
+            on:click={() => {
+              //We want to delete the entirety of the user session when we "Log Out", so set the stored user to undefined
+              user.update(currUser => undefined);
+              push("/");
+            }}
+          >
             <Text>Log Out</Text>
           </Item>
         </List>
       </Menu>
     </div>
   {/if}
-  <LoginModal open={loginOpen} {closeHandler} setAdminPage={val => (adminPage = val)} />
 </div>
+<LoginModal open={loginOpen} {closeHandler} setAdminPage={val => (adminPage = val)} />
