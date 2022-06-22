@@ -114,6 +114,10 @@
       "eslint --fix \"./src/**/*.{js,ts,svelte}\""
     ]
   },
+  "browserslist": [
+    "defaults",
+    "not IE 11"
+  ],
   "volta": {
     "node": "17.7.1"
   }
