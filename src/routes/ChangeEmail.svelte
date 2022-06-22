@@ -8,11 +8,34 @@
   import Textfield from "@smui/textfield";
   import Checkbox from "@smui/checkbox";
   import FormField from "@smui/form-field/src/FormField.svelte";
+  import { user } from "../stores/stores";
 
   let email = "";
   let newEmail = "";
   let password = "";
   let showPassChecked = false;
+
+  user.subscribe(currUser => {
+    if (currUser && currUser.attributes) {
+      email = currUser.attributes.email;
+    }
+  });
+
+  const handleSubmit = async () => {
+    try {
+      const currentUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
+      await Auth.updateUserAttributes(
+        currentUser, // the Cognito User Object
+        {
+          email: newEmail
+        }
+      );
+      push("/admin/accountDetails");
+    } catch (error) {
+      console.log("Change email failed");
+      console.log(error);
+    }
+  };
 </script>
 
 <div
@@ -58,11 +81,20 @@
     style={"margin-top: 1.2rem;color: var(--font);display: flex; flex-direction: column;align-items: start;width: 400px;"}
   >
     <div style={"font-size: 14px; line-height: 21px; font-weight: 500;"}>Password</div>
-    <Textfield
-      bind:value={password}
-      variant="outlined"
-      style={"width: -webkit-fill-available; height: var(--mdc-outlined-button-container-height, 36px);"}
-    />
+    {#if showPassChecked}
+      <Textfield
+        bind:value={password}
+        variant="outlined"
+        style={"width: -webkit-fill-available; height: var(--mdc-outlined-button-container-height, 36px);"}
+      />
+    {:else}
+      <Textfield
+        bind:value={password}
+        variant="outlined"
+        type="password"
+        style={"width: -webkit-fill-available; height: var(--mdc-outlined-button-container-height, 36px);"}
+      />
+    {/if}
   </div>
   <div
     style={"margin-top: 1.2rem;color: var(--font);display: flex; flex-direction: column;align-items: start;width: 400px;"}

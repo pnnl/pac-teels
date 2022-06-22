@@ -51,7 +51,8 @@ import WebpackBar from "webpackbar";
 import HtmlWebpackTagsPlugin from "html-webpack-tags-plugin";
 import { merge } from "webpack-merge";
 
-const output = dotenv.config();
+//Prefer to use local env if it exists
+const output = fs.existsSync("./.env.local") ? dotenv.config({ path: './.env.local' }) : dotenv.config();
 
 
 const environmentReplacements = {};

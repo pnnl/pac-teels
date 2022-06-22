@@ -46,14 +46,15 @@
   import Paper from "@smui/paper";
   import Button, { Icon } from "@smui/button";
   import { Icon as CommonIcon } from "@smui/common";
+  import { chemicals } from "stores/stores";
 
   type ChemDatabase = {
-    guid: string;
+    id: string;
     casNumber: string;
-    chemicalName: string;
+    name: string;
     chemicalFormula: string;
     unNumber: number;
-    lastUpdated: string;
+    updatedAt: string;
     pac1: string;
     pac2: string;
     pac3: string;
@@ -65,12 +66,18 @@
   let currentPage = 0;
   let search = "";
 
+  chemicals.subscribe(currChemicals => {
+    if (currChemicals) {
+      items = currChemicals;
+    }
+  });
+
   const columnEnum = {
     1: "casNumber",
-    2: "chemicalName",
+    2: "name",
     3: "chemicalFormula",
     4: "unNumber",
-    5: "lastUpdated",
+    5: "updatedAt",
     6: "pac1",
     7: "pac2",
     8: "pac3"
@@ -83,20 +90,6 @@
 
   $: if (currentPage > lastPage) {
     currentPage = lastPage;
-  }
-
-  for (let i = 0; i < 197; i++) {
-    items.push({
-      guid: i.toString(),
-      casNumber: "7782-50-5",
-      chemicalName: "Chlorine",
-      chemicalFormula: "Cl2",
-      unNumber: 1017,
-      lastUpdated: "Last Updated",
-      pac1: "0.5 ppm",
-      pac2: "2 ppm",
-      pac3: "20 ppm"
-    });
   }
 
   function handleSort(e: any) {
@@ -191,15 +184,15 @@
     </Row>
   </Head>
   <Body>
-    {#each slice as item (item.guid)}
+    {#each slice as item (item.id)}
       <Row>
         <Cell style="clip-path: inset(0rem 0rem 0rem 1rem);">
           {item.casNumber}</Cell
         >
-        <Cell>{item.chemicalName}</Cell>
+        <Cell>{item.name}</Cell>
         <Cell>{item.chemicalFormula}</Cell>
         <Cell>{item.unNumber}</Cell>
-        <Cell>{item.lastUpdated}</Cell>
+        <Cell>{item.updatedAt}</Cell>
         <Cell>{item.pac1}</Cell>
         <Cell>{item.pac2}</Cell>
         <Cell style="clip-path: inset(0rem 1rem 0rem 0rem);">{item.pac3}</Cell>

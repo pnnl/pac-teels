@@ -44,7 +44,6 @@ module.exports = {
   rules: {
     "no-undef": "off",
     "no-use-before-define": "off",
-    "no-console": "error",
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "off",
     "no-redeclare": "off",
@@ -69,6 +68,7 @@ module.exports = {
     "@typescript-eslint/no-floating-promises": "off",
     "@typescript-eslint/no-unsafe-member-access": "off",
     "@typescript-eslint/no-unsafe-return": "off",
-    "@typescript-eslint/restrict-plus-operands": "off"
+    "@typescript-eslint/restrict-plus-operands": "off",
+    "no-console": "warn"
   }
 };

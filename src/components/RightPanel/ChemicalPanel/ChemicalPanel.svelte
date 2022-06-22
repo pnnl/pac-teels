@@ -14,6 +14,13 @@
     background: #70768e;
     border-radius: 5rem;
   }
+  .container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    align-items: flex-start;
+  }
 
   .panel-header {
     padding-bottom: 1rem;
@@ -62,53 +69,78 @@
   import ChemicalIdentity from "./ChemicalIdentity/ChemicalIdentity.svelte";
   import PhysicalProperties from "./PhysicalProperties/PhysicalProperties.svelte";
   import { UNIT_OPTIONS } from "constants/constants";
+  import Modal from "components/Modal/Modal.svelte";
+  import EmailNotification from "./EmailNotification/EmailNotification.svelte";
+  import { selectedChemical } from "stores/stores";
 
   let currentUnit = "mgm3";
   let calculation = 1.232;
+  let showEmailNotification = false;
+  let componentReference: HTMLElement;
+  let currentChemical;
+
+  selectedChemical.subscribe(currChemical => {
+    if (currChemical) {
+      currentChemical = currChemical;
+    }
+  });
 </script>
 
 <div class="panel-header">
-  <h2>Stubbed Name</h2>
-  <Button on:click={() => window.alert("Not Implemented")}>
-    <Icon class="material-icons">open_in_new</Icon>
-    <Label>open in new tab</Label>
-  </Button>
-  <Button on:click={() => window.alert("Not Implemented")}>
-    <Icon class="material-icons">history</Icon>
-    <Label>view in history</Label>
-  </Button>
+  <h2>{currentChemical.name || "No Name in Database"}</h2>
+  <div bind:this={componentReference} class="button-container">
+    <Button on:click={() => window.alert("Not Implemented")}>
+      <Icon class="material-icons">open_in_new</Icon>
+      <Label>open in new tab</Label>
+    </Button>
+    <Button on:click={() => window.alert("Not Implemented")}>
+      <Icon class="material-icons">history</Icon>
+      <Label>view in history</Label>
+    </Button>
+    <Button on:click={() => (showEmailNotification = !showEmailNotification)}>
+      <Icon class="material-icons">notifications</Icon>
+      <Label>email updates</Label>
+    </Button>
+  </div>
+  {#if showEmailNotification}
+    <EmailNotification
+      parentReference={componentReference}
+      on:close={() => (showEmailNotification = false)}
+    />
+  {/if}
 </div>
 <div class="scrollable-area">
-  <h4>Protective Action Criteria Values</h4>
-  <div class="body-caption">Unit</div>
-  <FormField>
-    {#each UNIT_OPTIONS as option}
-      <div class="radio-item">
-        <Radio bind:group={currentUnit} value={option} />
-        <span class="label">{option}</span>
-      </div>
-    {/each}
-  </FormField>
-  <div class="body-caption">PAC-1</div>
-  <div class="pac-item">
-    <h3>{calculation}<span class="unit">{currentUnit}</span></h3>
-    <div class="caption">Corresponds to 60-minute AEGL values</div>
+  <div class="container">
+    <h4>Protective Action Criteria Values</h4>
+    <div class="body-caption">Unit</div>
+    <FormField>
+      {#each UNIT_OPTIONS as option}
+        <div class="radio-item">
+          <Radio bind:group={currentUnit} value={option} />
+          <span class="label">{option}</span>
+        </div>
+      {/each}
+    </FormField>
+    <div class="body-caption">PAC-1</div>
+    <div class="pac-item">
+      <h3>{currentChemical.pac1 || "N/A"}<span class="unit">{currentUnit}</span></h3>
+      <div class="caption">Corresponds to 60-minute AEGL values</div>
+    </div>
+
+    <div class="body-caption">PAC-2</div>
+
+    <div class="pac-item">
+      <h3>{currentChemical.pac2 || "N/A"} {currentUnit}</h3>
+      <div class="caption">Corresponds to 60-minute AEGL values</div>
+    </div>
+
+    <div class="body-caption">PAC-3</div>
+
+    <div class="pac-item">
+      <h3>{currentChemical.pac2 || "N/A"} {currentUnit}</h3>
+      <div class="caption">Corresponds to 60-minute AEGL values</div>
+    </div>
   </div>
-
-  <div class="body-caption">PAC-2</div>
-
-  <div class="pac-item">
-    <h3>{calculation} {currentUnit}</h3>
-    <div class="caption">Corresponds to 60-minute AEGL values</div>
-  </div>
-
-  <div class="body-caption">PAC-3</div>
-
-  <div class="pac-item">
-    <h3>{calculation} {currentUnit}</h3>
-    <div class="caption">Corresponds to 60-minute AEGL values</div>
-  </div>
-
   <FormField />
 
   <div class="divider" />
