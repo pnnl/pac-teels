@@ -119,7 +119,7 @@ h2::before {
   .mdc-switch:enabled:focus:not(:active) .mdc-switch__track::after {
 	background: var(--toggle);
   }
-  
+
   .mdc-switch:enabled:active .mdc-switch__track::after {
 		background: var(--toggle);
 	}
@@ -159,4 +159,21 @@ h2::before {
 
     .mdc-button--outlined .mdc-button__ripple{
         border-color:var(--blue)
+    }
+    .mdc-text-field {
+        height:2.5rem;
+        width:-webkit-fill-available;
+      }
+    .mdc-snackbar{
+        z-index:9999;
+      }
+    .mdc-snackbar__surface{
+        background:var(--white);
+        width:46.5rem;
+        border: .125rem solid var(--blue);
+        border-radius:.25rem;
+        z-index:999;
+    }
+    .mdc-snackbar__label{
+        color:var(--font);
     }

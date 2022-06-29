@@ -21,16 +21,16 @@
   .bottom-label {
     display: flex;
   }
-  .email-input {
-    height: 2.5rem;
-    border-radius: 0.25rem;
-    width: -webkit-fill-available;
+  .input-container{
+    display: flex;
+    width: 30rem;
+    flex-direction: row;
   }
 </style>
 
 <script lang="ts">
   import Button, { Icon, Label } from "@smui/button";
-  import FormField from "@smui/form-field";
+  import Textfield from '@smui/textfield';
   import { createEventDispatcher, onMount, onDestroy } from "svelte";
   import { mainComponentHTMLSelector } from "constants/constants";
   import Paper, { Content } from "@smui/paper";
@@ -39,9 +39,14 @@
   const dispatch = createEventDispatcher();
 
   let componentReference;
+  let email: string = ""
 
   $: position = parentReference.getBoundingClientRect();
 
+  const handleSubmit=()=>{
+    console.log("hit")
+    dispatch("submitEmail", {action:"Submitted", email})
+  }
   const clickOutsideComponentHandler = (e: MouseEvent) => {
     const target = e.target as HTMLElement;
     if (componentReference.contains(target) || target === componentReference) {
@@ -82,7 +87,9 @@
   <Paper>
     <Content>
       <label for="email-input">email</label>
-      <input class="email-input" id="email-input" />
+      <div class="input-container">
+           <Textfield bind:value={email} variant="outlined" type="email" id="email-input" required/>
+        </div>
       <div class="caption bottom-label">
         You will be notified if this chemical gets updated in the future
       </div>
@@ -90,8 +97,8 @@
         <Button variant="outlined" on:click={() => dispatch("close", {})}>
           <Label>cancel</Label>
         </Button>
-        <Button variant="unelevated" on:click={() => window.alert("Not Implemented")}>
-          <Icon class="material-icons">check</Icon>
+        <Button variant="unelevated" on:click={handleSubmit}>
+            <Icon class="material-icons">check</Icon>
           <Label>sign up for email updates</Label>
         </Button>
       </div>

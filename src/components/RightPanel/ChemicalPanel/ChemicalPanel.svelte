@@ -63,13 +63,11 @@
   import { createEventDispatcher, onMount, onDestroy } from "svelte";
   import Button, { Icon, Label } from "@smui/button";
   import FormField from "@smui/form-field";
-  import App from "../../../App.svelte";
   import Radio from "@smui/radio";
   import HealthCodes from "./HealthCodes/HealthCodes.svelte";
   import ChemicalIdentity from "./ChemicalIdentity/ChemicalIdentity.svelte";
   import PhysicalProperties from "./PhysicalProperties/PhysicalProperties.svelte";
   import { UNIT_OPTIONS } from "constants/constants";
-  import Modal from "components/Modal/Modal.svelte";
   import EmailNotification from "./EmailNotification/EmailNotification.svelte";
   import { selectedChemical } from "stores/stores";
 
@@ -87,7 +85,7 @@
 </script>
 
 <div class="panel-header">
-  <h2>{currentChemical.name || "No Name in Database"}</h2>
+  <!-- <h2>{currentChemical?.name || "No Name in Database"}</h2> -->
   <div bind:this={componentReference} class="button-container">
     <Button on:click={() => window.alert("Not Implemented")}>
       <Icon class="material-icons">open_in_new</Icon>
@@ -106,11 +104,12 @@
     <EmailNotification
       parentReference={componentReference}
       on:close={() => (showEmailNotification = false)}
+      on:submitEmail
     />
   {/if}
 </div>
 <div class="scrollable-area">
-  <div class="container">
+  <!-- <div class="container">
     <h4>Protective Action Criteria Values</h4>
     <div class="body-caption">Unit</div>
     <FormField>
@@ -141,13 +140,13 @@
       <div class="caption">Corresponds to 60-minute AEGL values</div>
     </div>
   </div>
-  <FormField />
+  <FormField /> -->
 
   <div class="divider" />
-  <ChemicalIdentity />
+  <!-- <ChemicalIdentity /> -->
   <div class="divider" />
 
-  <HealthCodes />
+  <!-- <HealthCodes /> -->
   <div class="divider" />
-  <PhysicalProperties />
+  <!-- <PhysicalProperties /> -->
 </div>
