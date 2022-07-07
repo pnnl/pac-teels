@@ -33,3 +33,20 @@
   --mdc-layout-grid-gutter-phone: 16px;
   --mdc-layout-grid-column-width-phone: 72px;
 }
+
+/*For Responsive Design and Media Queries. */
+$smallest: 595px;
+$smaller: 600px;
+$small: 768px;
+$large: 889px;
+$larger: 1200px;
+$largest: 1400px;
+
+:export {
+  smallest: $smallest;
+  smaller: $smaller;
+  smallScreen: $small;
+  large: $large;
+  larger: $larger;
+  largest: $largest;
+}

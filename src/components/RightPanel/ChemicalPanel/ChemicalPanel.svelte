@@ -2,7 +2,6 @@
   .scrollable-area {
     overflow-y: auto;
     padding: 0 2rem;
-    height: calc(100% - 10rem);
   }
   .scrollable-area::-webkit-scrollbar {
     width: 0.38rem;
@@ -24,7 +23,7 @@
 
   .panel-header {
     padding-bottom: 1rem;
-    padding: 0 2rem;
+    padding: 2rem 2rem;
   }
   .pac-item {
     display: flex;
