@@ -13,24 +13,7 @@
     font-weight: 100;
   }
 
-  .icon{
-    color:var(--blue)
-  }
 
-  .email-notification{
-    display:flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: center;
-    justify-content: flex-start;
-    align-items: center;
-    gap:1rem;
-    margin: 0 1rem;
-}
-
-.snackbar-button-container{
-    height:2.5rem;
-}
 
   @media (min-width: 640px) {
     main {
@@ -46,7 +29,6 @@
   import Router from "./Router.svelte";
   import TabBar from "@smui/tab-bar";
   import Button from "@smui/button";
-  import Snackbar, {Actions, SnackbarComponentDev} from "@smui/snackbar"
   import "./theme.scss";
 
   // Import all smui component css here
@@ -77,22 +59,7 @@
 
   let active = tabs[0];
   let location = window.location.href;
-  let snackbar: SnackbarComponentDev;
-  let snackBarIcon;
-  let reason = 'nothing yet';
-  let action = 'nothing yet';
-  let snackBarUser:string ="first.lastname@email.gov";
-  let snackbarChemical:string ="Chemical";
-//   let snackButtonText="";
 
-  const handleEmailNotification = (e) =>{
-    /**TODO add check for if email fails to update*/
-    console.log("potato")
-    snackBarUser = e.detail?.email
-    action = e.detail?.action
-    snackBarIcon = "check_circle";
-    snackbar.open()
-  }
 </script>
 
 <Header
@@ -111,16 +78,4 @@
       onConditionsFailed={event => {}}
     />
   </div>
-
 </main>
-<Snackbar leading bind:this={snackbar} on:SMUISnackbar:closed={(e)=> {reason = e.detail.reason ?? 'undefined'}}>
-    <div class="email-notification">
-    <span class="icon material-icons">{snackBarIcon}</span>
-    <b>{snackBarUser}</b> will receive email updates for <b>{snackbarChemical}</b>
-    <div class="snackbar-button-container">
-        <!-- {#if snackButtonText.length > 0}
-       <Button>{snackButtonText}</Button>
-       {/if} -->
-    </div>
-    </div>
-</Snackbar>

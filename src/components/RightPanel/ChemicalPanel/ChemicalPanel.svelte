@@ -69,6 +69,7 @@
   import PhysicalProperties from "./PhysicalProperties/PhysicalProperties.svelte";
   import { UNIT_OPTIONS } from "constants/constants";
   import EmailNotification from "./EmailNotification/EmailNotification.svelte";
+  import UnsubscribeModal from "./UnsubscribeModal/UnsubscribeModal.svelte";
   import { selectedChemical } from "stores/stores";
 
   let currentUnit = "mgm3";
@@ -76,6 +77,9 @@
   let showEmailNotification = false;
   let componentReference: HTMLElement;
   let currentChemical;
+  let showUnsubscribe = false;
+//   TODO: update with endpoint
+  let subscribed = false;
 
   selectedChemical.subscribe(currChemical => {
     if (currChemical) {
@@ -85,7 +89,7 @@
 </script>
 
 <div class="panel-header">
-  <!-- <h2>{currentChemical?.name || "No Name in Database"}</h2> -->
+  <h2>{currentChemical?.name || "No Name in Database"}</h2>
   <div bind:this={componentReference} class="button-container">
     <Button on:click={() => window.alert("Not Implemented")}>
       <Icon class="material-icons">open_in_new</Icon>
@@ -95,21 +99,37 @@
       <Icon class="material-icons">history</Icon>
       <Label>view in history</Label>
     </Button>
+    {#if subscribed}
+    <Button on:click={() => showUnsubscribe = !showUnsubscribe}>
+        <Icon class="material-icons">notifications_off</Icon>
+        <Label>Stop Email Updates</Label>
+      </Button>
+    {:else}
     <Button on:click={() => (showEmailNotification = !showEmailNotification)}>
       <Icon class="material-icons">notifications</Icon>
       <Label>email updates</Label>
     </Button>
+    {/if}
   </div>
   {#if showEmailNotification}
     <EmailNotification
+      {currentChemical}
       parentReference={componentReference}
       on:close={() => (showEmailNotification = false)}
       on:submitEmail
     />
   {/if}
+  {#if showUnsubscribe}
+  <UnsubscribeModal
+  {currentChemical}
+  parentReference={componentReference}
+  on:close={() => (showUnsubscribe = false)}
+  on:unsubscribe
+/>
+  {/if}
 </div>
 <div class="scrollable-area">
-  <!-- <div class="container">
+  <div class="container">
     <h4>Protective Action Criteria Values</h4>
     <div class="body-caption">Unit</div>
     <FormField>
@@ -140,13 +160,13 @@
       <div class="caption">Corresponds to 60-minute AEGL values</div>
     </div>
   </div>
-  <FormField /> -->
+  <FormField />
 
   <div class="divider" />
-  <!-- <ChemicalIdentity /> -->
+  <ChemicalIdentity />
   <div class="divider" />
 
-  <!-- <HealthCodes /> -->
+  <HealthCodes />
   <div class="divider" />
-  <!-- <PhysicalProperties /> -->
+  <PhysicalProperties />
 </div>
