@@ -72,7 +72,7 @@
   import EmailNotification from "./EmailNotification/EmailNotification.svelte";
   import { selectedChemical } from "stores/stores";
 
-  let currentUnit = "mgm3";
+  let currentUnit = UNIT_OPTIONS[0];
   let calculation = 1.232;
   let showEmailNotification = false;
   let componentReference: HTMLElement;

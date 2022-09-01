@@ -6,9 +6,10 @@
     text-transform: capitalize;
   }
   .email-modal-container {
+    position:absolute;
     z-index: 99;
     background: var(--white);
-    max-width: 32rem;
+    width: calc(100% - 5rem);
     min-height: 13.5rem;
   }
   .button-container {
