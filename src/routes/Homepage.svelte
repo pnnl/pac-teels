@@ -40,6 +40,27 @@
   h4 {
     margin-top: 5rem;
   }
+  .icon{
+    color:var(--blue)
+  }
+  .icon.cancel{
+    color:var(--red)
+  }
+
+  .email-notification{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    gap:1rem;
+    margin: 0 1rem;
+}
+
+.snackbar-button-container{
+    height:2.5rem;
+}
 </style>
 
 <script lang="ts">
@@ -50,9 +71,40 @@
   import { listChemicals } from "graphql/queries";
   import { chemicals, rightPanelOpened, recentlyViewed } from "stores/stores";
   import { CircularProgressComponentDev } from "@smui/circular-progress";
+  import Snackbar, {Actions, SnackbarComponentDev} from "@smui/snackbar"
 
   let rightPanelOpenedLocal = false;
   let recentlyViewedLocal;
+
+  let snackbar: SnackbarComponentDev;
+  let snackBarIcon;
+  let reason = 'nothing yet';
+  let action = 'nothing yet';
+  let snackbarUser:string ="first.lastname@email.gov";
+  let snackbarChemical:string ="Chemical";
+  let snackbarText;
+//   let snackButtonText="";
+
+  const handleEmailNotification = (e) =>{
+    /**TODO add check for if email fails to update, hook to backend when ready*/
+    action = e.detail?.action
+    snackbarChemical=e.detail?.chemical
+    if(action === "Submitted"){
+    /**logic*/
+        snackbarText = "will receive email updates for";
+        snackBarIcon = "check_circle";
+        snackbarUser = e.detail?.email
+    }
+    if(action === "Unsubscribe"){
+        snackbarText= "will no longer receive email updates for"
+        snackBarIcon = "cancel";
+
+    }
+
+    snackbar.open()
+  }
+
+
   const fetchChemicals = (async () => {
     const httpOptions: any = {
       method: "POST",
@@ -87,6 +139,8 @@
 
 {#if rightPanelOpenedLocal}
   <RightPanel
+    on:submitEmail={handleEmailNotification}
+    on:unsubscribe={handleEmailNotification}
     on:close={() => {
       rightPanelOpened.update(currOpen => !currOpen);
     }}
@@ -130,3 +184,18 @@
     </div>
   {/if}
 </div>
+
+
+<Snackbar leading bind:this={snackbar} on:SMUISnackbar:closed={(e)=> {reason = e.detail.reason ?? 'undefined'}}>
+    <div class="email-notification">
+    <span class="icon material-icons"
+    class:cancel={action === "Unsubscribe"}
+    >{snackBarIcon}</span>
+    <b>{snackbarUser}</b> {snackbarText} <b>{snackbarChemical}</b>
+    <div class="snackbar-button-container">
+        <!-- {#if snackButtonText.length > 0}
+       <Button>{snackButtonText}</Button>
+       {/if} -->
+    </div>
+    </div>
+</Snackbar>

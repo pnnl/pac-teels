@@ -63,14 +63,13 @@
   import { createEventDispatcher, onMount, onDestroy } from "svelte";
   import Button, { Icon, Label } from "@smui/button";
   import FormField from "@smui/form-field";
-  import App from "../../../App.svelte";
   import Radio from "@smui/radio";
   import HealthCodes from "./HealthCodes/HealthCodes.svelte";
   import ChemicalIdentity from "./ChemicalIdentity/ChemicalIdentity.svelte";
   import PhysicalProperties from "./PhysicalProperties/PhysicalProperties.svelte";
   import { UNIT_OPTIONS } from "constants/constants";
-  import Modal from "components/Modal/Modal.svelte";
   import EmailNotification from "./EmailNotification/EmailNotification.svelte";
+  import UnsubscribeModal from "./UnsubscribeModal/UnsubscribeModal.svelte";
   import { selectedChemical } from "stores/stores";
 
   let currentUnit = "mgm3";
@@ -78,6 +77,9 @@
   let showEmailNotification = false;
   let componentReference: HTMLElement;
   let currentChemical;
+  let showUnsubscribe = false;
+//   TODO: update with endpoint
+  let subscribed = false;
 
   selectedChemical.subscribe(currChemical => {
     if (currChemical) {
@@ -87,7 +89,7 @@
 </script>
 
 <div class="panel-header">
-  <h2>{currentChemical.name || "No Name in Database"}</h2>
+  <h2>{currentChemical?.name || "No Name in Database"}</h2>
   <div bind:this={componentReference} class="button-container">
     <Button on:click={() => window.alert("Not Implemented")}>
       <Icon class="material-icons">open_in_new</Icon>
@@ -97,16 +99,33 @@
       <Icon class="material-icons">history</Icon>
       <Label>view in history</Label>
     </Button>
+    {#if subscribed}
+    <Button on:click={() => showUnsubscribe = !showUnsubscribe}>
+        <Icon class="material-icons">notifications_off</Icon>
+        <Label>Stop Email Updates</Label>
+      </Button>
+    {:else}
     <Button on:click={() => (showEmailNotification = !showEmailNotification)}>
       <Icon class="material-icons">notifications</Icon>
       <Label>email updates</Label>
     </Button>
+    {/if}
   </div>
   {#if showEmailNotification}
     <EmailNotification
+      {currentChemical}
       parentReference={componentReference}
       on:close={() => (showEmailNotification = false)}
+      on:submitEmail
     />
+  {/if}
+  {#if showUnsubscribe}
+  <UnsubscribeModal
+  {currentChemical}
+  parentReference={componentReference}
+  on:close={() => (showUnsubscribe = false)}
+  on:unsubscribe
+/>
   {/if}
 </div>
 <div class="scrollable-area">
