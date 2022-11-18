@@ -15,6 +15,7 @@
     "prelint": "npm run format"
   },
   "devDependencies": {
+    "@material/typography": "^14.0.0",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
     "@rollup/plugin-typescript": "^8.0.0",
@@ -32,7 +33,7 @@
     "@smui/switch": "^6.0.0-beta.16",
     "@smui/tab": "^6.0.0-beta.15",
     "@smui/tab-bar": "^6.0.0-beta.15",
-    "@smui/textfield": "^6.0.0-beta.16",
+    "@smui/textfield": "^6.1.4",
     "@tsconfig/svelte": "^2.0.1",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",

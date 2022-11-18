@@ -100,6 +100,7 @@
   import TabBar from "@smui/tab-bar";
   import { push, pop, replace } from "svelte-spa-router";
   import { user } from "stores/stores";
+  import FeedbackModal from "./FeedbackModal/FeedbackModal.svelte";
 
   export let title = "";
   export let hasLogo = false;
@@ -139,6 +140,11 @@
   let closeUserHandler = (e: CustomEvent<{ action: string }>) => {
     userMenuOpen = false;
   };
+
+  let feedbackOpen = false;
+
+
+
   let menu: MenuComponentDev;
   let anchor: HTMLDivElement;
   let anchorClasses: { [k: string]: boolean } = { right: true };
@@ -184,7 +190,7 @@
   {/if}
   {#if !adminPage}
     <div class="right">
-      <Button on:click={() => window.alert("Not Implemented")}>
+      <Button on:click={() => feedbackOpen = true}>
         <Icon class="material-icons">feedback</Icon>
         <Label>send feedback</Label>
       </Button>
@@ -245,3 +251,6 @@
   {/if}
 </div>
 <LoginModal open={loginOpen} {closeHandler} setAdminPage={val => (adminPage = val)} />
+    {#if feedbackOpen}
+    <FeedbackModal on:close={()=>feedbackOpen = false}/>
+    {/if}

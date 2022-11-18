@@ -63,13 +63,11 @@
   import { createEventDispatcher, onMount, onDestroy } from "svelte";
   import Button, { Icon, Label } from "@smui/button";
   import FormField from "@smui/form-field";
-  import App from "../../../App.svelte";
   import Radio from "@smui/radio";
   import HealthCodes from "./HealthCodes/HealthCodes.svelte";
   import ChemicalIdentity from "./ChemicalIdentity/ChemicalIdentity.svelte";
   import PhysicalProperties from "./PhysicalProperties/PhysicalProperties.svelte";
   import { UNIT_OPTIONS } from "constants/constants";
-  import Modal from "components/Modal/Modal.svelte";
   import EmailNotification from "./EmailNotification/EmailNotification.svelte";
   import { selectedChemical } from "stores/stores";
 
