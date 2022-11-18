@@ -142,6 +142,9 @@
   };
 
   let feedbackOpen = false;
+  let feedbackClose = (e: CustomEvent<{ action: string }>) => {
+    feedbackOpen = false;
+  };
 
 
 
@@ -252,5 +255,5 @@
 </div>
 <LoginModal open={loginOpen} {closeHandler} setAdminPage={val => (adminPage = val)} />
     {#if feedbackOpen}
-    <FeedbackModal on:close={()=>feedbackOpen = false}/>
+    <FeedbackModal  open={feedbackOpen} {feedbackClose} on:close={()=>feedbackOpen = false}/>
     {/if}
