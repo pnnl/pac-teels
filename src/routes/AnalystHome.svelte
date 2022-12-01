@@ -23,7 +23,7 @@
 <script lang="ts">
   import Tab, { Label } from "@smui/tab";
   import TabBar from "@smui/tab-bar";
-  import AccordianTable from "components/AccordianTable/AccordianTable.svelte";
+  import AccordionTable from "components/AccordionTable/AccordionTable.svelte";
   let active = `Assigned to me`;
   let number = 0; /**This is a placeholder to be replaced by brought in user data*/
 </script>
@@ -39,6 +39,6 @@
     </TabBar>
   </div>
   {#if active === `Assigned to me` }
-  <AccordianTable />
+  <AccordionTable />
   {/if}
 </div>
