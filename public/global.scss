@@ -148,7 +148,7 @@ h2::before {
     }
 
     .body-semibold{
-        color:#4C5060;
+        color:var(--font);
         font-size:1rem;
         font-weight:600;
     }
@@ -159,6 +159,9 @@ h2::before {
 
     .mdc-button--outlined .mdc-button__ripple{
         border-color:var(--blue)
+    }
+    .mdc-data-table{
+        overflow-x:auto;
     }
     .mdc-text-field {
         height:2.5rem;

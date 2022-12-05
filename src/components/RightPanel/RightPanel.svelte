@@ -23,10 +23,13 @@
     top: 0;
     right: 0;
     bottom: 0;
-    width: 42.5rem;
+    width: -webkit-fill-available;
+    max-width: 42.5rem;
     overflow: hidden;
     background: var(--white);
     z-index: 100;
+    display: flex;
+    flex-direction: column;
   }
 
   .close {

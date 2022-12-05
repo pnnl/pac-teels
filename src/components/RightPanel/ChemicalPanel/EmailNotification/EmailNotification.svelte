@@ -6,11 +6,11 @@
     text-transform: capitalize;
   }
   .email-modal-container {
-    position: absolute;
+    position:absolute;
     z-index: 99;
-    background: #fff;
-    width: 32rem;
-    height: 13.5rem;
+    background: var(--white);
+    width: calc(100% - 5rem);
+    min-height: 13.5rem;
   }
   .button-container {
     display: flex;
@@ -20,6 +20,11 @@
   }
   .bottom-label {
     display: flex;
+  }
+  .email-input {
+    min-height: 2.5rem;
+    border-radius: 0.25rem;
+    width: -webkit-fill-available;
   }
   .input-container{
     display: flex;
@@ -34,6 +39,8 @@
   import { createEventDispatcher, onMount, onDestroy } from "svelte";
   import { mainComponentHTMLSelector } from "constants/constants";
   import Paper, { Content } from "@smui/paper";
+  import MediaQuery from "components/MediaQuery.svelte";
+  import themeStyle from "../../../../theme.scss";
   export let parentReference: HTMLElement;
 
   const dispatch = createEventDispatcher();
@@ -79,11 +86,7 @@
   });
 </script>
 
-<div
-  style="--top:{position.bottom}px; --left:{position.left + position.height}px"
-  bind:this={componentReference}
-  class="email-modal-container"
->
+<div bind:this={componentReference} class="email-modal-container">
   <Paper>
     <Content>
       <label for="email-input">email</label>
@@ -97,10 +100,19 @@
         <Button variant="outlined" on:click={() => dispatch("close", {})}>
           <Label>cancel</Label>
         </Button>
-        <Button variant="unelevated" on:click={handleSubmit}>
-            <Icon class="material-icons">check</Icon>
-          <Label>sign up for email updates</Label>
-        </Button>
+        <MediaQuery query={`(min-width: ${themeStyle.smallest})`} let:matches>
+          {#if matches}
+            <Button variant="unelevated" on:click={() => window.alert("Not Implemented")}>
+              <Icon class="material-icons">check</Icon>
+              <Label>sign up for email updates</Label>
+            </Button>
+          {:else}
+            <Button variant="unelevated" on:click={() => window.alert("Not Implemented")}>
+              <Icon class="material-icons">check</Icon>
+              <Label>notify</Label>
+            </Button>
+          {/if}
+        </MediaQuery>
       </div>
     </Content>
   </Paper>
