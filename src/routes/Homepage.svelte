@@ -1,4 +1,5 @@
-<style>
+<style lang="scss">
+  @import "../theme";
   .content {
     margin: 1rem;
     width: -webkit-fill-available;
@@ -18,7 +19,7 @@
     align-content: center;
     justify-content: center;
     align-items: flex-end;
-    margin: 5rem 1rem 10rem 1rem;
+    margin: 8vh 1rem 18vh 1rem;
     letter-spacing: -0.02em;
   }
   h1 {
@@ -39,6 +40,16 @@
   }
   h4 {
     margin-top: 5rem;
+  }
+  @media screen and (max-width: $smallest) {
+    .title {
+      display: flex;
+      flex-direction: column;
+      margin: 4vh 1rem 8vh 1rem;
+    }
+    .siteTitle {
+      font-size: 2.5rem;
+    }
   }
   .icon{
     color:var(--blue)
@@ -149,20 +160,22 @@
 
 <div class="content">
   <div class="title">
-    <h1>PAC Database</h1>
+    <h1 class="siteTitle">PAC Database</h1>
     <div class="version">Rev. 29A, June 2018</div>
   </div>
-  <div>
+  <div
+    style="max-width: 75rem; margin-right: auto; margin-left: auto; width: -webkit-fill-available;"
+  >
     {#await fetchChemicals}
       <SearchDropdown
-        style={"width:75rem;"}
+        style={"width: -webkit-fill-available;"}
         items={[]}
         placeholder={"Search chemicals"}
         itemsLoading={true}
       />
     {:then data}
       <SearchDropdown
-        style={"width:75rem;"}
+        style={"width: -webkit-fill-available;"}
         items={data}
         placeholder={"Search chemicals"}
       />
@@ -171,18 +184,17 @@
     <div class="label">
       Search by CAS number, chemical name, chemical formula, or UN number
     </div>
+    {#if recentlyViewedLocal}
+      <div style="width: -webkit-fill-available;">
+        <h4>Suggestion</h4>
+        <ItemSearches
+          style={"width:75rem;cursor: pointer;"}
+          caption={"Your Recently Viewed"}
+          items={recentlyViewedLocal}
+        />
+      </div>
+    {/if}
   </div>
-
-  {#if recentlyViewedLocal}
-    <div>
-      <h4>Suggestion</h4>
-      <ItemSearches
-        style={"width:75rem;cursor: pointer;"}
-        caption={"Your Recently Viewed"}
-        items={recentlyViewedLocal}
-      />
-    </div>
-  {/if}
 </div>
 
 

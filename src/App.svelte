@@ -1,7 +1,6 @@
 <style>
   main {
     text-align: center;
-    max-width: 240px;
     margin: 0 auto;
     width: -webkit-fill-available;
     display: flex;
@@ -12,8 +11,6 @@
     font-size: 4em;
     font-weight: 100;
   }
-
-
 
   @media (min-width: 640px) {
     main {

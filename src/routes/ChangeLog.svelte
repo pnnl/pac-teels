@@ -46,6 +46,8 @@
   import Paper from "@smui/paper";
   import Button, { Icon } from "@smui/button";
   import { Icon as CommonIcon } from "@smui/common";
+  import MediaQuery from "components/MediaQuery.svelte";
+  import themeStyle from "../theme.scss";
 
   type ChangeLog = {
     guid: string;
@@ -199,6 +201,8 @@
     {/each}
   </Body>
   <Pagination slot="paginate" class="paginate-class">
+    <MediaQuery query={`(min-width: ${themeStyle.smallest})`} let:matches>
+{#if matches}
     <div style="display: flex; width: -webkit-fill-available; justify-content: end;">
       <div style="display: flex; align-items: center;">
         <Label>Rows Per Page</Label>
@@ -242,5 +246,51 @@
         >
       </div>
     </div>
+    {:else}
+    <div style="display: flex; width: -webkit-fill-available; justify-content: end;">
+        <div style="display: flex; align-items: center;">
+            <Label>per Page</Label>
+            <Select variant="outlined" bind:value={rowsPerPage} noLabel>
+              <Option value={10}>10</Option>
+              <Option value={25}>25</Option>
+              <Option value={100}>100</Option>
+            </Select>
+            {start + 1}-{end} of {items.length}
+            <IconButton
+              class="material-icons"
+              action="first-page"
+              title="First page"
+              style="margin: unset;"
+              on:click={() => (currentPage = 0)}
+              disabled={currentPage === 0}>first_page</IconButton
+            >
+          <IconButton
+            class="material-icons"
+            action="prev-page"
+            title="Prev page"
+            style="margin: unset;"
+            on:click={() => currentPage--}
+            disabled={currentPage === 0}>chevron_left</IconButton
+          >
+          <IconButton
+            class="material-icons"
+            action="next-page"
+            title="Next page"
+            style="margin: unset;"
+            on:click={() => currentPage++}
+            disabled={currentPage === lastPage}>chevron_right</IconButton
+          >
+          <IconButton
+            class="material-icons"
+            action="last-page"
+            title="Last page"
+            style="margin: unset;"
+            on:click={() => (currentPage = lastPage)}
+            disabled={currentPage === lastPage}>last_page</IconButton
+          >
+        </div>
+    </div>
+    {/if}
+    </MediaQuery>
   </Pagination>
 </DataTable>

@@ -47,6 +47,8 @@
   import Button, { Icon } from "@smui/button";
   import { Icon as CommonIcon } from "@smui/common";
   import { chemicals } from "stores/stores";
+  import MediaQuery from "components/MediaQuery.svelte";
+  import themeStyle from "../theme.scss";
 
   type ChemDatabase = {
     id: string;
@@ -183,7 +185,7 @@
       </Cell>
     </Row>
   </Head>
-  <Body>
+  <Body style={"overflow-x: auto"}>
     {#each slice as item (item.id)}
       <Row>
         <Cell style="clip-path: inset(0rem 0rem 0rem 1rem);">
@@ -202,6 +204,8 @@
   <Pagination slot="paginate" class="paginate-class">
     <div style="display: flex; flex: 1;">
       <div style="display: flex; flex: 1; align-items: center; margin-left: 2rem;">
+        <MediaQuery query={`(min-width: ${themeStyle.smallest})`} let:matches>
+            {#if matches}
         <Button
           variant="unelevated"
           defaultAction
@@ -211,6 +215,18 @@
           <Icon class="material-icons">add</Icon>
           <Label>Add New Chemical</Label>
         </Button>
+        {:else}
+        <Button
+        variant="unelevated"
+        defaultAction
+        on:click={() => {}}
+        style={"margin-bottom: 0;"}
+      >
+        <Icon class="material-icons">add</Icon>
+        <Label>Add</Label>
+      </Button>
+        {/if}
+        </MediaQuery>
       </div>
       <div style="display: flex; align-items: center;">
         <Label>Rows Per Page</Label>
