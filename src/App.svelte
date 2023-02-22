@@ -1,7 +1,6 @@
 <style>
   main {
     text-align: center;
-    max-width: 240px;
     margin: 0 auto;
     width: -webkit-fill-available;
     display: flex;
@@ -25,7 +24,6 @@
   import { writable } from "svelte/store";
   import Header from "./components/Header.svelte";
   import Router from "./Router.svelte";
-  import Tab, { Label } from "@smui/tab";
   import TabBar from "@smui/tab-bar";
   import Button from "@smui/button";
   import "./theme.scss";
@@ -55,8 +53,10 @@
       path: `${process.env.SVELTE_APP_BASEURL}/#/search`
     }
   ];
+
   let active = tabs[0];
   let location = window.location.href;
+
 </script>
 
 <Header

@@ -19,7 +19,8 @@ const useBabelInDevelopment = false;
  * specify paths to SCSS or SASS files, and they will be compiled automatically.
  */
 const stylesheets: string[] = [
-  "./public/global.scss"
+  "./public/global.scss",
+  "./src/theme.scss"
   //  './public/assets/OpenSans.css',
   //  './public/assets/Material-Icons.css',
 ];
@@ -160,7 +161,15 @@ const commonConfig = merge([
             {
               loader: MiniCssExtractPlugin.loader
             },
-            "css-loader",
+            {
+              loader: "css-loader",
+              options: {
+                url: false,
+                modules: {
+                    auto: (resourcePath) => resourcePath.endsWith("theme.scss")
+                }
+              }
+            },
             {
               loader: "postcss-loader",
               options: {

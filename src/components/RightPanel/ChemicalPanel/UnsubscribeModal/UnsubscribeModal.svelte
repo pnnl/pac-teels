@@ -1,16 +1,16 @@
 <style>
-  label {
+  h4{
     font-weight: 500;
     margin-bottom: 0.5rem;
     display: flex;
     text-transform: capitalize;
   }
   .email-modal-container {
-    position:absolute;
+    position: absolute;
     z-index: 99;
-    background: var(--white);
-    width: calc(100% - 5rem);
-    min-height: 13.5rem;
+    background: #fff;
+    width: 32rem;
+    height: 13.5rem;
   }
   .button-container {
     display: flex;
@@ -18,19 +18,7 @@
     gap: 1rem;
     margin-top: 1.5rem;
   }
-  .bottom-label {
-    display: flex;
-  }
-  .email-input {
-    min-height: 2.5rem;
-    border-radius: 0.25rem;
-    width: -webkit-fill-available;
-  }
-  .input-container{
-    display: flex;
-    width: 30rem;
-    flex-direction: row;
-  }
+
 </style>
 
 <script lang="ts">
@@ -39,20 +27,19 @@
   import { createEventDispatcher, onMount, onDestroy } from "svelte";
   import { mainComponentHTMLSelector } from "constants/constants";
   import Paper, { Content } from "@smui/paper";
-  import MediaQuery from "components/MediaQuery.svelte";
-  import themeStyle from "../../../../theme.scss";
   export let parentReference: HTMLElement;
 
   const dispatch = createEventDispatcher();
 
-  export let currentChemical;
   let componentReference;
-  let email: string = ""
+  export let currentChemical;
+
+  let email;
 
   $: position = parentReference.getBoundingClientRect();
 
-  const handleSubmit=()=>{
-    dispatch("submitEmail", {action:"Submitted", email, chemical: currentChemical?.name})
+  const handleUnsubscribe=()=>{
+    dispatch("unsubscribe", {action:"Unsubscribe",email, chemical: currentChemical?.name})
   }
   const clickOutsideComponentHandler = (e: MouseEvent) => {
     const target = e.target as HTMLElement;
@@ -86,33 +73,21 @@
   });
 </script>
 
-<div bind:this={componentReference} class="email-modal-container">
+<div
+  style="--top:{position.bottom}px; --left:{position.left + position.height}px"
+  bind:this={componentReference}
+  class="email-modal-container"
+>
   <Paper>
     <Content>
-      <label for="email-input">email</label>
-      <div class="input-container">
-           <Textfield bind:value={email} variant="outlined" type="email" id="email-input" required/>
-        </div>
-      <div class="caption bottom-label">
-        You will be notified if this chemical gets updated in the future
-      </div>
+      <h4 for="email-input">Are you sure you want to unsubscribe from {currentChemical?.name || "No Name in Database"}?</h4>
       <div class="button-container">
         <Button variant="outlined" on:click={() => dispatch("close", {})}>
           <Label>cancel</Label>
         </Button>
-        <MediaQuery query={`(min-width: ${themeStyle.smallest})`} let:matches>
-          {#if matches}
-            <Button variant="unelevated" on:click={() => window.alert("Not Implemented")}>
-              <Icon class="material-icons">check</Icon>
-              <Label>sign up for email updates</Label>
-            </Button>
-          {:else}
-            <Button variant="unelevated" on:click={() => window.alert("Not Implemented")}>
-              <Icon class="material-icons">check</Icon>
-              <Label>notify</Label>
-            </Button>
-          {/if}
-        </MediaQuery>
+        <Button variant="unelevated" on:click={handleUnsubscribe}>
+          <Label>Unsubscribe</Label>
+        </Button>
       </div>
     </Content>
   </Paper>

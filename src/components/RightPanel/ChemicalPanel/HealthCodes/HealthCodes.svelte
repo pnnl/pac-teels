@@ -6,7 +6,7 @@
     align-content: center;
     align-items: center;
     gap: 2rem;
-    height: 2.5rem;
+    min-height: 2.5rem;
   }
 </style>
 

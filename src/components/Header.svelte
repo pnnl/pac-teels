@@ -1,4 +1,5 @@
-<style>
+<style lang="scss">
+  @import "../theme";
   .header {
     width: 100%;
     height: 4rem;
@@ -36,6 +37,7 @@
     margin-left: 1rem;
     font-size: 2rem;
     color: var(--blue);
+    white-space: nowrap;
   }
   .title.with-logo {
     margin: 0;
@@ -87,6 +89,15 @@
     color: var(--blue);
     background: var(--white);
   }
+
+  @media screen and (max-width: $smallest) {
+    .title {
+      font-size: 1.5rem !important;
+    }
+    .right {
+      margin-right: 0.5vw;
+    }
+  }
 </style>
 
 <script lang="ts">
@@ -101,6 +112,8 @@
   import { push, pop, replace } from "svelte-spa-router";
   import { user } from "stores/stores";
   import FeedbackModal from "./FeedbackModal/FeedbackModal.svelte";
+  import MediaQuery from "components/MediaQuery.svelte";
+  import themeStyle from "../theme.scss";
 
   export let title = "";
   export let hasLogo = false;
@@ -108,6 +121,8 @@
   export let logoLabel: any = undefined;
   export let adminPage;
   export let location;
+
+  console.log(themeStyle);
 
   let tabs = [
     {
@@ -137,6 +152,7 @@
   };
 
   let userMenuOpen = false;
+
   let closeUserHandler = (e: CustomEvent<{ action: string }>) => {
     userMenuOpen = false;
   };
@@ -146,11 +162,15 @@
     feedbackOpen = false;
   };
 
-
+  let responsiveActionMenuOpen = false;
 
   let menu: MenuComponentDev;
   let anchor: HTMLDivElement;
   let anchorClasses: { [k: string]: boolean } = { right: true };
+
+  let responsiveMenu: MenuComponentDev;
+  let responsiveAnchor: HTMLDivElement;
+  let responsiveAnchorClasses: { [k: string]: boolean } = { right: true };
 
   user.subscribe(currUser => {
     if (currUser && currUser.challengeParam) {
@@ -174,38 +194,108 @@
   </span>
   {#if adminPage}
     <h1
-      style={"margin-left: 3rem; font-weight: 400; font-size: 32px; color: var(--lightBlue)"}
+      style={"margin-left: 3rem; font-weight: 400; font-size: 32px; color: var(--lightBlue); white-space: nowrap;"}
     >
       PAC Database
     </h1>
-    <TabBar {tabs} let:tab bind:active style={"width: unset; margin-left: auto;"}>
-      <!-- Note: the `tab` property is required! -->
-      <Tab
-        {tab}
-        on:click={() => {
-          return (active = tab);
-        }}
-        href={tab.path}
-      >
-        <Label>{tab.name}</Label>
-      </Tab>
-    </TabBar>
+    <MediaQuery query={`(min-width: ${themeStyle.smallest})`} let:matches>
+      {#if matches}
+        <TabBar {tabs} let:tab bind:active style={"width: unset; margin-left: auto;"}>
+          <!-- Note: the `tab` property is required! -->
+          <Tab
+            {tab}
+            on:click={() => {
+              return (active = tab);
+            }}
+            href={tab.path}
+          >
+            <Label>{tab.name}</Label>
+          </Tab>
+        </TabBar>
+      {/if}
+    </MediaQuery>
   {/if}
   {#if !adminPage}
-    <div class="right">
-      <Button on:click={() => feedbackOpen = true}>
-        <Icon class="material-icons">feedback</Icon>
-        <Label>send feedback</Label>
-      </Button>
-      <Button
-        on:click={() => {
-          loginOpen = !loginOpen;
-        }}
-      >
-        <Icon class="material-icons">login</Icon>
-        <Label>Admin Login</Label>
-      </Button>
-    </div>
+    <MediaQuery query={`(max-width: ${themeStyle.smallest})`} let:matches>
+      {#if matches}
+        <div class="right">
+          <!-- <Button on:click={() => window.alert("Not Implemented")}>
+            <Icon class="material-icons">feedback</Icon>
+            <Label>send feedback</Label>
+          </Button>
+          <Button
+            on:click={() => {
+              loginOpen = !loginOpen;
+            }}
+          >
+            <Icon class="material-icons">login</Icon>
+            <Label>Admin Login</Label>
+          </Button> -->
+          <div
+            class={Object.keys(responsiveAnchorClasses).join(" ")}
+            use:Anchor={{
+              addClass: className => {
+                if (!responsiveAnchorClasses[className]) {
+                  responsiveAnchorClasses[className] = true;
+                }
+              },
+              removeClass: className => {
+                if (responsiveAnchorClasses[className]) {
+                  delete responsiveAnchorClasses[className];
+                  responsiveAnchorClasses = responsiveAnchorClasses;
+                }
+              }
+            }}
+            bind:this={responsiveAnchor}
+          >
+            <Button
+              on:click={() => {
+                responsiveMenu.setOpen(!responsiveActionMenuOpen);
+              }}
+            >
+              <Icon class="material-icons">menu</Icon>
+            </Button>
+            <Menu
+              bind:this={responsiveMenu}
+              anchor={false}
+              bind:anchorElement={responsiveAnchor}
+              anchorCorner="BOTTOM_LEFT"
+            >
+              <List>
+                <Item on:click={() => window.alert("Not Implemented")}>
+                  <Text>Send Feedback</Text>
+                </Item>
+                <Item
+                  on:click={() => {
+                    loginOpen = !loginOpen;
+                  }}
+                >
+                  <Text>Admin Login</Text>
+                </Item>
+              </List>
+            </Menu>
+          </div>
+        </div>
+      {/if}
+    </MediaQuery>
+    <MediaQuery query={`(min-width: ${themeStyle.smallest})`} let:matches>
+      {#if matches}
+        <div class="right">
+          <Button on:click={() => window.alert("Not Implemented")}>
+            <Icon class="material-icons">feedback</Icon>
+            <Label>send feedback</Label>
+          </Button>
+          <Button
+            on:click={() => {
+              loginOpen = !loginOpen;
+            }}
+          >
+            <Icon class="material-icons">login</Icon>
+            <Label>Admin Login</Label>
+          </Button>
+        </div>
+      {/if}
+    </MediaQuery>
   {/if}
   {#if adminPage}
     <div
@@ -253,7 +343,29 @@
     </div>
   {/if}
 </div>
+<MediaQuery query={`(max-width: ${themeStyle.smallest})`} let:matches>
+  {#if matches}
+    <div class="tabbar">
+      <TabBar {tabs} let:tab bind:active style={"width: unset; margin-left: auto;"}>
+        <!-- Note: the `tab` property is required! -->
+        <Tab
+          {tab}
+          on:click={() => {
+            return (active = tab);
+          }}
+          href={tab.path}
+        >
+          <Label>{tab.name}</Label>
+        </Tab>
+      </TabBar>
+    </div>
+  {/if}
+</MediaQuery>
 <LoginModal open={loginOpen} {closeHandler} setAdminPage={val => (adminPage = val)} />
-    {#if feedbackOpen}
-    <FeedbackModal  open={feedbackOpen} {feedbackClose} on:close={()=>feedbackOpen = false}/>
-    {/if}
+{#if feedbackOpen}
+  <FeedbackModal
+    open={feedbackOpen}
+    {feedbackClose}
+    on:close={() => (feedbackOpen = false)}
+  />
+{/if}
