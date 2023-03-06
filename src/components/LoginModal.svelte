@@ -6,20 +6,24 @@
   import Dialog, { Header, Title, Content, Actions } from "@smui/dialog";
   import IconButton from "@smui/icon-button";
   import Button, { Label, Icon } from "@smui/button";
-  import Textfield from "@smui/textfield";
+  import Textfield, { Input } from "@smui/textfield";
   import Checkbox from "@smui/checkbox";
   import FormField from "@smui/form-field/src/FormField.svelte";
   import CircularProgress from "@smui/circular-progress";
   import { Auth } from "aws-amplify";
   import { push, pop, replace } from "svelte-spa-router";
   import { user, currPass } from "../stores/stores";
+  import HelperText from "@smui/textfield/helper-text";
 
   export let open;
   export let closeHandler;
   export let setAdminPage;
 
   let loginLoading = false;
+
   let email = "";
+  let emailInput: Input;
+
   let password = "";
   let showPassChecked = false;
 
@@ -78,7 +82,10 @@
           bind:value={email}
           variant="outlined"
           style={"width: -webkit-fill-available; height: var(--mdc-outlined-button-container-height, 36px);"}
-        />
+          invalid={true}
+        >
+          <HelperText id="helper-text-manual-a" slot="helper">Helper Text</HelperText>
+        </Textfield>
       </div>
       <div style={"margin-top: 2.2rem;color: var(--font);"}>
         <div

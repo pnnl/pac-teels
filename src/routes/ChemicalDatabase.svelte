@@ -186,7 +186,7 @@
     </Row>
   </Head>
   <Body style={"overflow-x: auto"}>
-    {#each slice as item (item.id)}
+    {#each slice as item (item.Chemical_ID)}
       <Row>
         <Cell style="clip-path: inset(0rem 0rem 0rem 1rem);">
           {item.CAS_Number}</Cell
@@ -205,27 +205,27 @@
     <div style="display: flex; flex: 1;">
       <div style="display: flex; flex: 1; align-items: center; margin-left: 2rem;">
         <MediaQuery query={`(min-width: ${themeStyle.smallest})`} let:matches>
-            {#if matches}
-        <Button
-          variant="unelevated"
-          defaultAction
-          on:click={() => {}}
-          style={"margin-bottom: 0;"}
-        >
-          <Icon class="material-icons">add</Icon>
-          <Label>Add New Chemical</Label>
-        </Button>
-        {:else}
-        <Button
-        variant="unelevated"
-        defaultAction
-        on:click={() => {}}
-        style={"margin-bottom: 0;"}
-      >
-        <Icon class="material-icons">add</Icon>
-        <Label>Add</Label>
-      </Button>
-        {/if}
+          {#if matches}
+            <Button
+              variant="unelevated"
+              defaultAction
+              on:click={() => {}}
+              style={"margin-bottom: 0;"}
+            >
+              <Icon class="material-icons">add</Icon>
+              <Label>Add New Chemical</Label>
+            </Button>
+          {:else}
+            <Button
+              variant="unelevated"
+              defaultAction
+              on:click={() => {}}
+              style={"margin-bottom: 0;"}
+            >
+              <Icon class="material-icons">add</Icon>
+              <Label>Add</Label>
+            </Button>
+          {/if}
         </MediaQuery>
       </div>
       <div style="display: flex; align-items: center;">
