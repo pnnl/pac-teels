@@ -70,11 +70,7 @@ export const listPACTEELDatabases = /* GraphQL */ `
     $limit: Int
     $nextToken: String
   ) {
-    listPACTEELDatabases(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
+    listPACTEELDatabases(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         CAS_Number
         Chemical_Formula
