@@ -108,8 +108,8 @@
     filteredItems = new Map();
     const foundCas = items.filter(
       currItem =>
-        currItem.casNumber &&
-        currItem.casNumber
+        currItem.CAS_Number &&
+        currItem.CAS_Number
           .toLowerCase()
           .trim()
           .includes(searchBarFilter.toLowerCase().trim())
@@ -122,17 +122,17 @@
 
     const foundFormula = items.filter(
       currItem =>
-        currItem.chemicalFormula &&
-        currItem.chemicalFormula
+        currItem.Chemical_Formula &&
+        currItem.Chemical_Formula
           .toLowerCase()
           .trim()
           .includes(searchBarFilter.toLowerCase().trim())
     );
 
-    const foundUNNumber = items.filter(
+    const foundUN_Number = items.filter(
       currItem =>
-        currItem.unNumber &&
-        currItem.unNumber
+        currItem.UN_Number &&
+        currItem.UN_Number
           .toLowerCase()
           .trim()
           .includes(searchBarFilter.toLowerCase().trim())
@@ -159,10 +159,10 @@
         items: foundFormula
       });
     }
-    if (foundUNNumber.length > 0) {
-      filteredItems.set("foundUNNumber", {
+    if (foundUN_Number.length > 0) {
+      filteredItems.set("foundUN_Number", {
         label: "Matching UN Number",
-        items: foundUNNumber
+        items: foundUN_Number
       });
     }
     if (foundID.length > 0) {
