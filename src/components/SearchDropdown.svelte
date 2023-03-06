@@ -115,8 +115,8 @@
     );
     const foundName = items.filter(
       currItem =>
-        currItem.name &&
-        currItem.name.toLowerCase().trim().includes(searchBarFilter.toLowerCase().trim())
+        currItem.Chemical_Name &&
+        currItem.Chemical_Name.toLowerCase().trim().includes(searchBarFilter.toLowerCase().trim())
     );
     const foundFormula = items.filter(
       currItem =>
