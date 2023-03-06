@@ -51,18 +51,18 @@
   import themeStyle from "../theme.scss";
 
   type ChemDatabase = {
-    id: string;
-    casNumber: string;
-    name: string;
-    chemicalFormula: string;
-    unNumber: number;
-    updatedAt: string;
+    Chemical_ID: string;
+    CAS_Number: string;
+    Chemical_Name: string;
+    Chemical_Formula: string;
+    UN_Number: number;
+    Date: string;
     pac1: string;
     pac2: string;
     pac3: string;
   };
   let items: ChemDatabase[] = [];
-  let sort: keyof ChemDatabase = "casNumber";
+  let sort: keyof ChemDatabase = "CAS_Number";
   let sortDirection: Lowercase<keyof typeof SortValue> = "ascending";
   let rowsPerPage = 10;
   let currentPage = 0;
@@ -75,11 +75,11 @@
   });
 
   const columnEnum = {
-    1: "casNumber",
-    2: "name",
-    3: "chemicalFormula",
-    4: "unNumber",
-    5: "updatedAt",
+    1: "CAS_Number",
+    2: "Chemical_Name",
+    3: "Chemical_Formula",
+    4: "UN_Number",
+    5: "Date",
     6: "pac1",
     7: "pac2",
     8: "pac3"
@@ -189,12 +189,12 @@
     {#each slice as item (item.id)}
       <Row>
         <Cell style="clip-path: inset(0rem 0rem 0rem 1rem);">
-          {item.casNumber}</Cell
+          {item.CAS_Number}</Cell
         >
-        <Cell>{item.name}</Cell>
-        <Cell>{item.chemicalFormula}</Cell>
-        <Cell>{item.unNumber}</Cell>
-        <Cell>{item.updatedAt}</Cell>
+        <Cell>{item.Chemical_Name}</Cell>
+        <Cell>{item.Chemical_Formula}</Cell>
+        <Cell>{item.UN_Number}</Cell>
+        <Cell>{item.Date}</Cell>
         <Cell>{item.pac1}</Cell>
         <Cell>{item.pac2}</Cell>
         <Cell style="clip-path: inset(0rem 1rem 0rem 0rem);">{item.pac3}</Cell>

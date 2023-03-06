@@ -63,17 +63,17 @@
 
   <div class="chemical-identity-item">
     <div class="body-caption">CAS Number</div>
-    <div class="body-semibold">{currentChemical.casNumber || "N/A"}</div>
+    <div class="body-semibold">{currentChemical.CAS_Number || "N/A"}</div>
   </div>
 
   <div class="chemical-identity-item">
     <div class="body-caption">Chemical Formula</div>
-    <div class="body-semibold">{currentChemical.chemicalFormula || "N/A"}</div>
+    <div class="body-semibold">{currentChemical.Chemical_Formula || "N/A"}</div>
   </div>
 
   <div class="chemical-identity-item">
     <div class="body-caption">UN Number</div>
-    <div class="body-semibold">{currentChemical.unNumber || "N/A"}</div>
+    <div class="body-semibold">{currentChemical.UN_Number || "N/A"}</div>
   </div>
 
   <div class="chemical-identity-item">
