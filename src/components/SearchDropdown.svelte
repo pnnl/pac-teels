@@ -108,9 +108,8 @@
     filteredItems = new Map();
     const foundCas = items.filter(
       currItem =>
-        currItem.casNumber &&
-        currItem.casNumber
-          .toLowerCase()
+        currItem.CAS_Number &&
+        currItem.CAS_Number.toLowerCase()
           .trim()
           .includes(searchBarFilter.toLowerCase().trim())
     );
@@ -119,29 +118,28 @@
         currItem.name &&
         currItem.name.toLowerCase().trim().includes(searchBarFilter.toLowerCase().trim())
     );
-
     const foundFormula = items.filter(
       currItem =>
-        currItem.chemicalFormula &&
-        currItem.chemicalFormula
-          .toLowerCase()
+        currItem.Chemical_Formula &&
+        currItem.Chemical_Formula.toLowerCase()
           .trim()
           .includes(searchBarFilter.toLowerCase().trim())
     );
 
-    const foundUNNumber = items.filter(
+    const foundUN_Number = items.filter(
       currItem =>
-        currItem.unNumber &&
-        currItem.unNumber
-          .toLowerCase()
+        currItem.UN_Number &&
+        currItem.UN_Number.toLowerCase()
           .trim()
           .includes(searchBarFilter.toLowerCase().trim())
     );
 
     const foundID = items.filter(
       currItem =>
-        currItem.id &&
-        currItem.id.toLowerCase().trim().includes(searchBarFilter.toLowerCase().trim())
+        currItem.Chemical_ID &&
+        currItem.Chemical_ID.toLowerCase()
+          .trim()
+          .includes(searchBarFilter.toLowerCase().trim())
     );
 
     if (foundCas.length > 0) {
@@ -159,10 +157,10 @@
         items: foundFormula
       });
     }
-    if (foundUNNumber.length > 0) {
-      filteredItems.set("foundUNNumber", {
+    if (foundUN_Number.length > 0) {
+      filteredItems.set("foundUN_Number", {
         label: "Matching UN Number",
-        items: foundUNNumber
+        items: foundUN_Number
       });
     }
     if (foundID.length > 0) {
@@ -186,10 +184,10 @@
           : new Map();
 
       //Remove it if it exists, keep first in the list
-      if (currViewed.has(item.id)) {
-        currViewed.delete(item.id);
+      if (currViewed.has(item.Chemical_ID)) {
+        currViewed.delete(item.Chemical_ID);
       }
-      currViewed.set(item.id, item);
+      currViewed.set(item.Chemical_ID, item);
       //If there are more than 5 items in the recently viewed, remove the last one
       if (currViewed.size > 5) {
         const arr: any = Array.from(currViewed);
@@ -234,13 +232,13 @@
   {#if searchDropDownVisible}
     <div class="search-drop-down" {style}>
       {#each [...filteredItems] as [key, value]}
-        {#if value.label}
-          <div class="item-label">{value.label}</div>
+        {#if value.Chemical_Name}
+          <div class="item-label">{value.Chemical_Name}</div>
         {/if}
         {#if value.items}
           {#each value.items as item}
             <div class="search-item" on:click={() => handleSearchItemSelect(item)}>
-              {item.id}
+              {item.Chemical_Name}
             </div>
           {/each}
         {/if}

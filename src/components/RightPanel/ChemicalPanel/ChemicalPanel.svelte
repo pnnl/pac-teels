@@ -77,7 +77,7 @@
   let componentReference: HTMLElement;
   let currentChemical;
   let showUnsubscribe = false;
-//   TODO: update with endpoint
+  //   TODO: update with endpoint
   let subscribed = false;
 
   selectedChemical.subscribe(currChemical => {
@@ -88,7 +88,7 @@
 </script>
 
 <div class="panel-header">
-  <h2>{currentChemical?.name || "No Name in Database"}</h2>
+  <h2>{currentChemical?.Chemical_Name || "No Name in Database"}</h2>
   <div bind:this={componentReference} class="button-container">
     <Button on:click={() => window.alert("Not Implemented")}>
       <Icon class="material-icons">open_in_new</Icon>
@@ -99,15 +99,15 @@
       <Label>view in history</Label>
     </Button>
     {#if subscribed}
-    <Button on:click={() => showUnsubscribe = !showUnsubscribe}>
+      <Button on:click={() => (showUnsubscribe = !showUnsubscribe)}>
         <Icon class="material-icons">notifications_off</Icon>
         <Label>Stop Email Updates</Label>
       </Button>
     {:else}
-    <Button on:click={() => (showEmailNotification = !showEmailNotification)}>
-      <Icon class="material-icons">notifications</Icon>
-      <Label>email updates</Label>
-    </Button>
+      <Button on:click={() => (showEmailNotification = !showEmailNotification)}>
+        <Icon class="material-icons">notifications</Icon>
+        <Label>email updates</Label>
+      </Button>
     {/if}
   </div>
   {#if showEmailNotification}
@@ -119,12 +119,12 @@
     />
   {/if}
   {#if showUnsubscribe}
-  <UnsubscribeModal
-  {currentChemical}
-  parentReference={componentReference}
-  on:close={() => (showUnsubscribe = false)}
-  on:unsubscribe
-/>
+    <UnsubscribeModal
+      {currentChemical}
+      parentReference={componentReference}
+      on:close={() => (showUnsubscribe = false)}
+      on:unsubscribe
+    />
   {/if}
 </div>
 <div class="scrollable-area">

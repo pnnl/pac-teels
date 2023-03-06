@@ -56,7 +56,6 @@
 
   let active = tabs[0];
   let location = window.location.href;
-
 </script>
 
 <Header

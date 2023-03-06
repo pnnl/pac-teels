@@ -51,27 +51,27 @@
       font-size: 2.5rem;
     }
   }
-  .icon{
-    color:var(--blue)
+  .icon {
+    color: var(--blue);
   }
-  .icon.cancel{
-    color:var(--red)
+  .icon.cancel {
+    color: var(--red);
   }
 
-  .email-notification{
-    display:flex;
+  .email-notification {
+    display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-content: center;
     justify-content: flex-start;
     align-items: center;
-    gap:1rem;
+    gap: 1rem;
     margin: 0 1rem;
-}
+  }
 
-.snackbar-button-container{
-    height:2.5rem;
-}
+  .snackbar-button-container {
+    height: 2.5rem;
+  }
 </style>
 
 <script lang="ts">
@@ -79,42 +79,40 @@
   import ItemSearches from "components/ItemSearches.svelte";
   import RightPanel from "components/RightPanel/RightPanel.svelte";
   import { STUBBED_HOMEPAGE_ITEMS } from "constants/constants";
-  import { listChemicals } from "graphql/queries";
+  import { listPACTEELDatabases } from "graphql/queries";
   import { chemicals, rightPanelOpened, recentlyViewed } from "stores/stores";
   import { CircularProgressComponentDev } from "@smui/circular-progress";
-  import Snackbar, {Actions, SnackbarComponentDev} from "@smui/snackbar"
+  import Snackbar, { Actions, SnackbarComponentDev } from "@smui/snackbar";
 
   let rightPanelOpenedLocal = false;
   let recentlyViewedLocal;
 
   let snackbar: SnackbarComponentDev;
   let snackBarIcon;
-  let reason = 'nothing yet';
-  let action = 'nothing yet';
-  let snackbarUser:string ="first.lastname@email.gov";
-  let snackbarChemical:string ="Chemical";
+  let reason = "nothing yet";
+  let action = "nothing yet";
+  let snackbarUser = "first.lastname@email.gov";
+  let snackbarChemical = "Chemical";
   let snackbarText;
-//   let snackButtonText="";
+  //   let snackButtonText="";
 
-  const handleEmailNotification = (e) =>{
+  const handleEmailNotification = e => {
     /**TODO add check for if email fails to update, hook to backend when ready*/
-    action = e.detail?.action
-    snackbarChemical=e.detail?.chemical
-    if(action === "Submitted"){
-    /**logic*/
-        snackbarText = "will receive email updates for";
-        snackBarIcon = "check_circle";
-        snackbarUser = e.detail?.email
+    action = e.detail?.action;
+    snackbarChemical = e.detail?.chemical;
+    if (action === "Submitted") {
+      /**logic*/
+      snackbarText = "will receive email updates for";
+      snackBarIcon = "check_circle";
+      snackbarUser = e.detail?.email;
     }
-    if(action === "Unsubscribe"){
-        snackbarText= "will no longer receive email updates for"
-        snackBarIcon = "cancel";
-
+    if (action === "Unsubscribe") {
+      snackbarText = "will no longer receive email updates for";
+      snackBarIcon = "cancel";
     }
 
-    snackbar.open()
-  }
-
+    snackbar.open();
+  };
 
   const fetchChemicals = (async () => {
     const httpOptions: any = {
@@ -125,14 +123,19 @@
         "X-Api-Key": process.env.APPSYNC_APIKEY
       },
       body: JSON.stringify({
-        query: listChemicals
+        query: listPACTEELDatabases
       })
     };
     const response = await fetch(`${process.env.GRAPHQL_ENDPOINT}`, httpOptions);
     const data = await response.json();
-    if (data && data.data && data.data.listChemicals && data.data.listChemicals.items) {
-      chemicals.update(currData => data.data.listChemicals.items);
-      return data.data.listChemicals.items;
+    if (
+      data &&
+      data.data &&
+      data.data.listPACTEELDatabases &&
+      data.data.listPACTEELDatabases.items
+    ) {
+      chemicals.update(currData => data.data.listPACTEELDatabases.items);
+      return data.data.listPACTEELDatabases.items;
     } else {
       return [];
     }
@@ -189,7 +192,7 @@
         <h4>Suggestion</h4>
         <ItemSearches
           style={"width:75rem;cursor: pointer;"}
-          caption={"Your Recently Viewed"}
+          caption={"Your recently viewed"}
           items={recentlyViewedLocal}
         />
       </div>
@@ -197,17 +200,23 @@
   </div>
 </div>
 
-
-<Snackbar leading bind:this={snackbar} on:SMUISnackbar:closed={(e)=> {reason = e.detail.reason ?? 'undefined'}}>
-    <div class="email-notification">
-    <span class="icon material-icons"
-    class:cancel={action === "Unsubscribe"}
-    >{snackBarIcon}</span>
-    <b>{snackbarUser}</b> {snackbarText} <b>{snackbarChemical}</b>
+<Snackbar
+  leading
+  bind:this={snackbar}
+  on:SMUISnackbar:closed={e => {
+    reason = e.detail.reason ?? "undefined";
+  }}
+>
+  <div class="email-notification">
+    <span class="icon material-icons" class:cancel={action === "Unsubscribe"}
+      >{snackBarIcon}</span
+    >
+    <b>{snackbarUser}</b>
+    {snackbarText} <b>{snackbarChemical}</b>
     <div class="snackbar-button-container">
-        <!-- {#if snackButtonText.length > 0}
+      <!-- {#if snackButtonText.length > 0}
        <Button>{snackButtonText}</Button>
        {/if} -->
     </div>
-    </div>
+  </div>
 </Snackbar>

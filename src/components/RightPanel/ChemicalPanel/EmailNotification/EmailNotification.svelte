@@ -6,7 +6,7 @@
     text-transform: capitalize;
   }
   .email-modal-container {
-    position:absolute;
+    position: absolute;
     z-index: 99;
     background: var(--white);
     width: calc(100% - 5rem);
@@ -26,7 +26,7 @@
     border-radius: 0.25rem;
     width: -webkit-fill-available;
   }
-  .input-container{
+  .input-container {
     display: flex;
     width: 30rem;
     flex-direction: row;
@@ -35,7 +35,7 @@
 
 <script lang="ts">
   import Button, { Icon, Label } from "@smui/button";
-  import Textfield from '@smui/textfield';
+  import Textfield from "@smui/textfield";
   import { createEventDispatcher, onMount, onDestroy } from "svelte";
   import { mainComponentHTMLSelector } from "constants/constants";
   import Paper, { Content } from "@smui/paper";
@@ -47,13 +47,17 @@
 
   export let currentChemical;
   let componentReference;
-  let email: string = ""
+  let email = "";
 
   $: position = parentReference.getBoundingClientRect();
 
-  const handleSubmit=()=>{
-    dispatch("submitEmail", {action:"Submitted", email, chemical: currentChemical?.name})
-  }
+  const handleSubmit = () => {
+    dispatch("submitEmail", {
+      action: "Submitted",
+      email,
+      chemical: currentChemical?.name
+    });
+  };
   const clickOutsideComponentHandler = (e: MouseEvent) => {
     const target = e.target as HTMLElement;
     if (componentReference.contains(target) || target === componentReference) {
@@ -91,8 +95,14 @@
     <Content>
       <label for="email-input">email</label>
       <div class="input-container">
-           <Textfield bind:value={email} variant="outlined" type="email" id="email-input" required/>
-        </div>
+        <Textfield
+          bind:value={email}
+          variant="outlined"
+          type="email"
+          id="email-input"
+          required
+        />
+      </div>
       <div class="caption bottom-label">
         You will be notified if this chemical gets updated in the future
       </div>

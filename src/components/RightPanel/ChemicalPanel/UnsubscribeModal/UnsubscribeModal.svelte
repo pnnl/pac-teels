@@ -1,5 +1,5 @@
 <style>
-  h4{
+  h4 {
     font-weight: 500;
     margin-bottom: 0.5rem;
     display: flex;
@@ -18,12 +18,11 @@
     gap: 1rem;
     margin-top: 1.5rem;
   }
-
 </style>
 
 <script lang="ts">
   import Button, { Icon, Label } from "@smui/button";
-  import Textfield from '@smui/textfield';
+  import Textfield from "@smui/textfield";
   import { createEventDispatcher, onMount, onDestroy } from "svelte";
   import { mainComponentHTMLSelector } from "constants/constants";
   import Paper, { Content } from "@smui/paper";
@@ -38,9 +37,13 @@
 
   $: position = parentReference.getBoundingClientRect();
 
-  const handleUnsubscribe=()=>{
-    dispatch("unsubscribe", {action:"Unsubscribe",email, chemical: currentChemical?.name})
-  }
+  const handleUnsubscribe = () => {
+    dispatch("unsubscribe", {
+      action: "Unsubscribe",
+      email,
+      chemical: currentChemical?.name
+    });
+  };
   const clickOutsideComponentHandler = (e: MouseEvent) => {
     const target = e.target as HTMLElement;
     if (componentReference.contains(target) || target === componentReference) {
@@ -80,7 +83,10 @@
 >
   <Paper>
     <Content>
-      <h4 for="email-input">Are you sure you want to unsubscribe from {currentChemical?.name || "No Name in Database"}?</h4>
+      <h4 for="email-input">
+        Are you sure you want to unsubscribe from {currentChemical?.name ||
+          "No Name in Database"}?
+      </h4>
       <div class="button-container">
         <Button variant="outlined" on:click={() => dispatch("close", {})}>
           <Label>cancel</Label>
