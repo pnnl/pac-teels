@@ -120,7 +120,7 @@
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        "X-Api-Key": process.env.APPSYNC_APIKEY
+        "X-Api-Key": process.env?.APPSYNC_APIKEY
       },
       body: JSON.stringify({
         query: listPACTEELDatabases
