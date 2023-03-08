@@ -61,6 +61,10 @@ export const getPACTEELDatabase = /* GraphQL */ `
       weelceiling
       weelstel
       weeltwa
+      Boiling_Point
+      Melting_Point
+      state
+      Vapor_Pressure
     }
   }
 `;
@@ -130,7 +134,7 @@ export const listPACTEELDatabases = /* GraphQL */ `
         weeltwa
         Boiling_Point
         Melting_Point
-        State
+        state
         Vapor_Pressure
       }
       nextToken
@@ -207,7 +211,7 @@ export const queryPACTEELDatabasesByCASNumberIndex = /* GraphQL */ `
         weeltwa
         Boiling_Point
         Melting_Point
-        State
+        state
         Vapor_Pressure
       }
       nextToken
@@ -284,7 +288,7 @@ export const queryPACTEELDatabasesByChemicalFormulaIndex = /* GraphQL */ `
         weeltwa
         Boiling_Point
         Melting_Point
-        State
+        state
         Vapor_Pressure
       }
       nextToken
@@ -361,7 +365,7 @@ export const queryPACTEELDatabasesByChemicalNameIndex = /* GraphQL */ `
         weeltwa
         Boiling_Point
         Melting_Point
-        State
+        state
         Vapor_Pressure
       }
       nextToken
@@ -438,7 +442,7 @@ export const queryPACTEELDatabasesByStatusIndex = /* GraphQL */ `
         weeltwa
         Boiling_Point
         Melting_Point
-        State
+        state
         Vapor_Pressure
       }
       nextToken
@@ -515,7 +519,7 @@ export const queryPACTEELDatabasesByUNNumberIndex = /* GraphQL */ `
         weeltwa
         Boiling_Point
         Melting_Point
-        State
+        state
         Vapor_Pressure
       }
       nextToken
