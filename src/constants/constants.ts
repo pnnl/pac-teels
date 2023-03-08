@@ -4,11 +4,11 @@ export const UNIT_OPTIONS = [["mg/m"], ["ppm"]];
 
 /** Stubbed Data Section **/
 export const PHYSICAL_PROPERTY_MAP = new Map([
-    ["key1", { property: "Molecular Weight", value: 70.906 }],
-    ["key2", { property: "State", value: "Gas" }],
-    ["key3", { property: "Melting Point (°C)", value: "-101.5 °C" }],
-    ["key4", { property: "Boiling Point (°C)", value: "-34.04 °C" }],
-    ["key5", { property: "VP (°C)", value: "25 °C" }]
+    ["molecularWeight", "Molecular Weight"],
+    ["State", "State"],
+    ["Melting_Point", "Melting Point (°C)"],
+    ["Boiling_Point", "Boiling Point (°C)"],
+    ["Vapor_Pressure", "VP (°C)"]
 ]);
 
 export const CHEMICAL_IDENTITY = {
