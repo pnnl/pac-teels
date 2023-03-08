@@ -111,6 +111,7 @@
   import TabBar from "@smui/tab-bar";
   import { push, pop, replace } from "svelte-spa-router";
   import { user } from "stores/stores";
+  import FeedbackModal from "./FeedbackModal/FeedbackModal.svelte";
   import MediaQuery from "components/MediaQuery.svelte";
   import themeStyle from "../theme.scss";
 
@@ -151,6 +152,16 @@
   };
 
   let userMenuOpen = false;
+
+  let closeUserHandler = (e: CustomEvent<{ action: string }>) => {
+    userMenuOpen = false;
+  };
+
+  let feedbackOpen = false;
+  let feedbackClose = (e: CustomEvent<{ action: string }>) => {
+    feedbackOpen = false;
+  };
+
   let responsiveActionMenuOpen = false;
 
   let menu: MenuComponentDev;
@@ -351,3 +362,10 @@
   {/if}
 </MediaQuery>
 <LoginModal open={loginOpen} {closeHandler} setAdminPage={val => (adminPage = val)} />
+{#if feedbackOpen}
+  <FeedbackModal
+    open={feedbackOpen}
+    {feedbackClose}
+    on:close={() => (feedbackOpen = false)}
+  />
+{/if}
