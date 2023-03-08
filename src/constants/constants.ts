@@ -5,7 +5,7 @@ export const UNIT_OPTIONS = [["mg/m"], ["ppm"]];
 /** Stubbed Data Section **/
 export const PHYSICAL_PROPERTY_MAP = new Map([
     ["molecularWeight", "Molecular Weight"],
-    ["State", "State"],
+    ["state", "State"],
     ["Melting_Point", "Melting Point (°C)"],
     ["Boiling_Point", "Boiling Point (°C)"],
     ["Vapor_Pressure", "VP (°C)"]
