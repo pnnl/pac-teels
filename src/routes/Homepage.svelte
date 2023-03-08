@@ -115,6 +115,9 @@
   };
 
   const fetchChemicals = (async () => {
+    var nextToken = null;
+    var dataFull = [];
+    do {
     const httpOptions: any = {
       method: "POST",
       headers: {
@@ -123,22 +126,29 @@
         "X-Api-Key": process.env?.APPSYNC_APIKEY
       },
       body: JSON.stringify({
-        query: listPACTEELDatabases
+        query: listPACTEELDatabases,
+        variables: {
+          limit: 4000,
+          nextToken: nextToken
+        }
       })
     };
     const response = await fetch(`${process.env.GRAPHQL_ENDPOINT}`, httpOptions);
-    const data = await response.json();
+    const data = await response.json(); 
     if (
       data &&
       data.data &&
       data.data.listPACTEELDatabases &&
       data.data.listPACTEELDatabases.items
     ) {
-      chemicals.update(currData => data.data.listPACTEELDatabases.items);
-      return data.data.listPACTEELDatabases.items;
-    } else {
-      return [];
+      dataFull = dataFull.concat(data.data.listPACTEELDatabases.items);
     }
+    nextToken = data.data.listPACTEELDatabases.nextToken;
+  }while (nextToken != null)
+    if (dataFull) {
+      chemicals.update(currData => dataFull);
+    }
+    return dataFull;
   })();
 
   rightPanelOpened.subscribe(currRightPanelOpened => {
