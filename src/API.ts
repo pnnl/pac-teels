@@ -595,6 +595,10 @@ export type ListPACTEELDatabasesQuery = {
       weelceiling?: string | null;
       weelstel?: string | null;
       weeltwa?: string | null;
+      Boiling_Point?: string | null;
+      Melting_Point?: string | null;
+      State?: string | null;
+      Vapor_Pressure?: string | null;
     } | null> | null;
     nextToken?: string | null;
   } | null;
@@ -667,6 +671,10 @@ export type QueryPACTEELDatabasesByCASNumberIndexQuery = {
       weelceiling?: string | null;
       weelstel?: string | null;
       weeltwa?: string | null;
+      Boiling_Point?: string | null;
+      Melting_Point?: string | null;
+      State?: string | null;
+      Vapor_Pressure?: string | null;
     } | null> | null;
     nextToken?: string | null;
   } | null;
@@ -739,6 +747,10 @@ export type QueryPACTEELDatabasesByChemicalFormulaIndexQuery = {
       weelceiling?: string | null;
       weelstel?: string | null;
       weeltwa?: string | null;
+      Boiling_Point?: string | null;
+      Melting_Point?: string | null;
+      State?: string | null;
+      Vapor_Pressure?: string | null;
     } | null> | null;
     nextToken?: string | null;
   } | null;
@@ -811,6 +823,10 @@ export type QueryPACTEELDatabasesByChemicalNameIndexQuery = {
       weelceiling?: string | null;
       weelstel?: string | null;
       weeltwa?: string | null;
+      Boiling_Point?: string | null;
+      Melting_Point?: string | null;
+      State?: string | null;
+      Vapor_Pressure?: string | null;
     } | null> | null;
     nextToken?: string | null;
   } | null;
@@ -883,6 +899,10 @@ export type QueryPACTEELDatabasesByStatusIndexQuery = {
       weelceiling?: string | null;
       weelstel?: string | null;
       weeltwa?: string | null;
+      Boiling_Point?: string | null;
+      Melting_Point?: string | null;
+      State?: string | null;
+      Vapor_Pressure?: string | null;
     } | null> | null;
     nextToken?: string | null;
   } | null;
@@ -955,6 +975,10 @@ export type QueryPACTEELDatabasesByUNNumberIndexQuery = {
       weelceiling?: string | null;
       weelstel?: string | null;
       weeltwa?: string | null;
+      Boiling_Point?: string | null;
+      Melting_Point?: string | null;
+      State?: string | null;
+      Vapor_Pressure?: string | null;
     } | null> | null;
     nextToken?: string | null;
   } | null;
@@ -1027,6 +1051,10 @@ export type OnCreatePACTEELDatabaseSubscription = {
     weelceiling?: string | null;
     weelstel?: string | null;
     weeltwa?: string | null;
+    Boiling_Point?: string | null;
+    Melting_Point?: string | null;
+    State?: string | null;
+    Vapor_Pressure?: string | null;
   } | null;
 };
 
@@ -1097,6 +1125,10 @@ export type OnDeletePACTEELDatabaseSubscription = {
     weelceiling?: string | null;
     weelstel?: string | null;
     weeltwa?: string | null;
+    Boiling_Point?: string | null;
+    Melting_Point?: string | null;
+    State?: string | null;
+    Vapor_Pressure?: string | null;
   } | null;
 };
 
@@ -1167,5 +1199,9 @@ export type OnUpdatePACTEELDatabaseSubscription = {
     weelceiling?: string | null;
     weelstel?: string | null;
     weeltwa?: string | null;
+    Boiling_Point?: string | null;
+    Melting_Point?: string | null;
+    State?: string | null;
+    Vapor_Pressure?: string | null;
   } | null;
 };
