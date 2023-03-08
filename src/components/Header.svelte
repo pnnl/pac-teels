@@ -113,6 +113,7 @@
   import { user } from "stores/stores";
   import MediaQuery from "components/MediaQuery.svelte";
   import themeStyle from "../theme.scss";
+  import { featureFlags } from "constants/featureFlags";
 
   export let title = "";
   export let hasLogo = false;
@@ -120,8 +121,6 @@
   export let logoLabel: any = undefined;
   export let adminPage;
   export let location;
-
-  console.log(themeStyle);
 
   let tabs = [
     {
@@ -251,9 +250,11 @@
               anchorCorner="BOTTOM_LEFT"
             >
               <List>
-                <Item on:click={() => window.alert("Not Implemented")}>
-                  <Text>Send Feedback</Text>
-                </Item>
+                {#if featureFlags.feedback === true}
+                  <Item on:click={() => window.alert("Not Implemented")}>
+                    <Text>Send Feedback</Text>
+                  </Item>
+                {/if}
                 <Item
                   on:click={() => {
                     loginOpen = !loginOpen;
@@ -270,10 +271,13 @@
     <MediaQuery query={`(min-width: ${themeStyle.smallest})`} let:matches>
       {#if matches}
         <div class="right">
-          <Button on:click={() => window.alert("Not Implemented")}>
-            <Icon class="material-icons">feedback</Icon>
-            <Label>send feedback</Label>
-          </Button>
+          {#if featureFlags.feedback === true}
+            <Button on:click={() => window.alert("Not Implemented")}>
+              <Icon class="material-icons">feedback</Icon>
+              <Label>send feedback</Label>
+            </Button>
+          {/if}
+
           <Button
             on:click={() => {
               loginOpen = !loginOpen;

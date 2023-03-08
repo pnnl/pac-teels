@@ -1,4 +1,8 @@
 <style>
+  .error-caption {
+    color: red;
+    font-size: 0.75rem;
+  }
 </style>
 
 <script lang="ts">
@@ -23,6 +27,7 @@
 
   let email = "";
   let emailInput: Input;
+  let errorMessage = "";
 
   let password = "";
   let showPassChecked = false;
@@ -34,7 +39,6 @@
       const retrievedUser = await Auth.signIn(email, password);
       user.update(currUser => retrievedUser);
       currPass.update(currPassword => password);
-      console.log(retrievedUser);
       setAdminPage(true);
       // If a new password is required, first force them to reset their password.
 
@@ -49,11 +53,14 @@
       }
       push("/admin/chemicalDatabase");
     } catch (error) {
-      console.log("Login failed");
+      //@ts-ignore
+      errorMessage = error?.message;
       console.log(error);
     }
     loginLoading = false;
-    closeHandler(undefined);
+    if (errorMessage.length === 0) {
+      closeHandler(undefined);
+    }
   };
 </script>
 
@@ -100,6 +107,11 @@
           type={showPassChecked ? "text" : "password"}
         />
       </div>
+      {#if errorMessage.length > 0}
+        <div class="error-caption">
+          {errorMessage}
+        </div>
+      {/if}
       <div style={"margin-top: 1.5rem;color: var(--font); margin-left: -11px;"}>
         <FormField>
           <Checkbox
@@ -110,6 +122,7 @@
         </FormField>
       </div>
     </Content>
+
     <div style="padding: 24px 20px; display: flex;">
       <Button
         style={"margin-right: auto;"}
