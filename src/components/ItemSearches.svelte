@@ -40,6 +40,6 @@
     }}
   >
     <div>{key}</div>
-    <div class="searched-name">{value.id}</div>
+    <div class="searched-name">{value.Chemical_Name}</div>
   </div>
 {/each}
