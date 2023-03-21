@@ -45,7 +45,7 @@
     {
       id: "pacDefinitions",
       name: "PAC Definitions",
-      path: `${process.env.SVELTE_APP_BASEURL}/#/definitions`
+      path: `${process.env.SVELTE_APP_BASEURL}/definitions`
     },
     {
       id: "search",
