@@ -182,12 +182,6 @@
 </script>
 
 <div class={location.includes("accountDetails") ? "header account-details" : "header"}>
-  {#if hasLogo}
-    <div class="logo-wrapper" on:click={() => push("/")}>
-      <img src={logo} class="nav-left-logo" alt={logoLabel} />
-      <h1 class="title " class:with-logo={hasLogo === true}>{title}</h1>
-    </div>
-  {/if}
   <span class="nav-menu-wrapper ">
     <slot />
   </span>
