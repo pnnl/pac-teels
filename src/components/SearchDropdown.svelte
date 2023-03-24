@@ -191,7 +191,7 @@
       //If there are more than 5 items in the recently viewed, remove the last one
       if (currViewed.size > 5) {
         const arr: any = Array.from(currViewed);
-        const lastKeyInMap: any = arr[currViewed.size - 1][0];
+        const lastKeyInMap: any = arr[0][0];
         currViewed.delete(lastKeyInMap);
       }
       return currViewed;
