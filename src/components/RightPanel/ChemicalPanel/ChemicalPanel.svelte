@@ -95,14 +95,14 @@
 <div class="panel-header">
   <h2>{currentChemical?.Chemical_Name || "No Name in Database"}</h2>
   <div bind:this={componentReference} class="button-container">
-    <Button on:click={() => window.alert("Not Implemented")}>
+    <!-- <Button on:click={() => window.alert("Not Implemented")}>
       <Icon class="material-icons">open_in_new</Icon>
       <Label>open in new tab</Label>
-    </Button>
-    <Button on:click={() => window.alert("Not Implemented")}>
+    </Button> -->
+    <!-- <Button on:click={() => window.alert("Not Implemented")}>
       <Icon class="material-icons">history</Icon>
       <Label>view in history</Label>
-    </Button>
+    </Button> -->
     {#if featureFlags.emailUpdates === true}
       {#if subscribed}
         <Button on:click={() => (showUnsubscribe = !showUnsubscribe)}>

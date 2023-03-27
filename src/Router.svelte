@@ -8,6 +8,7 @@
   import AccountDetails from "./routes/AccountDetails.svelte";
   import ChangeEmail from "./routes/ChangeEmail.svelte";
   import ChangePassword from "./routes/ChangePassword.svelte";
+  import Definitions from "./routes/Definitions.svelte";
 
   // import Administration from "./routes/Administration.svelte";
   export let onRouteLoaded;
@@ -48,6 +49,10 @@
     "/admin/accountDetails": wrap({
       component: AccountDetails,
       userData: { route: "accountDetails" }
+    }),
+    "/definitions": wrap({
+      component: Definitions,
+      userData: { route: "definitions" }
     })
 
     // Using named parameters, with last being optional

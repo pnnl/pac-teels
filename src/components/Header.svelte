@@ -261,6 +261,9 @@
               anchorCorner="BOTTOM_LEFT"
             >
               <List>
+                <Item on:click={() => push("/definitions")}>
+                  <Text>Definitions</Text>
+                </Item>
                 {#if featureFlags.feedback === true}
                   <Item on:click={() => window.alert("Not Implemented")}>
                     <Text>Send Feedback</Text>
@@ -282,6 +285,10 @@
     <MediaQuery query={`(min-width: ${themeStyle.smallest})`} let:matches>
       {#if matches}
         <div class="right">
+          <Button on:click={() => push("/definitions")}>
+            <Icon class="material-icons">description</Icon>
+            <Label>Definitions</Label>
+          </Button>
           {#if featureFlags.feedback === true}
             <Button on:click={() => window.alert("Not Implemented")}>
               <Icon class="material-icons">feedback</Icon>

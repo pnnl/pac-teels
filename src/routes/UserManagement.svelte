@@ -125,7 +125,7 @@
     <Row style="width: -webkit-fill-available;">
       <Cell colspan={100} style="border-bottom: unset;">
         <div style={"display: flex; align-items: center; "}>
-          <Paper
+          <!-- <Paper
             class="solo-paper"
             style={"width: -webkit-fill-available; margin: 1rem; height: var(--mdc-outlined-button-container-height, 36px);"}
           >
@@ -147,7 +147,7 @@
           >
             <Icon class="material-icons">filter_list</Icon>
             <Label>Filters</Label>
-          </Button>
+          </Button> -->
         </div>
       </Cell>
     </Row>
