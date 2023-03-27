@@ -199,10 +199,10 @@
     </div>
     {#if recentlyViewedLocal}
       <div style="width: -webkit-fill-available;">
-        <h4>Suggestion</h4>
+        <h4>Your Recently Viewed</h4>
         <ItemSearches
           style={"width:75rem;cursor: pointer;"}
-          caption={"Your recently viewed"}
+          caption={""}
           items={recentlyViewedLocal}
         />
       </div>
