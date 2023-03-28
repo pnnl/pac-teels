@@ -4,6 +4,7 @@
     margin: 0 auto;
     width: -webkit-fill-available;
     display: flex;
+    overflow-y: auto;
   }
 
   h1 {
