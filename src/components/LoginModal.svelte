@@ -51,7 +51,7 @@
           password // the new password
         );
       }
-      push("/admin/chemicalDatabase");
+      push("/admin/analystHome");
     } catch (error) {
       //@ts-ignore
       errorMessage = error?.message;

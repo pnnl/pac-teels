@@ -8,9 +8,9 @@
     flex-direction: row;
     align-items: center;
   }
-  .panel-status{
-    margin-left:1rem;
-    color:var(--caption);
+  .panel-status {
+    margin-left: 1rem;
+    color: var(--caption);
   }
 </style>
 
@@ -34,10 +34,9 @@
         dateAssigned: "Jan 31, 2022",
         review: "",
         dueDate: "Jan 31, 2023",
-        reportStatus:"Not Started"
+        reportStatus: "Not Started"
       }
     ]
-
   ]);
   let panelOpen = false;
 </script>
@@ -67,23 +66,17 @@
       <Panel bind:open={panelOpen} style={"padding:0;"}>
         <Header style={"padding:0;"}>
           <div class="panel-title">
-            <IconButton
-              toggle
-              pressed={panelOpen}
-              style={"margin:0;padding:0;"}
-            >
+            <IconButton toggle pressed={panelOpen} style={"margin:0;padding:0;"}>
               <Icon class="material-icons" on>expand_less</Icon>
               <Icon class="material-icons">expand_more</Icon>
             </IconButton>
-           <b>Due {item?.dueDate}</b>
-           <div class="panel-status"
-           class:red={"someItem"}
-           class:green={"someItemToo"}>
-<!-- TODO Add states for completion flags, -->
-            {item.reportStatus}
-           </div>
-           <!--TODO Add logic for due date passed//approaching -->
-           <!-- {#if item.dueDate}
+            <b>Due {item?.dueDate}</b>
+            <div class="panel-status" class:red={"someItem"} class:green={"someItemToo"}>
+              <!-- TODO Add states for completion flags, -->
+              {item.reportStatus}
+            </div>
+            <!--TODO Add logic for due date passed//approaching -->
+            <!-- {#if item.dueDate}
            <div class="due-flag"></div>
            {/if} -->
           </div>
@@ -101,6 +94,7 @@
                 display:grid;
                   border:none;
                   grid-template-columns: 50% 20% 10% 20%;
+                  align-items: center;
                 `}
               >
                 <Cell style={"grid-column:1;"}>{rowItem.chemicalName}</Cell>
