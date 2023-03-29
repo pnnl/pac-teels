@@ -45,7 +45,7 @@
     {
       id: "pacDefinitions",
       name: "PAC Definitions",
-      path: `${process.env.SVELTE_APP_BASEURL}/#/definitions`
+      path: `${process.env.SVELTE_APP_BASEURL}/definitions`
     },
     {
       id: "search",
@@ -56,7 +56,6 @@
 
   let active = tabs[0];
   let location = window.location.href;
-
 </script>
 
 <Header

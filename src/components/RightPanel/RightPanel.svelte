@@ -70,6 +70,6 @@
 <div class="background-blur">
   <div class="right-panel" bind:this={rightPanelRef}>
     <span class="close material-icons" on:click={() => dispatch("close", {})}>close</span>
-    <ChemicalPanel on:submitEmail on:unsubscribe/>
+    <ChemicalPanel on:submitEmail on:unsubscribe />
   </div>
 </div>

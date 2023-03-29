@@ -9,6 +9,8 @@
   import ChangeEmail from "./routes/ChangeEmail.svelte";
   import ChangePassword from "./routes/ChangePassword.svelte";
   import AnalystHomepage from "./routes/AnalystHome.svelte"
+  import Definitions from "./routes/Definitions.svelte";
+
   // import Administration from "./routes/Administration.svelte";
   export let onRouteLoaded;
   export let onConditionsFailed;
@@ -53,6 +55,10 @@
     "/admin/analystHome": wrap({
       component: AnalystHomepage,
       userData: { route: "analystHome" }
+    }),
+    "/definitions": wrap({
+      component: Definitions,
+      userData: { route: "definitions" }
     })
 
     // Using named parameters, with last being optional

@@ -111,8 +111,10 @@
   import TabBar from "@smui/tab-bar";
   import { push, pop, replace } from "svelte-spa-router";
   import { user } from "stores/stores";
+  import FeedbackModal from "./FeedbackModal/FeedbackModal.svelte";
   import MediaQuery from "components/MediaQuery.svelte";
   import themeStyle from "../theme.scss";
+  import { featureFlags } from "constants/featureFlags";
 
   export let title = "";
   export let hasLogo = false;
@@ -120,8 +122,6 @@
   export let logoLabel: any = undefined;
   export let adminPage;
   export let location;
-
-  console.log(themeStyle);
 
   let tabs = [
     {
@@ -156,6 +156,16 @@
   };
 
   let userMenuOpen = false;
+
+  let closeUserHandler = (e: CustomEvent<{ action: string }>) => {
+    userMenuOpen = false;
+  };
+
+  let feedbackOpen = false;
+  let feedbackClose = (e: CustomEvent<{ action: string }>) => {
+    feedbackOpen = false;
+  };
+
   let responsiveActionMenuOpen = false;
 
   let menu: MenuComponentDev;
@@ -256,9 +266,14 @@
               anchorCorner="BOTTOM_LEFT"
             >
               <List>
-                <Item on:click={() => window.alert("Not Implemented")}>
-                  <Text>Send Feedback</Text>
+                <Item on:click={() => push("/definitions")}>
+                  <Text>Definitions</Text>
                 </Item>
+                {#if featureFlags.feedback === true}
+                  <Item on:click={() => window.alert("Not Implemented")}>
+                    <Text>Send Feedback</Text>
+                  </Item>
+                {/if}
                 <Item
                   on:click={() => {
                     loginOpen = !loginOpen;
@@ -275,10 +290,17 @@
     <MediaQuery query={`(min-width: ${themeStyle.smallest})`} let:matches>
       {#if matches}
         <div class="right">
-          <Button on:click={() => window.alert("Not Implemented")}>
-            <Icon class="material-icons">feedback</Icon>
-            <Label>send feedback</Label>
+          <Button on:click={() => push("/definitions")}>
+            <Icon class="material-icons">description</Icon>
+            <Label>Definitions</Label>
           </Button>
+          {#if featureFlags.feedback === true}
+            <Button on:click={() => window.alert("Not Implemented")}>
+              <Icon class="material-icons">feedback</Icon>
+              <Label>send feedback</Label>
+            </Button>
+          {/if}
+
           <Button
             on:click={() => {
               loginOpen = !loginOpen;
@@ -356,3 +378,10 @@
   {/if}
 </MediaQuery>
 <LoginModal open={loginOpen} {closeHandler} setAdminPage={val => (adminPage = val)} />
+{#if feedbackOpen}
+  <FeedbackModal
+    open={feedbackOpen}
+    {feedbackClose}
+    on:close={() => (feedbackOpen = false)}
+  />
+{/if}
