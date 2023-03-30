@@ -4,6 +4,7 @@
     justify-items: start;
     grid-template-columns: 70% auto;
     gap: 1rem;
+    overflow-y: auto;
   }
   hr {
     border-top: 0.125rem solid var(--border);
@@ -23,6 +24,9 @@
 </style>
 
 <script>
+  import Button, { Icon, Label } from "@smui/button";
+  import { push } from "svelte-spa-router";
+
   const ANCHOR_POINTS = {
     AEGL: "#aegls",
     ERPG: "#erpgs",
@@ -32,6 +36,9 @@
 
 <section>
   <div class="body">
+    <Button on:click={() => push("/")}
+      ><Icon class="material-icons">arrow_back</Icon><Label>Back</Label></Button
+    >
     <h2>Definition of PACs</h2>
     <h3>Acute Exposure Guideline Levels (AEGLs)</h3>
     <p>
