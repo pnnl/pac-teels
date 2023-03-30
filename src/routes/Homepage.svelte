@@ -83,6 +83,7 @@
   import { chemicals, rightPanelOpened, recentlyViewed } from "stores/stores";
   import { CircularProgressComponentDev } from "@smui/circular-progress";
   import Snackbar, { Actions, SnackbarComponentDev } from "@smui/snackbar";
+  import { dataset_dev } from "svelte/internal";
 
   let rightPanelOpenedLocal = false;
   let recentlyViewedLocal;
@@ -134,7 +135,7 @@
       })
     };
     const response = await fetch(`${process.env.GRAPHQL_ENDPOINT}`, httpOptions);
-    const data = await response.json(); 
+    const data = await response.json();
     if (
       data &&
       data.data &&
@@ -150,6 +151,25 @@
     }
     return dataFull;
   })();
+
+  let localChemicals = []
+  let mostRecentUpdateDate = new Date('2000-01-01');
+  let date = "";
+  $:{ chemicals.subscribe(currChemicals => {
+        if (currChemicals) {
+          localChemicals = currChemicals;
+        }
+      });
+
+      localChemicals.forEach(item => {
+        let localDate = new Date(item['Date']);
+        if(localDate > mostRecentUpdateDate) {
+          mostRecentUpdateDate = localDate;
+        }
+      });
+
+      date = mostRecentUpdateDate.toDateString();
+    }
 
   rightPanelOpened.subscribe(currRightPanelOpened => {
     rightPanelOpenedLocal = currRightPanelOpened;
@@ -173,8 +193,10 @@
 
 <div class="content">
   <div class="title">
-    <h1 class="siteTitle">PAC Database</h1>
-    <div class="version">Rev. 29A, June 2018</div>
+      <h1 class="siteTitle">PAC Database</h1>
+    {#await fetchChemicals then result}
+      <div class="version">Last Revised: {date}</div>
+    {/await}
   </div>
   <div
     style="max-width: 75rem; margin-right: auto; margin-left: auto; width: -webkit-fill-available;"
