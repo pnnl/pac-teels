@@ -77,6 +77,7 @@
   let componentReference: HTMLElement;
   let currentChemical;
   let currentUnit;
+  let mostRecentUpdateDate;
   let showUnsubscribe = false;
   //   TODO: update with endpoint
   let subscribed = false;
@@ -89,11 +90,13 @@
 
   $: {
     currentUnit = currentChemical?.originalUnit;
+    mostRecentUpdateDate = new Date(currentChemical['Date']).toDateString();
   }
 </script>
 
 <div class="panel-header">
   <h2>{currentChemical?.Chemical_Name || "No Name in Database"}</h2>
+  <h5>Last Updated: {mostRecentUpdateDate || ""}</h5>
   <div bind:this={componentReference} class="button-container">
     <!-- <Button on:click={() => window.alert("Not Implemented")}>
       <Icon class="material-icons">open_in_new</Icon>
