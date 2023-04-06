@@ -119,57 +119,58 @@
     var nextToken = null;
     var dataFull = [];
     do {
-    const httpOptions: any = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "X-Api-Key": process.env?.APPSYNC_APIKEY
-      },
-      body: JSON.stringify({
-        query: listPACTEELDatabases,
-        variables: {
-          limit: 4000,
-          nextToken: nextToken
-        }
-      })
-    };
-    const response = await fetch(`${process.env.GRAPHQL_ENDPOINT}`, httpOptions);
-    const data = await response.json();
-    if (
-      data &&
-      data.data &&
-      data.data.listPACTEELDatabases &&
-      data.data.listPACTEELDatabases.items
-    ) {
-      dataFull = dataFull.concat(data.data.listPACTEELDatabases.items);
-    }
-    nextToken = data.data.listPACTEELDatabases.nextToken;
-  }while (nextToken != null)
+      const httpOptions: any = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Api-Key": process.env?.APPSYNC_APIKEY
+        },
+        body: JSON.stringify({
+          query: listPACTEELDatabases,
+          variables: {
+            limit: 4000,
+            nextToken: nextToken
+          }
+        })
+      };
+      const response = await fetch(`${process.env.GRAPHQL_ENDPOINT}`, httpOptions);
+      const data = await response.json();
+      if (
+        data &&
+        data.data &&
+        data.data.listPACTEELDatabases &&
+        data.data.listPACTEELDatabases.items
+      ) {
+        dataFull = dataFull.concat(data.data.listPACTEELDatabases.items);
+      }
+      nextToken = data.data.listPACTEELDatabases.nextToken;
+    } while (nextToken != null);
     if (dataFull) {
       chemicals.update(currData => dataFull);
     }
     return dataFull;
   })();
 
-  let localChemicals = []
-  let mostRecentUpdateDate = new Date('2000-01-01');
+  let localChemicals = [];
+  let mostRecentUpdateDate = new Date("2000-01-01");
   let date = "";
-  $:{ chemicals.subscribe(currChemicals => {
-        if (currChemicals) {
-          localChemicals = currChemicals;
-        }
-      });
+  $: {
+    chemicals.subscribe(currChemicals => {
+      if (currChemicals) {
+        localChemicals = currChemicals;
+      }
+    });
 
-      localChemicals.forEach(item => {
-        let localDate = new Date(item['Date']);
-        if(localDate > mostRecentUpdateDate) {
-          mostRecentUpdateDate = localDate;
-        }
-      });
+    localChemicals.forEach(item => {
+      let localDate = new Date(item["Date"]);
+      if (localDate > mostRecentUpdateDate) {
+        mostRecentUpdateDate = localDate;
+      }
+    });
 
-      date = mostRecentUpdateDate.toDateString();
-    }
+    date = mostRecentUpdateDate.toDateString();
+  }
 
   rightPanelOpened.subscribe(currRightPanelOpened => {
     rightPanelOpenedLocal = currRightPanelOpened;
@@ -193,7 +194,7 @@
 
 <div class="content">
   <div class="title">
-      <h1 class="siteTitle">PAC Database</h1>
+    <h1 class="siteTitle">PAC Database</h1>
     {#await fetchChemicals then result}
       <div class="version">Last Revised: {date}</div>
     {/await}

@@ -5,6 +5,7 @@
     width: -webkit-fill-available;
     display: flex;
     overflow-y: auto;
+    overflow-x: hidden;
   }
 
   h1 {
@@ -24,6 +25,7 @@
 <script lang="ts">
   import { writable } from "svelte/store";
   import Header from "./components/Header.svelte";
+  import Footer from "./components/Footer.svelte";
   import Router from "./Router.svelte";
   import TabBar from "@smui/tab-bar";
   import Button from "@smui/button";
@@ -76,3 +78,4 @@
     />
   </div>
 </main>
+<Footer />
