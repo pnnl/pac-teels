@@ -8,6 +8,7 @@
   import AccountDetails from "./routes/AccountDetails.svelte";
   import ChangeEmail from "./routes/ChangeEmail.svelte";
   import ChangePassword from "./routes/ChangePassword.svelte";
+  import AnalystHomepage from "./routes/AnalystHome.svelte"
   import Definitions from "./routes/Definitions.svelte";
 
   // import Administration from "./routes/Administration.svelte";
@@ -20,6 +21,7 @@
       component: Homepage,
       userData: { route: "homepage" }
     }),
+
     "/admin": wrap({
       asyncComponent: () => import("./routes/Administration.svelte"),
       userData: { route: "admin" }
@@ -49,6 +51,10 @@
     "/admin/accountDetails": wrap({
       component: AccountDetails,
       userData: { route: "accountDetails" }
+    }),
+    "/admin/analystHome": wrap({
+      component: AnalystHomepage,
+      userData: { route: "analystHome" }
     }),
     "/definitions": wrap({
       component: Definitions,

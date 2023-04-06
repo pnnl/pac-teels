@@ -125,6 +125,11 @@
 
   let tabs = [
     {
+        id: "analystHome",
+      name: "Analyst Home",
+      path: `${process.env.SVELTE_APP_BASEURL}/#/admin/analystHome`
+    },
+    {
       id: "chemicalDatabase",
       name: "Chemical Database",
       path: `${process.env.SVELTE_APP_BASEURL}/#/admin/chemicalDatabase`
