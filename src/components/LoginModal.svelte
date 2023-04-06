@@ -26,11 +26,19 @@
   let loginLoading = false;
 
   let email = "";
-  let emailInput: Input;
+  let emailInput: typeof Input;
   let errorMessage = "";
+
+  let emailValid = true;
 
   let password = "";
   let showPassChecked = false;
+
+  const validateEmail = () => {
+    const re = /\S+@\S+\.\S+/;
+    const validEmail = re.test(email);
+    emailValid = validEmail;
+  };
 
   const handleSubmit = async (e: any) => {
     loginLoading = true;
@@ -89,10 +97,16 @@
           bind:value={email}
           variant="outlined"
           style={"width: -webkit-fill-available; height: var(--mdc-outlined-button-container-height, 36px);"}
-          invalid={true}
-        >
-          <HelperText id="helper-text-manual-a" slot="helper">Helper Text</HelperText>
-        </Textfield>
+          invalid={!emailValid}
+          on:blur={validateEmail}
+        />
+        {#if !emailValid}
+          <div
+            style={"position: absolute; color: var(--mdc-theme-error, #b00020);font-size: 0.7rem"}
+          >
+            Invalid Email
+          </div>
+        {/if}
       </div>
       <div style={"margin-top: 2.2rem;color: var(--font);"}>
         <div
@@ -135,7 +149,7 @@
       </Button>
       <Button
         variant="unelevated"
-        disabled={email && password && !loginLoading ? false : true}
+        disabled={email && password && !loginLoading && emailValid ? false : true}
         on:click={e => {
           handleSubmit(e);
         }}
