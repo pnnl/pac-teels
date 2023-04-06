@@ -125,6 +125,11 @@
 
   let tabs = [
     {
+        id: "analystHome",
+      name: "Analyst Home",
+      path: `${process.env.SVELTE_APP_BASEURL}/#/admin/analystHome`
+    },
+    {
       id: "chemicalDatabase",
       name: "Chemical Database",
       path: `${process.env.SVELTE_APP_BASEURL}/#/admin/chemicalDatabase`
@@ -182,12 +187,6 @@
 </script>
 
 <div class={location.includes("accountDetails") ? "header account-details" : "header"}>
-  {#if hasLogo}
-    <div class="logo-wrapper" on:click={() => push("/")}>
-      <img src={logo} class="nav-left-logo" alt={logoLabel} />
-      <h1 class="title " class:with-logo={hasLogo === true}>{title}</h1>
-    </div>
-  {/if}
   <span class="nav-menu-wrapper ">
     <slot />
   </span>
@@ -261,6 +260,9 @@
               anchorCorner="BOTTOM_LEFT"
             >
               <List>
+                <Item on:click={() => push("/definitions")}>
+                  <Text>Definitions</Text>
+                </Item>
                 {#if featureFlags.feedback === true}
                   <Item on:click={() => window.alert("Not Implemented")}>
                     <Text>Send Feedback</Text>
@@ -282,6 +284,10 @@
     <MediaQuery query={`(min-width: ${themeStyle.smallest})`} let:matches>
       {#if matches}
         <div class="right">
+          <Button on:click={() => push("/definitions")}>
+            <Icon class="material-icons">description</Icon>
+            <Label>Definitions</Label>
+          </Button>
           {#if featureFlags.feedback === true}
             <Button on:click={() => window.alert("Not Implemented")}>
               <Icon class="material-icons">feedback</Icon>

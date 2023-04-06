@@ -4,6 +4,7 @@
     margin: 0 auto;
     width: -webkit-fill-available;
     display: flex;
+    overflow-y: auto;
   }
 
   h1 {
@@ -45,7 +46,7 @@
     {
       id: "pacDefinitions",
       name: "PAC Definitions",
-      path: `${process.env.SVELTE_APP_BASEURL}/#/definitions`
+      path: `${process.env.SVELTE_APP_BASEURL}/definitions`
     },
     {
       id: "search",
