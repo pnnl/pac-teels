@@ -1,7 +1,8 @@
 <style>
   .error-caption {
-    color: red;
+    color: var(--mdc-theme-error, #b00020);
     font-size: 0.75rem;
+    position: absolute;
   }
 </style>
 
@@ -87,6 +88,11 @@
       >
     </Header>
     <Content id="fullscreen-content" style={"display: flex; flex-direction: column;"}>
+      {#if errorMessage.length > 0}
+        <div class="error-caption">
+          {errorMessage}
+        </div>
+      {/if}
       <div style={"margin-top: 2.2rem; color: var(--font);"}>
         <div
           style={"font-size: 14px; line-height: 21px; font-weight: 500;margin-bottom: 0.5rem;"}
@@ -97,15 +103,11 @@
           bind:value={email}
           variant="outlined"
           style={"width: -webkit-fill-available; height: var(--mdc-outlined-button-container-height, 36px);"}
-          invalid={!emailValid}
+          invalid={!emailValid || !!errorMessage}
           on:blur={validateEmail}
         />
         {#if !emailValid}
-          <div
-            style={"position: absolute; color: var(--mdc-theme-error, #b00020);font-size: 0.7rem"}
-          >
-            Invalid Email
-          </div>
+          <div class="error-caption">Invalid Email</div>
         {/if}
       </div>
       <div style={"margin-top: 2.2rem;color: var(--font);"}>
@@ -119,13 +121,9 @@
           variant="outlined"
           style={"width: -webkit-fill-available; height: var(--mdc-outlined-button-container-height, 36px);"}
           type={showPassChecked ? "text" : "password"}
+          invalid={!!errorMessage}
         />
       </div>
-      {#if errorMessage.length > 0}
-        <div class="error-caption">
-          {errorMessage}
-        </div>
-      {/if}
       <div style={"margin-top: 1.5rem;color: var(--font); margin-left: -11px;"}>
         <FormField>
           <Checkbox
