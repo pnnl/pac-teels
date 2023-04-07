@@ -125,7 +125,7 @@
 
   let tabs = [
     {
-        id: "analystHome",
+      id: "analystHome",
       name: "Analyst Home",
       path: `${process.env.SVELTE_APP_BASEURL}/#/admin/analystHome`
     },
@@ -155,6 +155,12 @@
     loginOpen = false;
   };
 
+  let homeUserMenuOpen = false;
+
+  let closeHomeUserHandler = (e: CustomEvent<{ action: string }>) => {
+    homeUserMenuOpen = false;
+  };
+
   let userMenuOpen = false;
 
   let closeUserHandler = (e: CustomEvent<{ action: string }>) => {
@@ -169,8 +175,11 @@
   let responsiveActionMenuOpen = false;
 
   let menu: MenuComponentDev;
+  let menuHome: MenuComponentDev;
   let anchor: HTMLDivElement;
   let anchorClasses: { [k: string]: boolean } = { right: true };
+  let anchorHome: HTMLDivElement;
+  let anchorClassesHome: { [k: string]: boolean } = { right: true };
 
   let responsiveMenu: MenuComponentDev;
   let responsiveAnchor: HTMLDivElement;
@@ -192,7 +201,8 @@
   </span>
   {#if adminPage}
     <h1
-      style={"margin-left: 3rem; font-weight: 400; font-size: 32px; color: var(--lightBlue); white-space: nowrap;"}
+      style={"margin-left: 3rem; font-weight: 400; font-size: 32px; color: var(--lightBlue); white-space: nowrap; cursor: pointer; user-select: none;"}
+      on:click={() => push("/")}
     >
       PAC Database
     </h1>
@@ -213,7 +223,7 @@
       {/if}
     </MediaQuery>
   {/if}
-  {#if !adminPage}
+  {#if !adminPage && !userName}
     <MediaQuery query={`(max-width: ${themeStyle.smallest})`} let:matches>
       {#if matches}
         <div class="right">
@@ -306,6 +316,66 @@
         </div>
       {/if}
     </MediaQuery>
+  {/if}
+  {#if !adminPage && userName}
+    <Button on:click={() => push("/definitions")} style={"margin-left: auto;"}>
+      <Icon class="material-icons">description</Icon>
+      <Label>Definitions</Label>
+    </Button>
+    {#if featureFlags.feedback === true}
+      <Button on:click={() => window.alert("Not Implemented")}>
+        <Icon class="material-icons">feedback</Icon>
+        <Label>send feedback</Label>
+      </Button>
+    {/if}
+    <div
+      class={Object.keys(anchorClassesHome).join(" ")}
+      style={"margin-top: unset; margin-left: unset;"}
+      use:Anchor={{
+        addClass: className => {
+          if (!anchorClassesHome[className]) {
+            anchorClassesHome[className] = true;
+          }
+        },
+        removeClass: className => {
+          if (anchorClassesHome[className]) {
+            delete anchorClassesHome[className];
+            anchorClassesHome = anchorClassesHome;
+          }
+        }
+      }}
+      bind:this={anchorHome}
+    >
+      <Button on:click={() => menuHome.setOpen(!homeUserMenuOpen)}>
+        <Icon class="material-icons">account_circle</Icon>
+        <Label>{userName}</Label>
+      </Button>
+      <Menu
+        bind:this={menuHome}
+        anchor={false}
+        bind:anchorElement={anchorHome}
+        anchorCorner="BOTTOM_LEFT"
+      >
+        <List>
+          <Item on:click={() => push("/admin/analystHome")}>
+            <Text>Admin Home</Text>
+          </Item>
+          <Item on:click={() => push("/admin/accountDetails")}>
+            <Text>Account Details</Text>
+          </Item>
+          <Item
+            on:click={() => {
+              //We want to delete the entirety of the user session when we "Log Out", so set the stored user to undefined
+              user.update(currUser => undefined);
+              userName = "";
+              push("/");
+            }}
+          >
+            <Text>Log Out</Text>
+          </Item>
+        </List>
+      </Menu>
+    </div>
   {/if}
   {#if adminPage}
     <div
