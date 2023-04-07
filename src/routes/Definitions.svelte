@@ -5,6 +5,21 @@
     grid-template-columns: 70% auto;
     gap: 1rem;
     overflow-y: auto;
+    min-height: 50%;
+    max-height: calc(100% - 4rem);
+    position: absolute;
+    overflow-x: hidden;
+  }
+
+  section::-webkit-scrollbar {
+    width: 0.38rem;
+    border-radius: 5rem;
+    display: block;
+  }
+
+  section::-webkit-scrollbar-thumb {
+    background: #70768e;
+    border-radius: 5rem;
   }
   hr {
     border-top: 0.125rem solid var(--border);
