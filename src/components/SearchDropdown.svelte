@@ -108,40 +108,32 @@
     filteredItems = new Map();
     const foundCas = items.filter(
       currItem =>
-        currItem.casNumber &&
-        currItem.casNumber
-          .toLowerCase()
+        currItem.CAS_Number &&
+        currItem.CAS_Number.toLowerCase()
           .trim()
           .includes(searchBarFilter.toLowerCase().trim())
     );
     const foundName = items.filter(
       currItem =>
-        currItem.name &&
-        currItem.name.toLowerCase().trim().includes(searchBarFilter.toLowerCase().trim())
+        currItem.Chemical_Name &&
+        currItem.Chemical_Name.toLowerCase()
+          .trim()
+          .includes(searchBarFilter.toLowerCase().trim())
     );
-
     const foundFormula = items.filter(
       currItem =>
-        currItem.chemicalFormula &&
-        currItem.chemicalFormula
-          .toLowerCase()
+        currItem.Chemical_Formula &&
+        currItem.Chemical_Formula.toLowerCase()
           .trim()
           .includes(searchBarFilter.toLowerCase().trim())
     );
 
-    const foundUNNumber = items.filter(
+    const foundUN_Number = items.filter(
       currItem =>
-        currItem.unNumber &&
-        currItem.unNumber
-          .toLowerCase()
+        currItem.UN_Number &&
+        currItem.UN_Number.toLowerCase()
           .trim()
           .includes(searchBarFilter.toLowerCase().trim())
-    );
-
-    const foundID = items.filter(
-      currItem =>
-        currItem.id &&
-        currItem.id.toLowerCase().trim().includes(searchBarFilter.toLowerCase().trim())
     );
 
     if (foundCas.length > 0) {
@@ -159,14 +151,11 @@
         items: foundFormula
       });
     }
-    if (foundUNNumber.length > 0) {
-      filteredItems.set("foundUNNumber", {
+    if (foundUN_Number.length > 0) {
+      filteredItems.set("foundUN_Number", {
         label: "Matching UN Number",
-        items: foundUNNumber
+        items: foundUN_Number
       });
-    }
-    if (foundID.length > 0) {
-      filteredItems.set("foundID", { label: "Matching ID", items: foundID });
     }
     if (filteredItems.size === 0) {
       filteredItems.set("noneFound", { label: "No Matches" });
@@ -186,14 +175,14 @@
           : new Map();
 
       //Remove it if it exists, keep first in the list
-      if (currViewed.has(item.id)) {
-        currViewed.delete(item.id);
+      if (currViewed.has(item.Chemical_ID)) {
+        currViewed.delete(item.Chemical_ID);
       }
-      currViewed.set(item.id, item);
+      currViewed.set(item.Chemical_ID, item);
       //If there are more than 5 items in the recently viewed, remove the last one
       if (currViewed.size > 5) {
         const arr: any = Array.from(currViewed);
-        const lastKeyInMap: any = arr[currViewed.size - 1][0];
+        const lastKeyInMap: any = arr[0][0];
         currViewed.delete(lastKeyInMap);
       }
       return currViewed;
@@ -234,13 +223,34 @@
   {#if searchDropDownVisible}
     <div class="search-drop-down" {style}>
       {#each [...filteredItems] as [key, value]}
-        {#if value.label}
-          <div class="item-label">{value.label}</div>
+        {#if value.Chemical_Name}
+          <div class="item-label">{value.Chemical_Name}</div>
         {/if}
         {#if value.items}
           {#each value.items as item}
             <div class="search-item" on:click={() => handleSearchItemSelect(item)}>
-              {item.id}
+              {#if key == "foundCas"}
+                <b>{item.CAS_Number}</b>
+              {:else}
+                {item.CAS_Number}
+              {/if}
+              {#if key == "foundName"}
+                <b>{item.Chemical_Name}</b>
+              {:else}
+                {item.Chemical_Name}
+              {/if}
+              {#if key == "foundFormula"}
+                <b>{item.Chemical_Formula}</b>
+              {:else}
+                {item.Chemical_Formula}
+              {/if}
+              {#if item.UN_Number != '<BR>'}
+                {#if key == "foundUN_Number"}
+                  <b>{item.UN_Number}</b>
+                {:else}
+                  {item.UN_Number}
+                {/if}
+              {/if}             
             </div>
           {/each}
         {/if}

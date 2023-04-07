@@ -48,14 +48,25 @@
   import Button, { Icon, Label } from "@smui/button";
   import { CHEMICAL_IDENTITY } from "constants/constants";
   import { selectedChemical } from "stores/stores";
+  import { featureFlags } from "constants/featureFlags";
+
   let currentChemical;
+  let unNumber;
+  let expanded = false;
 
   selectedChemical.subscribe(currChemical => {
     if (currChemical) {
       currentChemical = currChemical;
     }
   });
-  let expanded = false;
+
+  $: {
+    if (currentChemical.UN_Number === "<BR>") {
+      unNumber = "N/A";
+    } else {
+      unNumber = currentChemical.UN_Number;
+    }
+  }
 </script>
 
 <div class="chemical-identity-container" class:expanded>
@@ -63,28 +74,31 @@
 
   <div class="chemical-identity-item">
     <div class="body-caption">CAS Number</div>
-    <div class="body-semibold">{currentChemical.casNumber || "N/A"}</div>
+    <div class="body-semibold">{currentChemical.CAS_Number || "N/A"}</div>
   </div>
 
   <div class="chemical-identity-item">
     <div class="body-caption">Chemical Formula</div>
-    <div class="body-semibold">{currentChemical.chemicalFormula || "N/A"}</div>
+    <div class="body-semibold">{currentChemical.Chemical_Formula || "N/A"}</div>
   </div>
 
   <div class="chemical-identity-item">
     <div class="body-caption">UN Number</div>
-    <div class="body-semibold">{currentChemical.unNumber || "N/A"}</div>
+    <div class="body-semibold">{unNumber || "N/A"}</div>
   </div>
-
-  <div class="chemical-identity-item">
-    <div class="body-caption">Synonyms</div>
-    <div class="body-semibold synonym-body" class:expanded>
-      {CHEMICAL_IDENTITY.Synonyms}
+  {#if featureFlags.synonyms}
+    <div class="chemical-identity-item">
+      <div class="body-caption">Synonyms</div>
+      <div class="body-semibold synonym-body" class:expanded>
+        {CHEMICAL_IDENTITY.Synonyms}
+      </div>
     </div>
+  {/if}
+</div>
+{#if featureFlags.synonyms}
+  <div class="synonym-button-container">
+    <Button on:click={() => (expanded = !expanded)}
+      >{expanded === false ? "View All Synonyms" : "Collapse Synonyms"}</Button
+    >
   </div>
-</div>
-<div class="synonym-button-container">
-  <Button on:click={() => (expanded = !expanded)}
-    >{expanded === false ? "View All Synonymns" : "Collapse Synonyms"}</Button
-  >
-</div>
+{/if}

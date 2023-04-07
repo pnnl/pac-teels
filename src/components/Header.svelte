@@ -1,4 +1,5 @@
-<style>
+<style lang="scss">
+  @import "../theme";
   .header {
     width: 100%;
     height: 4rem;
@@ -36,6 +37,7 @@
     margin-left: 1rem;
     font-size: 2rem;
     color: var(--blue);
+    white-space: nowrap;
   }
   .title.with-logo {
     margin: 0;
@@ -87,6 +89,15 @@
     color: var(--blue);
     background: var(--white);
   }
+
+  @media screen and (max-width: $smallest) {
+    .title {
+      font-size: 1.5rem !important;
+    }
+    .right {
+      margin-right: 0.5vw;
+    }
+  }
 </style>
 
 <script lang="ts">
@@ -100,6 +111,10 @@
   import TabBar from "@smui/tab-bar";
   import { push, pop, replace } from "svelte-spa-router";
   import { user } from "stores/stores";
+  import FeedbackModal from "./FeedbackModal/FeedbackModal.svelte";
+  import MediaQuery from "components/MediaQuery.svelte";
+  import themeStyle from "../theme.scss";
+  import { featureFlags } from "constants/featureFlags";
 
   export let title = "";
   export let hasLogo = false;
@@ -109,6 +124,11 @@
   export let location;
 
   let tabs = [
+    {
+      id: "analystHome",
+      name: "Analyst Home",
+      path: `${process.env.SVELTE_APP_BASEURL}/#/admin/analystHome`
+    },
     {
       id: "chemicalDatabase",
       name: "Chemical Database",
@@ -135,13 +155,35 @@
     loginOpen = false;
   };
 
+  let homeUserMenuOpen = false;
+
+  let closeHomeUserHandler = (e: CustomEvent<{ action: string }>) => {
+    homeUserMenuOpen = false;
+  };
+
   let userMenuOpen = false;
+
   let closeUserHandler = (e: CustomEvent<{ action: string }>) => {
     userMenuOpen = false;
   };
+
+  let feedbackOpen = false;
+  let feedbackClose = (e: CustomEvent<{ action: string }>) => {
+    feedbackOpen = false;
+  };
+
+  let responsiveActionMenuOpen = false;
+
   let menu: MenuComponentDev;
+  let menuHome: MenuComponentDev;
   let anchor: HTMLDivElement;
   let anchorClasses: { [k: string]: boolean } = { right: true };
+  let anchorHome: HTMLDivElement;
+  let anchorClassesHome: { [k: string]: boolean } = { right: true };
+
+  let responsiveMenu: MenuComponentDev;
+  let responsiveAnchor: HTMLDivElement;
+  let responsiveAnchorClasses: { [k: string]: boolean } = { right: true };
 
   user.subscribe(currUser => {
     if (currUser && currUser.challengeParam) {
@@ -154,48 +196,185 @@
 </script>
 
 <div class={location.includes("accountDetails") ? "header account-details" : "header"}>
-  {#if hasLogo}
-    <div class="logo-wrapper" on:click={() => push("/")}>
-      <img src={logo} class="nav-left-logo" alt={logoLabel} />
-      <h1 class="title " class:with-logo={hasLogo === true}>{title}</h1>
-    </div>
-  {/if}
   <span class="nav-menu-wrapper ">
     <slot />
   </span>
   {#if adminPage}
     <h1
-      style={"margin-left: 3rem; font-weight: 400; font-size: 32px; color: var(--lightBlue)"}
+      style={"margin-left: 3rem; font-weight: 400; font-size: 32px; color: var(--lightBlue); white-space: nowrap; cursor: pointer; user-select: none;"}
+      on:click={() => push("/")}
     >
       PAC Database
     </h1>
-    <TabBar {tabs} let:tab bind:active style={"width: unset; margin-left: auto;"}>
-      <!-- Note: the `tab` property is required! -->
-      <Tab
-        {tab}
-        on:click={() => {
-          return (active = tab);
-        }}
-        href={tab.path}
-      >
-        <Label>{tab.name}</Label>
-      </Tab>
-    </TabBar>
+    <MediaQuery query={`(min-width: ${themeStyle.smallest})`} let:matches>
+      {#if matches}
+        <TabBar {tabs} let:tab bind:active style={"width: unset; margin-left: auto;"}>
+          <!-- Note: the `tab` property is required! -->
+          <Tab
+            {tab}
+            on:click={() => {
+              return (active = tab);
+            }}
+            href={tab.path}
+          >
+            <Label>{tab.name}</Label>
+          </Tab>
+        </TabBar>
+      {/if}
+    </MediaQuery>
   {/if}
-  {#if !adminPage}
-    <div class="right">
+  {#if !adminPage && !userName}
+    <MediaQuery query={`(max-width: ${themeStyle.smallest})`} let:matches>
+      {#if matches}
+        <div class="right">
+          <!-- <Button on:click={() => window.alert("Not Implemented")}>
+            <Icon class="material-icons">feedback</Icon>
+            <Label>send feedback</Label>
+          </Button>
+          <Button
+            on:click={() => {
+              loginOpen = !loginOpen;
+            }}
+          >
+            <Icon class="material-icons">login</Icon>
+            <Label>Admin Login</Label>
+          </Button> -->
+          <div
+            class={Object.keys(responsiveAnchorClasses).join(" ")}
+            use:Anchor={{
+              addClass: className => {
+                if (!responsiveAnchorClasses[className]) {
+                  responsiveAnchorClasses[className] = true;
+                }
+              },
+              removeClass: className => {
+                if (responsiveAnchorClasses[className]) {
+                  delete responsiveAnchorClasses[className];
+                  responsiveAnchorClasses = responsiveAnchorClasses;
+                }
+              }
+            }}
+            bind:this={responsiveAnchor}
+          >
+            <Button
+              on:click={() => {
+                responsiveMenu.setOpen(!responsiveActionMenuOpen);
+              }}
+            >
+              <Icon class="material-icons">menu</Icon>
+            </Button>
+            <Menu
+              bind:this={responsiveMenu}
+              anchor={false}
+              bind:anchorElement={responsiveAnchor}
+              anchorCorner="BOTTOM_LEFT"
+            >
+              <List>
+                <Item on:click={() => push("/definitions")}>
+                  <Text>Definitions</Text>
+                </Item>
+                {#if featureFlags.feedback === true}
+                  <Item on:click={() => window.alert("Not Implemented")}>
+                    <Text>Send Feedback</Text>
+                  </Item>
+                {/if}
+                <Item
+                  on:click={() => {
+                    loginOpen = !loginOpen;
+                  }}
+                >
+                  <Text>Admin Login</Text>
+                </Item>
+              </List>
+            </Menu>
+          </div>
+        </div>
+      {/if}
+    </MediaQuery>
+    <MediaQuery query={`(min-width: ${themeStyle.smallest})`} let:matches>
+      {#if matches}
+        <div class="right">
+          <Button on:click={() => push("/definitions")}>
+            <Icon class="material-icons">description</Icon>
+            <Label>Definitions</Label>
+          </Button>
+          {#if featureFlags.feedback === true}
+            <Button on:click={() => window.alert("Not Implemented")}>
+              <Icon class="material-icons">feedback</Icon>
+              <Label>send feedback</Label>
+            </Button>
+          {/if}
+
+          <Button
+            on:click={() => {
+              loginOpen = !loginOpen;
+            }}
+          >
+            <Icon class="material-icons">login</Icon>
+            <Label>Admin Login</Label>
+          </Button>
+        </div>
+      {/if}
+    </MediaQuery>
+  {/if}
+  {#if !adminPage && userName}
+    <Button on:click={() => push("/definitions")} style={"margin-left: auto;"}>
+      <Icon class="material-icons">description</Icon>
+      <Label>Definitions</Label>
+    </Button>
+    {#if featureFlags.feedback === true}
       <Button on:click={() => window.alert("Not Implemented")}>
         <Icon class="material-icons">feedback</Icon>
         <Label>send feedback</Label>
       </Button>
-      <Button
-        on:click={() => {
-          loginOpen = !loginOpen;
-        }}
-      >
-        <Icon class="material-icons">login</Icon>
-        <Label>Admin Login</Label>
+    {/if}
+    <div
+      class={Object.keys(anchorClassesHome).join(" ")}
+      style={"margin-top: unset; margin-left: unset;"}
+      use:Anchor={{
+        addClass: className => {
+          if (!anchorClassesHome[className]) {
+            anchorClassesHome[className] = true;
+          }
+        },
+        removeClass: className => {
+          if (anchorClassesHome[className]) {
+            delete anchorClassesHome[className];
+            anchorClassesHome = anchorClassesHome;
+          }
+        }
+      }}
+      bind:this={anchorHome}
+    >
+      <Button on:click={() => menuHome.setOpen(!homeUserMenuOpen)}>
+        <Icon class="material-icons">account_circle</Icon>
+        <Label>{userName}</Label>
       </Button>
+      <Menu
+        bind:this={menuHome}
+        anchor={false}
+        bind:anchorElement={anchorHome}
+        anchorCorner="BOTTOM_LEFT"
+      >
+        <List>
+          <Item on:click={() => push("/admin/analystHome")}>
+            <Text>Admin Home</Text>
+          </Item>
+          <Item on:click={() => push("/admin/accountDetails")}>
+            <Text>Account Details</Text>
+          </Item>
+          <Item
+            on:click={() => {
+              //We want to delete the entirety of the user session when we "Log Out", so set the stored user to undefined
+              user.update(currUser => undefined);
+              userName = "";
+              push("/");
+            }}
+          >
+            <Text>Log Out</Text>
+          </Item>
+        </List>
+      </Menu>
     </div>
   {/if}
   {#if adminPage}
@@ -244,4 +423,29 @@
     </div>
   {/if}
 </div>
+<MediaQuery query={`(max-width: ${themeStyle.smallest})`} let:matches>
+  {#if matches}
+    <div class="tabbar">
+      <TabBar {tabs} let:tab bind:active style={"width: unset; margin-left: auto;"}>
+        <!-- Note: the `tab` property is required! -->
+        <Tab
+          {tab}
+          on:click={() => {
+            return (active = tab);
+          }}
+          href={tab.path}
+        >
+          <Label>{tab.name}</Label>
+        </Tab>
+      </TabBar>
+    </div>
+  {/if}
+</MediaQuery>
 <LoginModal open={loginOpen} {closeHandler} setAdminPage={val => (adminPage = val)} />
+{#if feedbackOpen}
+  <FeedbackModal
+    open={feedbackOpen}
+    {feedbackClose}
+    on:close={() => (feedbackOpen = false)}
+  />
+{/if}

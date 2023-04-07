@@ -1,162 +1,197 @@
-html, body {
-	position: relative;
-	width: 100%;
-	height: 100%;
+html,
+body {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
-.caption{
-    color:var(--caption);
-    font-size:.75rem;
-    font-weight:400,regular;
+.caption {
+    color: var(--caption);
+    font-size: .75rem;
+    font-weight: 400, regular;
 }
 
 body {
-	color: var(--font);
-	margin: 0;
-	box-sizing: border-box;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,;
+    color: var(--font);
+    margin: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, ;
 }
 
 a {
-	color: rgb(0,100,200);
-	text-decoration: none;
+    color: rgb(0, 100, 200);
+    text-decoration: none;
 }
 
 a:hover {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 a:visited {
-	color: rgb(0,80,160);
+    color: rgb(0, 80, 160);
 }
 
 label {
-	display: block;
+    display: block;
 }
 
-input, button, select, textarea {
-	font-family: inherit;
-	font-size: inherit;
-	-webkit-padding: 0.4em 0;
-	padding: 0.4em;
-	margin: 0 0 0.5em 0;
-	box-sizing: border-box;
-	border: 1px solid #ccc;
-	border-radius: 2px;
+input,
+button,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    -webkit-padding: 0.4em 0;
+    padding: 0.4em;
+    margin: 0 0 0.5em 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 2px;
 }
 
 input:disabled {
-	color: #ccc;
+    color: #ccc;
 }
 
 button {
-	color: #333;
-	background-color: #f4f4f4;
-	outline: none;
+    color: #333;
+    background-color: #f4f4f4;
+    outline: none;
 }
 
 button:disabled {
-	color: #999;
+    color: #999;
 }
 
 button:not(:disabled):active {
-	background-color: #ddd;
+    background-color: #ddd;
 }
 
 button:focus {
-	border-color: #666;
+    border-color: #666;
 }
+
 body::-webkit-scrollbar {
     display: none;
 }
 
 h2::before {
-	display: unset !important;
-  }
+    display: unset !important;
+}
 
 .mdc-data-table__header-cell-wrapper {
-	max-width: unset !important;
+    max-width: unset !important;
     width: -webkit-fill-available !important;
-  }
+}
 
-  th > div > div {
-		max-width: unset !important;
-		width: -webkit-fill-available !important;
-  }
+th>div>div {
+    max-width: unset !important;
+    width: -webkit-fill-available !important;
+}
 
-  .paginate-class > div {
+.paginate-class>div {
     width: -webkit-fill-available;
-  }
+}
 
-  .paginate-class > div > div {
+.paginate-class>div>div {
     width: -webkit-fill-available;
-  }
+}
 
-  .paginate-class {
+.paginate-class {
     width: -webkit-fill-available;
-  }
+}
 
-  .mdc-switch:enabled .mdc-switch__track::after {
-	  background: var(--toggle);
-  }
+.mdc-switch:enabled .mdc-switch__track::after {
+    background: var(--toggle);
+}
 
-  .mdc-switch:enabled:hover:not(:focus):not(:active) .mdc-switch__track::after {
-	background: var(--toggle);
-  }
+.mdc-switch:enabled:hover:not(:focus):not(:active) .mdc-switch__track::after {
+    background: var(--toggle);
+}
 
-  .mdc-switch.mdc-switch--selected:enabled .mdc-switch__handle::after {
-	background: var(--white);
-  }
+.mdc-switch.mdc-switch--selected:enabled .mdc-switch__handle::after {
+    background: var(--white);
+}
 
-  .mdc-switch.mdc-switch--selected:enabled:hover:not(:focus):not(:active) .mdc-switch__handle::after {
-	  background: var(--white);
-  }
+.mdc-switch.mdc-switch--selected:enabled:hover:not(:focus):not(:active) .mdc-switch__handle::after {
+    background: var(--white);
+}
 
-  .mdc-switch.mdc-switch--unselected:enabled:hover:not(:focus):not(:active) .mdc-switch__handle::after {
-	background: var(--caption);
-  }
+.mdc-switch.mdc-switch--unselected:enabled:hover:not(:focus):not(:active) .mdc-switch__handle::after {
+    background: var(--caption);
+}
 
-  .mdc-switch:enabled:focus:not(:active) .mdc-switch__track::after {
-	background: var(--toggle);
-  }
-  
-  .mdc-switch:enabled:active .mdc-switch__track::after {
-		background: var(--toggle);
-	}
+.mdc-switch:enabled:focus:not(:active) .mdc-switch__track::after {
+    background: var(--toggle);
+}
 
-	.mdc-switch.mdc-switch--selected:enabled:active .mdc-switch__handle::after {
-		background: var(--white);
-	}
+.mdc-switch:enabled:active .mdc-switch__track::after {
+    background: var(--toggle);
+}
 
-	.mdc-switch.mdc-switch--selected:enabled:focus:not(:active) .mdc-switch__handle::after {
-		background: var(--white);
-	}
-	.mdc-button--unelevated:disabled {
-		background-color: var(--mdc-filled-button-disabled-container-color, rgba(0, 0, 0, 0.12)) !important;
-	}
+.mdc-switch.mdc-switch--selected:enabled:active .mdc-switch__handle::after {
+    background: var(--white);
+}
 
-    .caption{
-        color:var(--caption);
-        font-size:.75rem;
-        font-weight:400,regular;
-    }
+.mdc-switch.mdc-switch--selected:enabled:focus:not(:active) .mdc-switch__handle::after {
+    background: var(--white);
+}
 
-    .body-caption{
-        color:var(--caption);
-        font-size:1rem;
-        font-weight:400,regular;
-    }
+.mdc-button--unelevated:disabled {
+    background-color: var(--mdc-filled-button-disabled-container-color, rgba(0, 0, 0, 0.12)) !important;
+}
 
-    .body-semibold{
-        color:#4C5060;
-        font-size:1rem;
-        font-weight:600;
-    }
+.caption {
+    color: var(--caption);
+    font-size: .75rem;
+    font-weight: 400, regular;
+}
 
-    .divider {
-        border-bottom: #d3d3d3 solid 0.125rem;
-      }
+.body-caption {
+    color: var(--caption);
+    font-size: 1rem;
+    font-weight: 400, regular;
+}
 
-    .mdc-button--outlined .mdc-button__ripple{
-        border-color:var(--blue)
-    }
+.body-semibold {
+    color: var(--font);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.divider {
+    border-bottom: #d3d3d3 solid 0.125rem;
+}
+
+.mdc-button--outlined .mdc-button__ripple {
+    border-color: var(--blue)
+}
+
+.mdc-data-table {
+    overflow-x: auto;
+}
+
+.mdc-text-field {
+    height: 2.5rem;
+    width: -webkit-fill-available;
+}
+
+.mdc-snackbar {
+    z-index: 9999;
+}
+
+.mdc-snackbar__surface {
+    background: var(--white);
+    width: 46.5rem;
+    border: .125rem solid var(--blue);
+    border-radius: .25rem;
+    z-index: 999;
+}
+
+.mdc-snackbar__label {
+    color: var(--font);
+}
+
+.smui-accordion .smui-accordion__panel>.smui-accordion__header .smui-accordion__header__title {
+    padding: 0;
+}

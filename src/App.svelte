@@ -1,7 +1,6 @@
 <style>
   main {
     text-align: center;
-    max-width: 240px;
     margin: 0 auto;
     width: -webkit-fill-available;
     display: flex;
@@ -24,8 +23,8 @@
 <script lang="ts">
   import { writable } from "svelte/store";
   import Header from "./components/Header.svelte";
+  import Footer from "./components/Footer.svelte";
   import Router from "./Router.svelte";
-  import Tab, { Label } from "@smui/tab";
   import TabBar from "@smui/tab-bar";
   import Button from "@smui/button";
   import "./theme.scss";
@@ -47,7 +46,7 @@
     {
       id: "pacDefinitions",
       name: "PAC Definitions",
-      path: `${process.env.SVELTE_APP_BASEURL}/#/definitions`
+      path: `${process.env.SVELTE_APP_BASEURL}/definitions`
     },
     {
       id: "search",
@@ -55,6 +54,7 @@
       path: `${process.env.SVELTE_APP_BASEURL}/#/search`
     }
   ];
+
   let active = tabs[0];
   let location = window.location.href;
 </script>
@@ -76,3 +76,4 @@
     />
   </div>
 </main>
+<Footer />

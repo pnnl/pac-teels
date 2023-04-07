@@ -46,6 +46,9 @@
   import Paper from "@smui/paper";
   import Button, { Icon } from "@smui/button";
   import { Icon as CommonIcon } from "@smui/common";
+  import MediaQuery from "components/MediaQuery.svelte";
+  import themeStyle from "../theme.scss";
+
   //@ts-ignore
   import Switch from "@smui/switch";
 
@@ -122,7 +125,7 @@
     <Row style="width: -webkit-fill-available;">
       <Cell colspan={100} style="border-bottom: unset;">
         <div style={"display: flex; align-items: center; "}>
-          <Paper
+          <!-- <Paper
             class="solo-paper"
             style={"width: -webkit-fill-available; margin: 1rem; height: var(--mdc-outlined-button-container-height, 36px);"}
           >
@@ -144,7 +147,7 @@
           >
             <Icon class="material-icons">filter_list</Icon>
             <Label>Filters</Label>
-          </Button>
+          </Button> -->
         </div>
       </Cell>
     </Row>
@@ -187,15 +190,29 @@
   <Pagination slot="paginate" class="paginate-class">
     <div style="display: flex; flex: 1;">
       <div style="display: flex; flex: 1; align-items: center; margin-left: 2rem;">
-        <Button
-          variant="unelevated"
-          defaultAction
-          on:click={() => {}}
-          style={"margin-bottom: 0;"}
-        >
-          <Icon class="material-icons">person_add</Icon>
-          <Label>Add New Account</Label>
-        </Button>
+        <MediaQuery query={`(min-width: ${themeStyle.smallest})`} let:matches>
+          {#if matches}
+            <Button
+              variant="unelevated"
+              defaultAction
+              on:click={() => {}}
+              style={"margin-bottom: 0;"}
+            >
+              <Icon class="material-icons">person_add</Icon>
+              <Label>Add New Account</Label>
+            </Button>
+          {:else}
+            <Button
+              variant="unelevated"
+              defaultAction
+              on:click={() => {}}
+              style={"margin-bottom: 0;"}
+            >
+              <Icon class="material-icons">person_add</Icon>
+              <Label>Add</Label>
+            </Button>
+          {/if}
+        </MediaQuery>
       </div>
       <div style="display: flex; align-items: center;">
         <Label>Rows Per Page</Label>

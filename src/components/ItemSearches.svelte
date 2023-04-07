@@ -39,7 +39,11 @@
       rightPanelOpened.update(currOpen => !currOpen);
     }}
   >
-    <div>{key}</div>
-    <div class="searched-name">{value.id}</div>
+    <div class="searched-cas">{value.CAS_Number}</div>
+    <div class="searched-name">{value.Chemical_Name}</div>
+    <div class="searched-formula">{value.Chemical_Formula}</div>
+    {#if value.UN_Number != '<BR>'}
+      <div class="searched-UN">{value.UN_Number}</div>
+    {/if}
   </div>
 {/each}
