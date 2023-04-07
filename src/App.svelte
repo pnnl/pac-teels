@@ -4,7 +4,6 @@
     margin: 0 auto;
     width: -webkit-fill-available;
     display: flex;
-    overflow-x: hidden;
   }
 
   h1 {
