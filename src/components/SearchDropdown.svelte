@@ -136,14 +136,6 @@
           .includes(searchBarFilter.toLowerCase().trim())
     );
 
-    const foundID = items.filter(
-      currItem =>
-        currItem.Chemical_ID &&
-        currItem.Chemical_ID.toLowerCase()
-          .trim()
-          .includes(searchBarFilter.toLowerCase().trim())
-    );
-
     if (foundCas.length > 0) {
       filteredItems.set("foundCas", { label: "Matching CAS Number", items: foundCas });
     }
@@ -164,9 +156,6 @@
         label: "Matching UN Number",
         items: foundUN_Number
       });
-    }
-    if (foundID.length > 0) {
-      filteredItems.set("foundID", { label: "Matching ID", items: foundID });
     }
     if (filteredItems.size === 0) {
       filteredItems.set("noneFound", { label: "No Matches" });
@@ -240,7 +229,28 @@
         {#if value.items}
           {#each value.items as item}
             <div class="search-item" on:click={() => handleSearchItemSelect(item)}>
-              {item.Chemical_Name}
+              {#if key == "foundCas"}
+                <b>{item.CAS_Number}</b>
+              {:else}
+                {item.CAS_Number}
+              {/if}
+              {#if key == "foundName"}
+                <b>{item.Chemical_Name}</b>
+              {:else}
+                {item.Chemical_Name}
+              {/if}
+              {#if key == "foundFormula"}
+                <b>{item.Chemical_Formula}</b>
+              {:else}
+                {item.Chemical_Formula}
+              {/if}
+              {#if item.UN_Number != '<BR>'}
+                {#if key == "foundUN_Number"}
+                  <b>{item.UN_Number}</b>
+                {:else}
+                  {item.UN_Number}
+                {/if}
+              {/if}             
             </div>
           {/each}
         {/if}
