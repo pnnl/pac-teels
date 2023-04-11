@@ -170,7 +170,7 @@
     <div class="body-caption">PAC-3</div>
 
     <div class="pac-item">
-      <h3>{currentChemical.pac2 || "N/A"} {currentUnit}</h3>
+      <h3>{currentChemical.pac3 || "N/A"} {currentUnit}</h3>
       {#if featureFlags.pacLabel === true}
         <div class="caption">Corresponds to 60-minute AEGL values</div>
       {/if}
