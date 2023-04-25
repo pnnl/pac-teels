@@ -28,7 +28,7 @@
   }
 
   .search-bar-wrapper {
-    width: 18.75rem;
+    width: -webkit-fill-available;
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -45,12 +45,25 @@
   }
 
   .search-drop-down {
-    position: absolute;
-    border: 1px solid var(--blue);
-    border-radius: 4px;
-    padding: 8px 0px 8px 0px;
+    border: 0.0625rem solid var(--blue);
+    border-radius: 0.25rem;
+    padding: 0.5rem 0;
     background-color: var(--white);
     margin-top: 0.5rem;
+    width: -webkit-fill-available;
+    overflow-y: auto;
+    max-height: 45vh;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #29324666;
+    opacity: 0.7;
+    border-radius: 1rem;
   }
 
   .search-bar-full-wrapper {
@@ -92,7 +105,7 @@
 
   export let placeholder;
   export let searchBarFilter = "";
-  export let style;
+  export let style = "";
   export let items;
   export let itemsLoading = false;
 
@@ -195,7 +208,7 @@
   <div class="full-cover" />
 {/if}
 <div class="search-bar-full-wrapper">
-  <div class="search-bar-wrapper" {style}>
+  <div class="search-bar-wrapper">
     <i class="search-icon material-icons">search</i>
     <input
       class="search-bar"
@@ -221,7 +234,7 @@
     {/if}
   </div>
   {#if searchDropDownVisible}
-    <div class="search-drop-down" {style}>
+    <div class="search-drop-down">
       {#each [...filteredItems] as [key, value]}
         {#if value.Chemical_Name}
           <div class="item-label">{value.Chemical_Name}</div>
@@ -244,13 +257,13 @@
               {:else}
                 {item.Chemical_Formula}
               {/if}
-              {#if item.UN_Number != '<BR>'}
+              {#if item.UN_Number != "<BR>"}
                 {#if key == "foundUN_Number"}
                   <b>{item.UN_Number}</b>
                 {:else}
                   {item.UN_Number}
                 {/if}
-              {/if}             
+              {/if}
             </div>
           {/each}
         {/if}
