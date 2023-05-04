@@ -203,18 +203,9 @@
     style="max-width: 75rem; margin-right: auto; margin-left: auto; width: -webkit-fill-available;"
   >
     {#await fetchChemicals}
-      <SearchDropdown
-        style={"width: -webkit-fill-available;"}
-        items={[]}
-        placeholder={"Search chemicals"}
-        itemsLoading={true}
-      />
+      <SearchDropdown items={[]} placeholder={"Search chemicals"} itemsLoading={true} />
     {:then data}
-      <SearchDropdown
-        style={"width: -webkit-fill-available;"}
-        items={data}
-        placeholder={"Search chemicals"}
-      />
+      <SearchDropdown items={data} placeholder={"Search chemicals"} />
     {/await}
 
     <div class="label">
