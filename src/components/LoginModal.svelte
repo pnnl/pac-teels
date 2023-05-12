@@ -1,7 +1,8 @@
 <style>
   .error-caption {
-    color: red;
+    color: var(--mdc-theme-error, #b00020);
     font-size: 0.75rem;
+    position: absolute;
   }
 </style>
 
@@ -26,11 +27,19 @@
   let loginLoading = false;
 
   let email = "";
-  let emailInput: Input;
+  let emailInput: typeof Input;
   let errorMessage = "";
+
+  let emailValid = true;
 
   let password = "";
   let showPassChecked = false;
+
+  const validateEmail = () => {
+    const re = /\S+@\S+\.\S+/;
+    const validEmail = re.test(email);
+    emailValid = validEmail;
+  };
 
   const handleSubmit = async (e: any) => {
     loginLoading = true;
@@ -79,6 +88,11 @@
       >
     </Header>
     <Content id="fullscreen-content" style={"display: flex; flex-direction: column;"}>
+      {#if errorMessage.length > 0}
+        <div class="error-caption">
+          {errorMessage}
+        </div>
+      {/if}
       <div style={"margin-top: 2.2rem; color: var(--font);"}>
         <div
           style={"font-size: 14px; line-height: 21px; font-weight: 500;margin-bottom: 0.5rem;"}
@@ -89,10 +103,12 @@
           bind:value={email}
           variant="outlined"
           style={"width: -webkit-fill-available; height: var(--mdc-outlined-button-container-height, 36px);"}
-          invalid={true}
-        >
-          <HelperText id="helper-text-manual-a" slot="helper">Helper Text</HelperText>
-        </Textfield>
+          invalid={!emailValid || !!errorMessage}
+          on:blur={validateEmail}
+        />
+        {#if !emailValid}
+          <div class="error-caption">Invalid Email</div>
+        {/if}
       </div>
       <div style={"margin-top: 2.2rem;color: var(--font);"}>
         <div
@@ -105,13 +121,9 @@
           variant="outlined"
           style={"width: -webkit-fill-available; height: var(--mdc-outlined-button-container-height, 36px);"}
           type={showPassChecked ? "text" : "password"}
+          invalid={!!errorMessage}
         />
       </div>
-      {#if errorMessage.length > 0}
-        <div class="error-caption">
-          {errorMessage}
-        </div>
-      {/if}
       <div style={"margin-top: 1.5rem;color: var(--font); margin-left: -11px;"}>
         <FormField>
           <Checkbox
@@ -135,7 +147,7 @@
       </Button>
       <Button
         variant="unelevated"
-        disabled={email && password && !loginLoading ? false : true}
+        disabled={email && password && !loginLoading && emailValid ? false : true}
         on:click={e => {
           handleSubmit(e);
         }}
