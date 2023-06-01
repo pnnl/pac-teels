@@ -56,6 +56,9 @@
     font-weight: 400;
     margin: 0;
   }
+  .center {
+    text-align: center;
+  }
 </style>
 
 <script lang="ts">
@@ -81,6 +84,8 @@
   let showUnsubscribe = false;
   //   TODO: update with endpoint
   let subscribed = false;
+  let asterikCaption =
+    "PAC values marked by * are >= 10% lower explosive limit (LEL) but < 50% LEL";
 
   selectedChemical.subscribe(currChemical => {
     if (currChemical) {
@@ -90,7 +95,7 @@
 
   $: {
     currentUnit = currentChemical?.originalUnit;
-    mostRecentUpdateDate = new Date(currentChemical['Date']).toDateString();
+    mostRecentUpdateDate = new Date(currentChemical["Date"]).toDateString();
   }
 </script>
 
@@ -176,6 +181,7 @@
       {/if}
     </div>
   </div>
+  <div class="caption center">{asterikCaption}</div>
   <FormField />
 
   <div class="divider" />
