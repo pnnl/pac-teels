@@ -60,7 +60,11 @@
 <Dialog
   bind:open
   on:SMUIDialog:closed={close}
-  surface$style="width: 850px; max-width: calc(100vw - 2rem);"
+  surface$style="width: 850px;
+  max-width: calc(100vw - 2rem);
+  top: 5rem;
+  bottom: 2rem;
+  position: absolute;"
 >
   <Content>
     <Header
