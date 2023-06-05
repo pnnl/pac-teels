@@ -92,3 +92,8 @@ export const STUBBED_HOMEPAGE_ITEMS = new Map([
         }
     ]
 ]);
+
+
+export const AEGL_STANDING_OPERATING_PROCEDURE = "https://www.epa.gov/aegl"
+export const AIHA_ERP_COMMITTEE_PROCEDURES_RESPONSIBILITIES = "https://www.aiha.org/get-involved/aiha-guideline-foundation/erpgs"
+export const DOE_HANDBOOK = "https://www.standards.doe.gov/standards-documents/1000/1046-Bhdbk-2016-reaff-2022"

@@ -68,7 +68,6 @@
 
   .search-bar-full-wrapper {
     position: relative;
-    z-index: 12;
   }
 
   .search-item {
