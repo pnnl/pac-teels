@@ -112,6 +112,7 @@
   import { push, pop, replace } from "svelte-spa-router";
   import { user } from "stores/stores";
   import FeedbackModal from "./FeedbackModal/FeedbackModal.svelte";
+  import DisclaimerModal from "./DisclaimerModal/DisclaimerModal.svelte";
   import MediaQuery from "components/MediaQuery.svelte";
   import themeStyle from "../theme.scss";
   import { featureFlags } from "constants/featureFlags";
@@ -122,6 +123,10 @@
   export let logoLabel: any = undefined;
   export let adminPage;
   export let location;
+  let showDisclaimer = false;
+  let disclaimerClose = (e: CustomEvent<{ action: string }>) => {
+    showDisclaimer = false;
+  };
 
   let tabs = [
     {
@@ -273,6 +278,9 @@
                 <Item on:click={() => push("/definitions")}>
                   <Text>Definitions</Text>
                 </Item>
+                <Item on:click={() => (showDisclaimer = true)}>
+                  <Text>Disclaimer</Text>
+                </Item>
                 {#if featureFlags.feedback === true}
                   <Item on:click={() => window.alert("Not Implemented")}>
                     <Text>Send Feedback</Text>
@@ -298,6 +306,9 @@
             <Icon class="material-icons">description</Icon>
             <Label>Definitions</Label>
           </Button>
+          <Button on:click={() => (showDisclaimer = true)} style={"margin-left: auto;"}>
+            <Label>Disclaimer</Label>
+          </Button>
           {#if featureFlags.feedback === true}
             <Button on:click={() => window.alert("Not Implemented")}>
               <Icon class="material-icons">feedback</Icon>
@@ -322,6 +333,10 @@
       <Icon class="material-icons">description</Icon>
       <Label>Definitions</Label>
     </Button>
+    <Button on:click={() => (showDisclaimer = true)} style={"margin-left: auto;"}>
+      <Label>Disclaimer</Label>
+    </Button>
+
     {#if featureFlags.feedback === true}
       <Button on:click={() => window.alert("Not Implemented")}>
         <Icon class="material-icons">feedback</Icon>
@@ -447,5 +462,12 @@
     open={feedbackOpen}
     {feedbackClose}
     on:close={() => (feedbackOpen = false)}
+  />
+{/if}
+{#if showDisclaimer}
+  <DisclaimerModal
+    open={showDisclaimer}
+    close={disclaimerClose}
+    on:close={() => (showDisclaimer = false)}
   />
 {/if}
