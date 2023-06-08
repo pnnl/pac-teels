@@ -19,9 +19,18 @@
     align-content: center;
     justify-content: center;
     align-items: flex-end;
-    margin: 8vh 1rem 18vh 1rem;
+    margin: 8vh 1rem 1vh 1rem;
     letter-spacing: -0.02em;
   }
+
+  .siteDescription{
+    margin: 0vh 1rem 12vh 1rem;
+    max-width: 75rem; margin-right: auto; margin-left: auto; width: -webkit-fill-available;
+    text-align:center;
+    color: dark-gray;
+    font-size: 1rem;
+  }
+
   h1 {
     font-weight: 300;
     font-size: 4rem;
@@ -199,6 +208,7 @@
       <div class="version">Last Revised: {date}</div>
     {/await}
   </div>
+  <div class="siteDescription">Protective Action Criteria (PACs) are levels of chemical materials above which could threaten or endanger the health and safety of workers or the public. As used throughout this website, “PAC” is a collective term for the various chemical limits, including AEGL, ERPG, and TEEL values. A majority of the chemicals in this database will have TEEL values. As we update the chemical TEEL values, we are adding a field for ‘Technical Justification’ that will provide the technical basis for determining the TEEL values or state if the PAC values are based on 60-min. AEGLs or ERPGs. In the interim, unless the values specifically state that they are AEGLs or ERPGs, they should be considered TEELs. </div>
   <div
     style="max-width: 75rem; margin-right: auto; margin-left: auto; width: -webkit-fill-available;"
   >
