@@ -45,6 +45,8 @@
   }
 
   .search-drop-down {
+    position: absolute;
+    z-index: 100;
     border: 0.0625rem solid var(--blue);
     border-radius: 0.25rem;
     padding: 0.5rem 0;

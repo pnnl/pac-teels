@@ -26,7 +26,7 @@
     width: 100%;
   }
   .body {
-    padding: 1rem;
+    padding: 1rem 1rem 3rem 1rem;
     grid-column: 1;
     display: flex;
     flex-direction: column;
@@ -123,6 +123,8 @@
       effects or death.
     </p>
     <p>TEELs are intended for use until AEGLs or ERPGs are adopted for chemicals.</p>
+    <hr>
+    <h3>DOE handbook|<a href="https://www.standards.doe.gov/standards-documents/1000/1046-Bhdbk-2016-reaff-2022">DOE-HDBK-1046-2016 (reaffirmed 2022)</a></h3>
   </div>
   <!--
     TODO: Add in second release
