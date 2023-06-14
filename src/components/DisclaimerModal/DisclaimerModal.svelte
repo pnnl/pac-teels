@@ -83,7 +83,7 @@
         style={"color:var(--blue); "}
         on:click={() => dispatch("close")}>close</IconButton
       >
-      <Title style={`padding:0;`}>Disclaimer</Title>
+      <Title style={`padding:0;`}>About</Title>
     </Header>
     <p>
       Emergency exposure limits are essential components of planning for the uncontrolled
