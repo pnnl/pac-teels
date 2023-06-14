@@ -102,12 +102,33 @@
     mostRecentUpdateDate = new Date(currentChemical["Date"]).toDateString();
   }
 
-  const convertPpmAndMgm = () => {
+  const ppmToMgm = localPACValues => {
+    let molecularWeight = parseFloat(currentChemical.molecularWeight);
+    for (const [key, value] of Object.entries(localPACValues)) {
+      let newItem = parseFloat(value as any);
+      let newValue = (newItem * molecularWeight) / 24.45;
+      localPACValues[key] = newValue.toFixed(2);
+    }
+    return localPACValues;
+    // Y mg/m3 = (item[1])(molecularWeight)/24.45
+  };
+  //   X ppm = (Y mg/m3)(24.45)/(molecular weight)
+  const mgmToPpm = localPACValues => {
+    let molecularWeight = parseFloat(currentChemical.molecularWeight);
+    for (const [key, value] of Object.entries(localPACValues)) {
+      let newItem = parseFloat(value as any);
+      let newValue = (newItem * 24.45) / molecularWeight;
+      localPACValues[key] = newValue.toFixed(2);
+    }
+    return localPACValues;
+  };
+
+  const convertUnit = () => {
     let convertCase;
     /** Get type of case*/
     if (currentChemical.originalUnit === currentUnit) {
       convertCase = 1;
-    } else if (currentChemical.originalUnit !== currentUnit) {
+    } else if (currentChemical?.originalUnit !== currentUnit) {
       if (currentUnit === UNIT_OPTIONS[0]) {
         convertCase = 2;
       } else if (currentUnit === UNIT_OPTIONS[1]) {
@@ -117,54 +138,31 @@
 
     let localPACValues = calculatedPACValues;
     /**Convert based on case type*/
-    // switch (convertCase) {
-    //   case 1:
-    //     {
-    //       localPACValues = {
-    //         PAC1: currentChemical.pac1,
-    //         PAC2: currentChemical.pc2,
-    //         PAC3: currentChemical.pac3
-    //       };
-    //       return localPACValues;
-    //     }
-    // case 2: {
-    //     return localPACValues
-    // }
-    // case 3:{
-    //     return localPACValues
-    // }
-    ppmToMgm(localPACValues);
-    calculatedPACValues = localPACValues;
-    // }
-  };
-
-  const ppmToMgm = localPACValues => {
-    let molecularWeight = parseFloat(currentChemical.molecularWeight);
-    console.log(Object.values(localPACValues));
-    for (const [key, value] of Object.entries(localPACValues)) {
-      console.log({ value }, { molecularWeight });
-      let newItem = parseFloat(value as any);
-      //   let newValue = (newItem as any)(molecularWeight) / 24.45;
-      let newValue = (newItem * molecularWeight) / 24.45;
-      localPACValues[key] = newValue;
-      console.log(localPACValues);
+    switch (convertCase) {
+      case 1: {
+        localPACValues = {
+          PAC1: currentChemical.pac1,
+          PAC2: currentChemical.pac2,
+          PAC3: currentChemical.pac3
+        };
+        localPACValues;
+      }
+      case 2: {
+        ppmToMgm(localPACValues);
+      }
+      case 3: {
+        mgmToPpm(localPACValues);
+      }
     }
-    // Y mg/m3 = (item[1])(molecularWeight)/24.45
+    calculatedPACValues = localPACValues;
   };
-
-  const mgmToPpm = () => {
-    //   X ppm = (Y mg/m3)(24.45)/(molecular weight)
-  };
-
-  const handleToggle = () => {};
 
   $: {
     if (currentUnit) {
-      convertPpmAndMgm();
+      convertUnit();
     }
   }
   onMount(() => {
-    console.log({ currentChemical });
     for (const value of UNIT_OPTIONS) {
       if (currentChemical?.originalUnit === value) {
         currentUnit = value;
@@ -243,7 +241,7 @@
       {:else}
         TEEL-1
       {/if}
-      </div>
+    </div>
 
     <div class="pac-item">
       <h3>
@@ -256,13 +254,13 @@
     </div>
 
     <div class="body-caption">
-    {#if currentChemical.aegl2 != ""}
-      AEGL-2
-    {:else if currentChemical.erpg2 != ""}
-      ERPG-2
-    {:else}
-      TEEL-2
-    {/if}
+      {#if currentChemical.aegl2 != ""}
+        AEGL-2
+      {:else if currentChemical.erpg2 != ""}
+        ERPG-2
+      {:else}
+        TEEL-2
+      {/if}
     </div>
 
     <div class="pac-item">
@@ -283,7 +281,7 @@
       {:else}
         TEEL-3
       {/if}
-      </div>
+    </div>
 
     <div class="pac-item">
       <h3>
