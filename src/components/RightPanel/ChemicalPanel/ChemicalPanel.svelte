@@ -234,7 +234,17 @@
         </div>
       {/each}
     </FormField>
-    <div class="body-caption">PAC-1</div>
+
+    <div class="body-caption">
+      {#if currentChemical.aegl1 != ""}
+        AEGL-1
+      {:else if currentChemical.erpg1 != ""}
+        ERPG-1
+      {:else}
+        TEEL-1
+      {/if}
+      </div>
+
     <div class="pac-item">
       <h3>
         {calculatedPACValues?.PAC1 ? calculatedPACValues.PAC1 : "N/A"}
@@ -245,7 +255,15 @@
       {/if}
     </div>
 
-    <div class="body-caption">PAC-2</div>
+    <div class="body-caption">
+    {#if currentChemical.aegl2 != ""}
+      AEGL-2
+    {:else if currentChemical.erpg2 != ""}
+      ERPG-2
+    {:else}
+      TEEL-2
+    {/if}
+    </div>
 
     <div class="pac-item">
       <h3>
@@ -257,7 +275,15 @@
       {/if}
     </div>
 
-    <div class="body-caption">PAC-3</div>
+    <div class="body-caption">
+      {#if currentChemical.aegl3 != ""}
+        AEGL-3
+      {:else if currentChemical.erpg3 != ""}
+        ERPG-3
+      {:else}
+        TEEL-3
+      {/if}
+      </div>
 
     <div class="pac-item">
       <h3>
