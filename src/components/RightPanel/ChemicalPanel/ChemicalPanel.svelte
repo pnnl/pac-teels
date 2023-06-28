@@ -79,7 +79,7 @@
   let showEmailNotification = false;
   let componentReference: HTMLElement;
   let currentChemical;
-  let currentUnit;
+  let currentUnit: string = "";
   let mostRecentUpdateDate;
   let showUnsubscribe = false;
   let calculatedPACValues: any = {
@@ -110,7 +110,7 @@
       localPACValues[key] = newValue.toFixed(2);
     }
     return localPACValues;
-    // Y mg/m3 = (item[1])(molecularWeight)/24.45
+    // Y mg/m3 = (X)(molecularWeight)/24.45
   };
   //   X ppm = (Y mg/m3)(24.45)/(molecular weight)
   const mgmToPpm = localPACValues => {
@@ -126,7 +126,7 @@
   const convertUnit = () => {
     let convertCase;
     /** Get type of case*/
-    if (currentChemical.originalUnit === currentUnit) {
+    if (currentChemical?.originalUnit === currentUnit) {
       convertCase = 1;
     } else if (currentChemical?.originalUnit !== currentUnit) {
       if (currentUnit === UNIT_OPTIONS[0]) {
@@ -135,7 +135,6 @@
         convertCase = 3;
       }
     }
-
     let localPACValues = calculatedPACValues;
     /**Convert based on case type*/
     switch (convertCase) {

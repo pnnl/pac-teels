@@ -1,6 +1,6 @@
 export const mainComponentHTMLSelector = "main.app-main-component";
 
-export const UNIT_OPTIONS = ["ppm", "mg/m"];
+export const UNIT_OPTIONS = ["ppm", "mg/m3"];
 
 /** Stubbed Data Section **/
 export const PHYSICAL_PROPERTY_MAP = new Map([
