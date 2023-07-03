@@ -74,7 +74,7 @@
   import UnsubscribeModal from "./UnsubscribeModal/UnsubscribeModal.svelte";
   import { selectedChemical } from "stores/stores";
   import { featureFlags } from "constants/featureFlags";
-
+  import { convertPACValue } from "utilities/utilities";
   let calculation = 1.232;
   let showEmailNotification = false;
   let componentReference: HTMLElement;
@@ -123,42 +123,32 @@
     return localPACValues;
   };
 
-  const convertUnit = () => {
-    let convertCase;
-    /** Get type of case*/
-    if (currentChemical?.originalUnit === currentUnit) {
-      convertCase = 1;
-    } else if (currentChemical?.originalUnit !== currentUnit) {
-      if (currentUnit === UNIT_OPTIONS[0]) {
-        convertCase = 2;
-      } else if (currentUnit === UNIT_OPTIONS[1]) {
-        convertCase = 3;
-      }
+  const convertUnit = ({ localPACValues }) => {
+    if (currentChemical?.molecularWeight.length > 0) {
+      let newValue = convertPACValue({
+        molecularWeight: currentChemical?.molecularWeight,
+        PACValues: localPACValues,
+        unit: currentUnit
+      });
+      calculatedPACValues = newValue;
+    } else {
+      calculatedPACValues = localPACValues;
+      currentUnit = currentChemical?.originalUnit;
     }
-    let localPACValues = calculatedPACValues;
-    /**Convert based on case type*/
-    switch (convertCase) {
-      case 1: {
-        localPACValues = {
-          PAC1: currentChemical.pac1,
-          PAC2: currentChemical.pac2,
-          PAC3: currentChemical.pac3
-        };
-        localPACValues;
-      }
-      case 2: {
-        ppmToMgm(localPACValues);
-      }
-      case 3: {
-        mgmToPpm(localPACValues);
-      }
-    }
-    calculatedPACValues = localPACValues;
   };
 
   $: {
     if (currentUnit) {
-      convertUnit();
+      let localPACValues = {
+        PAC1: currentChemical?.pac1,
+        PAC2: currentChemical?.pac2,
+        PAC3: currentChemical?.pac3
+      };
+      if (currentUnit !== currentChemical.originalUnit) {
+        convertUnit({ localPACValues });
+      } else {
+        calculatedPACValues = localPACValues;
+      }
     }
   }
   onMount(() => {
@@ -166,9 +156,9 @@
       if (currentChemical?.originalUnit === value) {
         currentUnit = value;
         calculatedPACValues = {
-          PAC1: currentChemical.pac1,
-          PAC2: currentChemical.pac2,
-          PAC3: currentChemical.pac3
+          PAC1: currentChemical?.pac1,
+          PAC2: currentChemical?.pac2,
+          PAC3: currentChemical?.pac3
         };
       }
     }
@@ -226,7 +216,11 @@
       <!-- TODO: Reconnect when added calculation -->
       {#each UNIT_OPTIONS as option}
         <div class="radio-item">
-          <Radio bind:group={currentUnit} value={option} />
+          <Radio
+            bind:group={currentUnit}
+            value={option}
+            disabled={currentChemical.molecularWeight.length < 1}
+          />
           <span class="label">{option}</span>
         </div>
       {/each}
