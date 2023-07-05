@@ -307,7 +307,7 @@
             <Label>Definitions</Label>
           </Button>
           <Button on:click={() => (showDisclaimer = true)} style={"margin-left: auto;"}>
-            <Label>Disclaimer</Label>
+            <Label>About</Label>
           </Button>
           {#if featureFlags.feedback === true}
             <Button on:click={() => window.alert("Not Implemented")}>
