@@ -133,11 +133,12 @@
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
-          "X-Api-Key": process.env?.APPSYNC_APIKEY
+          "X-Api-Key": process.env.APPSYNC_APIKEY
         },
         body: JSON.stringify({
           query: listPACTEELDatabases,
           variables: {
+            filter: {version: {eq: 0}},
             limit: 4000,
             nextToken: nextToken
           }
@@ -145,6 +146,7 @@
       };
       const response = await fetch(`${process.env.GRAPHQL_ENDPOINT}`, httpOptions);
       const data = await response.json();
+      console.log(data);
       if (
         data &&
         data.data &&

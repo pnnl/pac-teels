@@ -55,8 +55,9 @@ type PACTEELDatabase {
 	lclo: AWSJSON
 	ld50: AWSJSON
 	ldlo: AWSJSON
-  Boiling_Point: String
+  	Boiling_Point: String
 	Melting_Point: String
 	State: String
 	Vapor_Pressure: String
+	version: Int
 }
