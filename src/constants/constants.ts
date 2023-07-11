@@ -8,7 +8,7 @@ export const PHYSICAL_PROPERTY_MAP = new Map([
     ["state", "State"],
     ["Melting_Point", "Melting Point (°C)"],
     ["Boiling_Point", "Boiling Point (°C)"],
-    ["Vapor_Pressure", "VP (°C)"]
+    ["Vapor_Pressure", "VP (mmHg)"]
 ]);
 
 export const CHEMICAL_IDENTITY = {
