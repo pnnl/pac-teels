@@ -8,6 +8,7 @@ export type CreatePACTEELDatabaseInput = {
   Chemical_ID: string;
   Chemical_Name?: string | null;
   Date: string;
+  Last_Reviewed?: string | null;
   Status?: string | null;
   UN_Number?: string | null;
   aegl1?: string | null;
@@ -73,6 +74,7 @@ export type PACTEELDatabase = {
   Chemical_ID: string;
   Chemical_Name?: string | null;
   Date: string;
+  Last_Reviewed?: string | null;
   Status?: string | null;
   UN_Number?: string | null;
   aegl1?: string | null;
@@ -142,6 +144,7 @@ export type UpdatePACTEELDatabaseInput = {
   Chemical_ID: string;
   Chemical_Name?: string | null;
   Date: string;
+  Last_Reviewed?: string | null;
   Status?: string | null;
   UN_Number?: string | null;
   aegl1?: string | null;
@@ -206,6 +209,7 @@ export type TablePACTEELDatabaseFilterInput = {
   Chemical_ID?: TableStringFilterInput | null;
   Chemical_Name?: TableStringFilterInput | null;
   Date?: TableStringFilterInput | null;
+  Last_Reviewed?: TableStringFilterInput | null;
   Status?: TableStringFilterInput | null;
   UN_Number?: TableStringFilterInput | null;
   aegl1?: string | null;
@@ -308,6 +312,7 @@ export type CreatePACTEELDatabaseMutation = {
     Chemical_ID: string;
     Chemical_Name?: string | null;
     Date: string;
+    Last_Reviewed?: string | null;
     Status?: string | null;
     UN_Number?: string | null;
     aegl1?: string | null;
@@ -379,6 +384,7 @@ export type DeletePACTEELDatabaseMutation = {
     Chemical_ID: string;
     Chemical_Name?: string | null;
     Date: string;
+    Last_Reviewed?: string | null;
     Status?: string | null;
     UN_Number?: string | null;
     aegl1?: string | null;
@@ -450,6 +456,7 @@ export type UpdatePACTEELDatabaseMutation = {
     Chemical_ID: string;
     Chemical_Name?: string | null;
     Date: string;
+    Last_Reviewed?: string | null;
     Status?: string | null;
     UN_Number?: string | null;
     aegl1?: string | null;
@@ -522,6 +529,7 @@ export type GetPACTEELDatabaseQuery = {
     Chemical_ID: string;
     Chemical_Name?: string | null;
     Date: string;
+    Last_Reviewed?: string | null;
     Status?: string | null;
     UN_Number?: string | null;
     aegl1?: string | null;
@@ -597,6 +605,7 @@ export type ListPACTEELDatabasesQuery = {
       Chemical_ID: string;
       Chemical_Name?: string | null;
       Date: string;
+      Last_Reviewed?: string | null;
       Status?: string | null;
       UN_Number?: string | null;
       aegl1?: string | null;
@@ -674,6 +683,7 @@ export type QueryPACTEELDatabasesByCASNumberIndexQuery = {
       Chemical_ID: string;
       Chemical_Name?: string | null;
       Date: string;
+      Last_Reviewed?: string | null;
       Status?: string | null;
       UN_Number?: string | null;
       aegl1?: string | null;
@@ -751,6 +761,7 @@ export type QueryPACTEELDatabasesByChemicalFormulaIndexQuery = {
       Chemical_ID: string;
       Chemical_Name?: string | null;
       Date: string;
+      Last_Reviewed?: string | null;
       Status?: string | null;
       UN_Number?: string | null;
       aegl1?: string | null;
@@ -828,6 +839,7 @@ export type QueryPACTEELDatabasesByChemicalNameIndexQuery = {
       Chemical_ID: string;
       Chemical_Name?: string | null;
       Date: string;
+      Last_Reviewed?: string | null;
       Status?: string | null;
       UN_Number?: string | null;
       aegl1?: string | null;
@@ -905,6 +917,7 @@ export type QueryPACTEELDatabasesByStatusIndexQuery = {
       Chemical_ID: string;
       Chemical_Name?: string | null;
       Date: string;
+      Last_Reviewed?: string | null;
       Status?: string | null;
       UN_Number?: string | null;
       aegl1?: string | null;
@@ -982,6 +995,7 @@ export type QueryPACTEELDatabasesByUNNumberIndexQuery = {
       Chemical_ID: string;
       Chemical_Name?: string | null;
       Date: string;
+      Last_Reviewed?: string | null;
       Status?: string | null;
       UN_Number?: string | null;
       aegl1?: string | null;
@@ -1059,6 +1073,7 @@ export type OnCreatePACTEELDatabaseSubscription = {
     Chemical_ID: string;
     Chemical_Name?: string | null;
     Date: string;
+    Last_Reviewed?: string | null;
     Status?: string | null;
     UN_Number?: string | null;
     aegl1?: string | null;
@@ -1134,6 +1149,7 @@ export type OnDeletePACTEELDatabaseSubscription = {
     Chemical_ID: string;
     Chemical_Name?: string | null;
     Date: string;
+    Last_Reviewed?: string | null;
     Status?: string | null;
     UN_Number?: string | null;
     aegl1?: string | null;
@@ -1209,6 +1225,7 @@ export type OnUpdatePACTEELDatabaseSubscription = {
     Chemical_ID: string;
     Chemical_Name?: string | null;
     Date: string;
+    Last_Reviewed?: string | null;
     Status?: string | null;
     UN_Number?: string | null;
     aegl1?: string | null;

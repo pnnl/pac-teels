@@ -1,6 +1,7 @@
 type PACTEELDatabase {
 	Chemical_ID: String!
 	Date: String!
+	Last_Reviewed: String
 	CAS_Number: String
 	Chemical_Formula: String
 	Chemical_Name: String
