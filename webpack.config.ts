@@ -70,7 +70,7 @@ const mode = process.env.DEPLOYMENT_TYPE || "localDevelopment";
 const isProduction = mode === "production";
 const isDevelopment = !isProduction;
 
-const currEnvFile = mode === "localDevelopment" ? "/.env.local" : mode === "production" ? "/.env.production" : "/.env";
+const currEnvFile = mode === "localDevelopment" ? "/.env.local" : mode === "production" ? "/.env.production" : mode === "development" ? "/.env.dev" : "/.env";
 const dotenv2 = require("dotenv").config({ path: __dirname + currEnvFile });
 
 console.log({
