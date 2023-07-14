@@ -45,11 +45,13 @@ export const getPACTEELDatabase = /* GraphQL */ `
       pelceiling
       pelstel
       peltwa
+      references
       relceiling
       relstel
       reltwa
       tclo
       tdlo
+      technical_justification
       teel1
       teel1Source
       teel2
@@ -65,6 +67,7 @@ export const getPACTEELDatabase = /* GraphQL */ `
       Melting_Point
       state
       Vapor_Pressure
+      VP_Temp
       version
     }
   }
@@ -119,11 +122,13 @@ export const listPACTEELDatabases = /* GraphQL */ `
         pelceiling
         pelstel
         peltwa
+        references
         relceiling
         relstel
         reltwa
         tclo
         tdlo
+        technical_justification
         teel1
         teel1Source
         teel2
@@ -139,6 +144,7 @@ export const listPACTEELDatabases = /* GraphQL */ `
         Melting_Point
         state
         Vapor_Pressure
+        VP_Temp
         version
       }
       nextToken
@@ -198,11 +204,13 @@ export const queryPACTEELDatabasesByCASNumberIndex = /* GraphQL */ `
         pelceiling
         pelstel
         peltwa
+        references
         relceiling
         relstel
         reltwa
         tclo
         tdlo
+        technical_justification
         teel1
         teel1Source
         teel2
@@ -218,6 +226,7 @@ export const queryPACTEELDatabasesByCASNumberIndex = /* GraphQL */ `
         Melting_Point
         state
         Vapor_Pressure
+        VP_Temp
         version
       }
       nextToken
@@ -277,11 +286,13 @@ export const queryPACTEELDatabasesByChemicalFormulaIndex = /* GraphQL */ `
         pelceiling
         pelstel
         peltwa
+        references
         relceiling
         relstel
         reltwa
         tclo
         tdlo
+        technical_justification
         teel1
         teel1Source
         teel2
@@ -297,6 +308,7 @@ export const queryPACTEELDatabasesByChemicalFormulaIndex = /* GraphQL */ `
         Melting_Point
         state
         Vapor_Pressure
+        VP_Temp
         version
       }
       nextToken
@@ -356,11 +368,13 @@ export const queryPACTEELDatabasesByChemicalNameIndex = /* GraphQL */ `
         pelceiling
         pelstel
         peltwa
+        references
         relceiling
         relstel
         reltwa
         tclo
         tdlo
+        technical_justification
         teel1
         teel1Source
         teel2
@@ -376,6 +390,7 @@ export const queryPACTEELDatabasesByChemicalNameIndex = /* GraphQL */ `
         Melting_Point
         state
         Vapor_Pressure
+        VP_Temp
         version
       }
       nextToken
@@ -435,11 +450,13 @@ export const queryPACTEELDatabasesByStatusIndex = /* GraphQL */ `
         pelceiling
         pelstel
         peltwa
+        references
         relceiling
         relstel
         reltwa
         tclo
         tdlo
+        technical_justification
         teel1
         teel1Source
         teel2
@@ -455,6 +472,7 @@ export const queryPACTEELDatabasesByStatusIndex = /* GraphQL */ `
         Melting_Point
         state
         Vapor_Pressure
+        VP_Temp
         version
       }
       nextToken
@@ -514,11 +532,13 @@ export const queryPACTEELDatabasesByUNNumberIndex = /* GraphQL */ `
         pelceiling
         pelstel
         peltwa
+        references
         relceiling
         relstel
         reltwa
         tclo
         tdlo
+        technical_justification
         teel1
         teel1Source
         teel2
@@ -534,6 +554,7 @@ export const queryPACTEELDatabasesByUNNumberIndex = /* GraphQL */ `
         Melting_Point
         state
         Vapor_Pressure
+        VP_Temp
         version
       }
       nextToken
