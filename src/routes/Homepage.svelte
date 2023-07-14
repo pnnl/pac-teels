@@ -165,7 +165,7 @@
 
   let localChemicals = [];
   let mostRecentUpdateDate = new Date("2000-01-01");
-  let date = "";
+  let date = "Wed July 12, 2023";
   $: {
     chemicals.subscribe(currChemicals => {
       if (currChemicals) {
@@ -180,7 +180,7 @@
       }
     });
 
-    date = mostRecentUpdateDate.toDateString();
+    //date = mostRecentUpdateDate.toDateString();
   }
 
   rightPanelOpened.subscribe(currRightPanelOpened => {
