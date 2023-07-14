@@ -70,11 +70,6 @@
         techJustification = localJustificationMap;
     }
 
-    //convert references value to array, so it can be printed as a list
-    
-    
-    
-
 </script>
 
 <div class="technical-justification-container">
