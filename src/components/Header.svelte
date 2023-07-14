@@ -438,24 +438,7 @@
     </div>
   {/if}
 </div>
-<MediaQuery query={`(max-width: ${themeStyle.smallest})`} let:matches>
-  {#if matches}
-    <div class="tabbar">
-      <TabBar {tabs} let:tab bind:active style={"width: unset; margin-left: auto;"}>
-        <!-- Note: the `tab` property is required! -->
-        <Tab
-          {tab}
-          on:click={() => {
-            return (active = tab);
-          }}
-          href={tab.path}
-        >
-          <Label>{tab.name}</Label>
-        </Tab>
-      </TabBar>
-    </div>
-  {/if}
-</MediaQuery>
+
 <LoginModal open={loginOpen} {closeHandler} setAdminPage={val => (adminPage = val)} />
 {#if feedbackOpen}
   <FeedbackModal

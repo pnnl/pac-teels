@@ -1,6 +1,7 @@
 type PACTEELDatabase {
 	Chemical_ID: String!
 	Date: String!
+	Last_Reviewed: String
 	CAS_Number: String
 	Chemical_Formula: String
 	Chemical_Name: String
@@ -59,5 +60,8 @@ type PACTEELDatabase {
 	Melting_Point: String
 	State: String
 	Vapor_Pressure: String
+	VP_Temp: String
 	version: Int
+	technical_justification: String
+	references: String
 }

@@ -67,6 +67,7 @@
   import FormField from "@smui/form-field";
   import Radio from "@smui/radio";
   import HealthCodes from "./HealthCodes/HealthCodes.svelte";
+  import TechnicalJustification from "./TechnicalJustification/TechnicalJustification.svelte"
   import ChemicalIdentity from "./ChemicalIdentity/ChemicalIdentity.svelte";
   import PhysicalProperties from "./PhysicalProperties/PhysicalProperties.svelte";
   import { UNIT_OPTIONS } from "constants/constants";
@@ -81,6 +82,7 @@
   let currentChemical;
   let currentUnit;
   let mostRecentUpdateDate;
+  let mostRecentReviewDate;
   let showUnsubscribe = false;
   //   TODO: update with endpoint
   let subscribed = false;
@@ -96,12 +98,16 @@
   $: {
     currentUnit = currentChemical?.originalUnit;
     mostRecentUpdateDate = new Date(currentChemical["Date"]).toDateString();
+    mostRecentReviewDate = new Date(currentChemical["Last_Reviewed"]).toDateString();
   }
 </script>
 
 <div class="panel-header">
   <h2>{currentChemical?.Chemical_Name || "No Name in Database"}</h2>
   <h5>Last Updated: {mostRecentUpdateDate || ""}</h5>
+  {#if currentChemical.Last_Reviewed}
+    <h5>Last Reviewed: {mostRecentReviewDate || ""}</h5>
+  {/if}
   <div bind:this={componentReference} class="button-container">
     <!-- <Button on:click={() => window.alert("Not Implemented")}>
       <Icon class="material-icons">open_in_new</Icon>
@@ -209,7 +215,10 @@
   </div>
   <div class="caption center">{asterikCaption}</div>
   <FormField />
-
+  {#if !(currentChemical.technical_justification == null)}
+    <div class="divider" />
+    <TechnicalJustification />
+  {/if}
   <div class="divider" />
   <ChemicalIdentity />
   {#if featureFlags.healthCodes === true}
