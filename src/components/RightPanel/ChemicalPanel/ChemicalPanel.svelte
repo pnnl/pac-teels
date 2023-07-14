@@ -81,6 +81,7 @@
   let currentChemical;
   let currentUnit;
   let mostRecentUpdateDate;
+  let mostRecentReviewDate;
   let showUnsubscribe = false;
   //   TODO: update with endpoint
   let subscribed = false;
@@ -96,12 +97,16 @@
   $: {
     currentUnit = currentChemical?.originalUnit;
     mostRecentUpdateDate = new Date(currentChemical["Date"]).toDateString();
+    mostRecentReviewDate = new Date(currentChemical["Last_Reviewed"]).toDateString();
   }
 </script>
 
 <div class="panel-header">
   <h2>{currentChemical?.Chemical_Name || "No Name in Database"}</h2>
   <h5>Last Updated: {mostRecentUpdateDate || ""}</h5>
+  {#if currentChemical.Last_Reviewed === true}
+    <h5>Last Reviewed: {mostRecentReviewDate || ""}</h5>
+  {/if}
   <div bind:this={componentReference} class="button-container">
     <!-- <Button on:click={() => window.alert("Not Implemented")}>
       <Icon class="material-icons">open_in_new</Icon>

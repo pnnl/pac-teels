@@ -83,6 +83,7 @@ export const listPACTEELDatabases = /* GraphQL */ `
         Chemical_ID
         Chemical_Name
         Date
+        Last_Reviewed
         Status
         UN_Number
         aegl1
@@ -161,6 +162,7 @@ export const queryPACTEELDatabasesByCASNumberIndex = /* GraphQL */ `
         Chemical_ID
         Chemical_Name
         Date
+        Last_Reviewed
         Status
         UN_Number
         aegl1
@@ -239,6 +241,7 @@ export const queryPACTEELDatabasesByChemicalFormulaIndex = /* GraphQL */ `
         Chemical_ID
         Chemical_Name
         Date
+        Last_Reviewed
         Status
         UN_Number
         aegl1
@@ -317,6 +320,7 @@ export const queryPACTEELDatabasesByChemicalNameIndex = /* GraphQL */ `
         Chemical_ID
         Chemical_Name
         Date
+        Last_Reviewed
         Status
         UN_Number
         aegl1
@@ -395,6 +399,7 @@ export const queryPACTEELDatabasesByStatusIndex = /* GraphQL */ `
         Chemical_ID
         Chemical_Name
         Date
+        Last_Reviewed
         Status
         UN_Number
         aegl1
@@ -473,6 +478,7 @@ export const queryPACTEELDatabasesByUNNumberIndex = /* GraphQL */ `
         Chemical_ID
         Chemical_Name
         Date
+        Last_Reviewed
         Status
         UN_Number
         aegl1
