@@ -59,5 +59,8 @@ type PACTEELDatabase {
 	Melting_Point: String
 	State: String
 	Vapor_Pressure: String
+	VP_Temp: String
 	version: Int
+	technical_justification: String
+	references: String
 }

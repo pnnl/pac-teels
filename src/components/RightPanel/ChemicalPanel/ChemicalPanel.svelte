@@ -67,6 +67,7 @@
   import FormField from "@smui/form-field";
   import Radio from "@smui/radio";
   import HealthCodes from "./HealthCodes/HealthCodes.svelte";
+  import TechnicalJustification from "./TechnicalJustification/TechnicalJustification.svelte"
   import ChemicalIdentity from "./ChemicalIdentity/ChemicalIdentity.svelte";
   import PhysicalProperties from "./PhysicalProperties/PhysicalProperties.svelte";
   import { UNIT_OPTIONS } from "constants/constants";
@@ -209,7 +210,10 @@
   </div>
   <div class="caption center">{asterikCaption}</div>
   <FormField />
-
+  {#if !(currentChemical.technical_justification == null)}
+    <div class="divider" />
+    <TechnicalJustification />
+  {/if}
   <div class="divider" />
   <ChemicalIdentity />
   {#if featureFlags.healthCodes === true}
