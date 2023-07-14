@@ -105,7 +105,7 @@
 <div class="panel-header">
   <h2>{currentChemical?.Chemical_Name || "No Name in Database"}</h2>
   <h5>Last Updated: {mostRecentUpdateDate || ""}</h5>
-  {#if currentChemical.Last_Reviewed === true}
+  {#if currentChemical.Last_Reviewed}
     <h5>Last Reviewed: {mostRecentReviewDate || ""}</h5>
   {/if}
   <div bind:this={componentReference} class="button-container">
