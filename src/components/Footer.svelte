@@ -12,6 +12,7 @@
     font-size: 0.75rem;
     margin-top: auto;
     z-index: 1;
+    position: fixed;
   }
   .contact {
     display: flex;

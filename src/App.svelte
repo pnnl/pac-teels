@@ -6,6 +6,11 @@
     display: flex;
   }
 
+  .style-wrapper {
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
   h1 {
     text-transform: uppercase;
     font-size: 4em;
@@ -59,21 +64,23 @@
   let location = window.location.href;
 </script>
 
-<Header
-  {logo}
-  hasLogo={true}
-  title={"EMI SIG"}
-  adminPage={location.includes("admin")}
-  {location}
-/>
-<main>
-  <div style="display: flex; width: -webkit-fill-available;">
-    <Router
-      onRouteLoaded={event => {
-        location = window.location.href;
-      }}
-      onConditionsFailed={event => {}}
-    />
-  </div>
-</main>
-<Footer />
+<div class=style-wrapper>
+  <Header
+    {logo}
+    hasLogo={true}
+    title={"EMI SIG"}
+    adminPage={location.includes("admin")}
+    {location}
+  />
+  <main>
+    <div style="display: flex; width: -webkit-fill-available;">
+      <Router
+        onRouteLoaded={event => {
+          location = window.location.href;
+        }}
+        onConditionsFailed={event => {}}
+      />
+    </div>
+  </main>
+  <Footer />
+</div>
