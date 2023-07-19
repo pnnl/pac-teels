@@ -7,8 +7,8 @@
     color: var(--font);
     flex-direction: column;
     text-align: left;
-    justify-self: center;
-    align-self: center;
+    justify-self: top;
+    align-self: top;
     align-items: center;
     align-content: center;
   }
