@@ -12,8 +12,11 @@ export const PHYSICAL_PROPERTY_MAP = new Map([
 ]);
 
 export const TECHNICAL_JUSTIFICATION_MAP = new Map([
-    ["technical_justification", "Technical Justification"],
-    ["references", "References"]
+    ["technical_justification", "Current Revision Analysis"],
+    ["pac1Source", "PAC-1 Source"],
+    ["pac2Source", "PAC-2 Source"],
+    ["pac3Source", "PAC-3 Source"],
+    ["references", "References"]   
 ]);
 
 export const CHEMICAL_IDENTITY = {

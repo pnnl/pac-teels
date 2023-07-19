@@ -7,10 +7,10 @@
     color: var(--font);
     flex-direction: column;
     text-align: left;
-    justify-self: center;
-    align-self: center;
-    align-items: center;
-    align-content: center;
+    justify-self: top;
+    align-self: top;
+    align-items: top;
+    align-content: top;
   }
   .title {
     display: flex;
