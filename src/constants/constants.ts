@@ -11,6 +11,11 @@ export const PHYSICAL_PROPERTY_MAP = new Map([
     ["Vapor_Pressure", "VP (mmHg)"]
 ]);
 
+export const TECHNICAL_JUSTIFICATION_MAP = new Map([
+    ["technical_justification", "Technical Justification"],
+    ["references", "References"]
+]);
+
 export const CHEMICAL_IDENTITY = {
     CAS: "7782-505",
     chemFormula: "Cl2",

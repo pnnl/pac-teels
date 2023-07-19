@@ -8,6 +8,7 @@ export type CreatePACTEELDatabaseInput = {
   Chemical_ID: string;
   Chemical_Name?: string | null;
   Date: string;
+  Last_Reviewed?: string | null;
   Status?: string | null;
   UN_Number?: string | null;
   aegl1?: string | null;
@@ -48,6 +49,7 @@ export type CreatePACTEELDatabaseInput = {
   reltwa?: string | null;
   tclo?: string | null;
   tdlo?: string | null;
+  technical_justification?: string | null;
   teel1?: string | null;
   teel1Source?: string | null;
   teel2?: string | null;
@@ -63,6 +65,7 @@ export type CreatePACTEELDatabaseInput = {
   Melting_Point?: string | null;
   state?: string | null;
   Vapor_Pressure?: string | null;
+  VP_Temp?: string | null;
   version: number;
 };
 
@@ -73,6 +76,7 @@ export type PACTEELDatabase = {
   Chemical_ID: string;
   Chemical_Name?: string | null;
   Date: string;
+  Last_Reviewed?: string | null;
   Status?: string | null;
   UN_Number?: string | null;
   aegl1?: string | null;
@@ -113,6 +117,7 @@ export type PACTEELDatabase = {
   reltwa?: string | null;
   tclo?: string | null;
   tdlo?: string | null;
+  technical_justification?: string | null;
   teel1?: string | null;
   teel1Source?: string | null;
   teel2?: string | null;
@@ -128,6 +133,7 @@ export type PACTEELDatabase = {
   Melting_Point?: string | null;
   state?: string | null;
   Vapor_Pressure?: string | null;
+  VP_Temp?: string | null;
   version: number;
 };
 
@@ -142,6 +148,7 @@ export type UpdatePACTEELDatabaseInput = {
   Chemical_ID: string;
   Chemical_Name?: string | null;
   Date: string;
+  Last_Reviewed?: string | null;
   Status?: string | null;
   UN_Number?: string | null;
   aegl1?: string | null;
@@ -182,6 +189,7 @@ export type UpdatePACTEELDatabaseInput = {
   reltwa?: string | null;
   tclo?: string | null;
   tdlo?: string | null;
+  technical_justification?: string | null;
   teel1?: string | null;
   teel1Source?: string | null;
   teel2?: string | null;
@@ -197,6 +205,7 @@ export type UpdatePACTEELDatabaseInput = {
   Melting_Point?: string | null;
   state?: string | null;
   Vapor_Pressure?: string | null;
+  VP_Temp?: string | null;
   version: number;
 };
 
@@ -206,6 +215,7 @@ export type TablePACTEELDatabaseFilterInput = {
   Chemical_ID?: TableStringFilterInput | null;
   Chemical_Name?: TableStringFilterInput | null;
   Date?: TableStringFilterInput | null;
+  Last_Reviewed?: TableStringFilterInput | null;
   Status?: TableStringFilterInput | null;
   UN_Number?: TableStringFilterInput | null;
   aegl1?: string | null;
@@ -246,6 +256,7 @@ export type TablePACTEELDatabaseFilterInput = {
   reltwa?: string | null;
   tclo?: string | null;
   tdlo?: string | null;
+  technical_justification?: string | null;
   teel1?: string | null;
   teel1Source?: string | null;
   teel2?: string | null;
@@ -261,6 +272,7 @@ export type TablePACTEELDatabaseFilterInput = {
   Melting_Point?: string | null;
   state?: string | null;
   Vapor_Pressure?: string | null;
+  VP_Temp?: string | null;
   version?: TableNumberFilterInput | null;
 };
 
@@ -308,6 +320,7 @@ export type CreatePACTEELDatabaseMutation = {
     Chemical_ID: string;
     Chemical_Name?: string | null;
     Date: string;
+    Last_Reviewed?: string | null;
     Status?: string | null;
     UN_Number?: string | null;
     aegl1?: string | null;
@@ -343,11 +356,13 @@ export type CreatePACTEELDatabaseMutation = {
     pelceiling?: string | null;
     pelstel?: string | null;
     peltwa?: string | null;
+    references?: string | null;
     relceiling?: string | null;
     relstel?: string | null;
     reltwa?: string | null;
     tclo?: string | null;
     tdlo?: string | null;
+    technical_justification?: string | null;
     teel1?: string | null;
     teel1Source?: string | null;
     teel2?: string | null;
@@ -363,6 +378,7 @@ export type CreatePACTEELDatabaseMutation = {
     Melting_Point?: string | null;
     state?: string | null;
     Vapor_Pressure?: string | null;
+    VP_Temp?: string | null;
     version: number;
   } | null;
 };
@@ -379,6 +395,7 @@ export type DeletePACTEELDatabaseMutation = {
     Chemical_ID: string;
     Chemical_Name?: string | null;
     Date: string;
+    Last_Reviewed?: string | null;
     Status?: string | null;
     UN_Number?: string | null;
     aegl1?: string | null;
@@ -414,11 +431,13 @@ export type DeletePACTEELDatabaseMutation = {
     pelceiling?: string | null;
     pelstel?: string | null;
     peltwa?: string | null;
+    references?: string | null;
     relceiling?: string | null;
     relstel?: string | null;
     reltwa?: string | null;
     tclo?: string | null;
     tdlo?: string | null;
+    technical_justification?: string | null;
     teel1?: string | null;
     teel1Source?: string | null;
     teel2?: string | null;
@@ -434,6 +453,7 @@ export type DeletePACTEELDatabaseMutation = {
     Melting_Point?: string | null;
     state?: string | null;
     Vapor_Pressure?: string | null;
+    VP_Temp?: string | null;
     version: number;
   } | null;
 };
@@ -450,6 +470,7 @@ export type UpdatePACTEELDatabaseMutation = {
     Chemical_ID: string;
     Chemical_Name?: string | null;
     Date: string;
+    Last_Reviewed?: string | null;
     Status?: string | null;
     UN_Number?: string | null;
     aegl1?: string | null;
@@ -485,11 +506,13 @@ export type UpdatePACTEELDatabaseMutation = {
     pelceiling?: string | null;
     pelstel?: string | null;
     peltwa?: string | null;
+    references?: string | null;
     relceiling?: string | null;
     relstel?: string | null;
     reltwa?: string | null;
     tclo?: string | null;
     tdlo?: string | null;
+    technical_justification?: string | null;
     teel1?: string | null;
     teel1Source?: string | null;
     teel2?: string | null;
@@ -505,6 +528,7 @@ export type UpdatePACTEELDatabaseMutation = {
     Melting_Point?: string | null;
     state?: string | null;
     Vapor_Pressure?: string | null;
+    VP_Temp?: string | null;
     version: number;
   } | null;
 };
@@ -522,6 +546,7 @@ export type GetPACTEELDatabaseQuery = {
     Chemical_ID: string;
     Chemical_Name?: string | null;
     Date: string;
+    Last_Reviewed?: string | null;
     Status?: string | null;
     UN_Number?: string | null;
     aegl1?: string | null;
@@ -557,11 +582,13 @@ export type GetPACTEELDatabaseQuery = {
     pelceiling?: string | null;
     pelstel?: string | null;
     peltwa?: string | null;
+    references?: string | null;
     relceiling?: string | null;
     relstel?: string | null;
     reltwa?: string | null;
     tclo?: string | null;
     tdlo?: string | null;
+    technical_justification?: string | null;
     teel1?: string | null;
     teel1Source?: string | null;
     teel2?: string | null;
@@ -577,6 +604,7 @@ export type GetPACTEELDatabaseQuery = {
     Melting_Point?: string | null;
     state?: string | null;
     Vapor_Pressure?: string | null;
+    VP_Temp?: string | null;
     version: number;
   } | null;
 };
@@ -597,6 +625,7 @@ export type ListPACTEELDatabasesQuery = {
       Chemical_ID: string;
       Chemical_Name?: string | null;
       Date: string;
+      Last_Reviewed?: string | null;
       Status?: string | null;
       UN_Number?: string | null;
       aegl1?: string | null;
@@ -632,11 +661,13 @@ export type ListPACTEELDatabasesQuery = {
       pelceiling?: string | null;
       pelstel?: string | null;
       peltwa?: string | null;
+      references?: string | null;
       relceiling?: string | null;
       relstel?: string | null;
       reltwa?: string | null;
       tclo?: string | null;
       tdlo?: string | null;
+      technical_justification?: string | null;
       teel1?: string | null;
       teel1Source?: string | null;
       teel2?: string | null;
@@ -652,6 +683,7 @@ export type ListPACTEELDatabasesQuery = {
       Melting_Point?: string | null;
       state?: string | null;
       Vapor_Pressure?: string | null;
+      VP_Temp?: string | null;
       version: number;
     } | null> | null;
     nextToken?: string | null;
@@ -674,6 +706,7 @@ export type QueryPACTEELDatabasesByCASNumberIndexQuery = {
       Chemical_ID: string;
       Chemical_Name?: string | null;
       Date: string;
+      Last_Reviewed?: string | null;
       Status?: string | null;
       UN_Number?: string | null;
       aegl1?: string | null;
@@ -709,11 +742,13 @@ export type QueryPACTEELDatabasesByCASNumberIndexQuery = {
       pelceiling?: string | null;
       pelstel?: string | null;
       peltwa?: string | null;
+      references?: string | null;
       relceiling?: string | null;
       relstel?: string | null;
       reltwa?: string | null;
       tclo?: string | null;
       tdlo?: string | null;
+      technical_justification?: string | null;
       teel1?: string | null;
       teel1Source?: string | null;
       teel2?: string | null;
@@ -729,6 +764,7 @@ export type QueryPACTEELDatabasesByCASNumberIndexQuery = {
       Melting_Point?: string | null;
       state?: string | null;
       Vapor_Pressure?: string | null;
+      VP_Temp?: string | null;
       version: number;
     } | null> | null;
     nextToken?: string | null;
@@ -751,6 +787,7 @@ export type QueryPACTEELDatabasesByChemicalFormulaIndexQuery = {
       Chemical_ID: string;
       Chemical_Name?: string | null;
       Date: string;
+      Last_Reviewed?: string | null;
       Status?: string | null;
       UN_Number?: string | null;
       aegl1?: string | null;
@@ -786,11 +823,13 @@ export type QueryPACTEELDatabasesByChemicalFormulaIndexQuery = {
       pelceiling?: string | null;
       pelstel?: string | null;
       peltwa?: string | null;
+      references?: string | null;
       relceiling?: string | null;
       relstel?: string | null;
       reltwa?: string | null;
       tclo?: string | null;
       tdlo?: string | null;
+      technical_justification?: string | null;
       teel1?: string | null;
       teel1Source?: string | null;
       teel2?: string | null;
@@ -806,6 +845,7 @@ export type QueryPACTEELDatabasesByChemicalFormulaIndexQuery = {
       Melting_Point?: string | null;
       state?: string | null;
       Vapor_Pressure?: string | null;
+      VP_Temp?: string | null;
       version: number;
     } | null> | null;
     nextToken?: string | null;
@@ -828,6 +868,7 @@ export type QueryPACTEELDatabasesByChemicalNameIndexQuery = {
       Chemical_ID: string;
       Chemical_Name?: string | null;
       Date: string;
+      Last_Reviewed?: string | null;
       Status?: string | null;
       UN_Number?: string | null;
       aegl1?: string | null;
@@ -863,11 +904,13 @@ export type QueryPACTEELDatabasesByChemicalNameIndexQuery = {
       pelceiling?: string | null;
       pelstel?: string | null;
       peltwa?: string | null;
+      references?: string | null;
       relceiling?: string | null;
       relstel?: string | null;
       reltwa?: string | null;
       tclo?: string | null;
       tdlo?: string | null;
+      technical_justification?: string | null;
       teel1?: string | null;
       teel1Source?: string | null;
       teel2?: string | null;
@@ -883,6 +926,7 @@ export type QueryPACTEELDatabasesByChemicalNameIndexQuery = {
       Melting_Point?: string | null;
       state?: string | null;
       Vapor_Pressure?: string | null;
+      VP_Temp?: string | null;
       version: number;
     } | null> | null;
     nextToken?: string | null;
@@ -905,6 +949,7 @@ export type QueryPACTEELDatabasesByStatusIndexQuery = {
       Chemical_ID: string;
       Chemical_Name?: string | null;
       Date: string;
+      Last_Reviewed?: string | null;
       Status?: string | null;
       UN_Number?: string | null;
       aegl1?: string | null;
@@ -940,11 +985,13 @@ export type QueryPACTEELDatabasesByStatusIndexQuery = {
       pelceiling?: string | null;
       pelstel?: string | null;
       peltwa?: string | null;
+      references?: string | null;
       relceiling?: string | null;
       relstel?: string | null;
       reltwa?: string | null;
       tclo?: string | null;
       tdlo?: string | null;
+      technical_justification?: string | null;
       teel1?: string | null;
       teel1Source?: string | null;
       teel2?: string | null;
@@ -960,6 +1007,7 @@ export type QueryPACTEELDatabasesByStatusIndexQuery = {
       Melting_Point?: string | null;
       state?: string | null;
       Vapor_Pressure?: string | null;
+      VP_Temp?: string | null;
       version: number;
     } | null> | null;
     nextToken?: string | null;
@@ -982,6 +1030,7 @@ export type QueryPACTEELDatabasesByUNNumberIndexQuery = {
       Chemical_ID: string;
       Chemical_Name?: string | null;
       Date: string;
+      Last_Reviewed?: string | null;
       Status?: string | null;
       UN_Number?: string | null;
       aegl1?: string | null;
@@ -1017,11 +1066,13 @@ export type QueryPACTEELDatabasesByUNNumberIndexQuery = {
       pelceiling?: string | null;
       pelstel?: string | null;
       peltwa?: string | null;
+      references?: string | null;
       relceiling?: string | null;
       relstel?: string | null;
       reltwa?: string | null;
       tclo?: string | null;
       tdlo?: string | null;
+      technical_justification?: string | null;
       teel1?: string | null;
       teel1Source?: string | null;
       teel2?: string | null;
@@ -1037,6 +1088,7 @@ export type QueryPACTEELDatabasesByUNNumberIndexQuery = {
       Melting_Point?: string | null;
       state?: string | null;
       Vapor_Pressure?: string | null;
+      VP_Temp?: string | null;
       version: number;
     } | null> | null;
     nextToken?: string | null;
@@ -1059,6 +1111,7 @@ export type OnCreatePACTEELDatabaseSubscription = {
     Chemical_ID: string;
     Chemical_Name?: string | null;
     Date: string;
+    Last_Reviewed?: string | null;
     Status?: string | null;
     UN_Number?: string | null;
     aegl1?: string | null;
@@ -1094,11 +1147,13 @@ export type OnCreatePACTEELDatabaseSubscription = {
     pelceiling?: string | null;
     pelstel?: string | null;
     peltwa?: string | null;
+    references?: string | null;
     relceiling?: string | null;
     relstel?: string | null;
     reltwa?: string | null;
     tclo?: string | null;
     tdlo?: string | null;
+    technical_justification?: string | null;
     teel1?: string | null;
     teel1Source?: string | null;
     teel2?: string | null;
@@ -1114,6 +1169,7 @@ export type OnCreatePACTEELDatabaseSubscription = {
     Melting_Point?: string | null;
     state?: string | null;
     Vapor_Pressure?: string | null;
+    VP_Temp?: string | null;
     version: number;
   } | null;
 };
@@ -1134,6 +1190,7 @@ export type OnDeletePACTEELDatabaseSubscription = {
     Chemical_ID: string;
     Chemical_Name?: string | null;
     Date: string;
+    Last_Reviewed?: string | null;
     Status?: string | null;
     UN_Number?: string | null;
     aegl1?: string | null;
@@ -1169,11 +1226,13 @@ export type OnDeletePACTEELDatabaseSubscription = {
     pelceiling?: string | null;
     pelstel?: string | null;
     peltwa?: string | null;
+    references?: string | null;
     relceiling?: string | null;
     relstel?: string | null;
     reltwa?: string | null;
     tclo?: string | null;
     tdlo?: string | null;
+    technical_justification?: string | null;
     teel1?: string | null;
     teel1Source?: string | null;
     teel2?: string | null;
@@ -1189,6 +1248,7 @@ export type OnDeletePACTEELDatabaseSubscription = {
     Melting_Point?: string | null;
     state?: string | null;
     Vapor_Pressure?: string | null;
+    VP_Temp?: string | null;
     version: number;
   } | null;
 };
@@ -1209,6 +1269,7 @@ export type OnUpdatePACTEELDatabaseSubscription = {
     Chemical_ID: string;
     Chemical_Name?: string | null;
     Date: string;
+    Last_Reviewed?: string | null;
     Status?: string | null;
     UN_Number?: string | null;
     aegl1?: string | null;
@@ -1243,12 +1304,14 @@ export type OnUpdatePACTEELDatabaseSubscription = {
     pac3Source?: string | null;
     pelceiling?: string | null;
     pelstel?: string | null;
+    references?: string | null;
     peltwa?: string | null;
     relceiling?: string | null;
     relstel?: string | null;
     reltwa?: string | null;
     tclo?: string | null;
     tdlo?: string | null;
+    technical_justification?: string | null;
     teel1?: string | null;
     teel1Source?: string | null;
     teel2?: string | null;
@@ -1264,6 +1327,7 @@ export type OnUpdatePACTEELDatabaseSubscription = {
     Melting_Point?: string | null;
     state?: string | null;
     Vapor_Pressure?: string | null;
+    VP_Temp?: string | null;
     version: number;
   } | null;
 };
