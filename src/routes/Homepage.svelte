@@ -9,8 +9,8 @@
     text-align: left;
     justify-self: top;
     align-self: top;
-    align-items: top;
-    align-content: top;
+    align-items: center;
+    align-content: center;
   }
   .title {
     display: flex;
