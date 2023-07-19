@@ -64,6 +64,13 @@
                         }
                     }
                 }
+                if(key === "pac1Source" || key === "pac2Source" || key === "pac3Source"){
+                    let levelNumber = key.charAt(3);
+                    if(value === "TEEL-" + levelNumber){
+                        let sourceFieldName = "teel" + levelNumber + "Source";
+                        value = currentChemical[sourceFieldName];
+                    }
+                }
                 localJustificationMap.set(key, {property, value});
             }
         }
