@@ -3,6 +3,7 @@
   .footer {
     width: 100%;
     min-height: 4rem;
+    max-height: 4rem;
     box-shadow: none;
     display: flex;
     align-items: center;

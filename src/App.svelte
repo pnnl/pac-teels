@@ -9,6 +9,8 @@
   .style-wrapper {
     overflow-y: scroll;
     overflow-x: hidden;
+    height: 100vh;
+    margin-bottom: 4rem;
   }
 
   h1 {
