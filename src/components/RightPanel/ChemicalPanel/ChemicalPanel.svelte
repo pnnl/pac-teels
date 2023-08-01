@@ -75,15 +75,20 @@
   import UnsubscribeModal from "./UnsubscribeModal/UnsubscribeModal.svelte";
   import { selectedChemical } from "stores/stores";
   import { featureFlags } from "constants/featureFlags";
-
+  import { convertPACValue } from "utilities/utilities";
   let calculation = 1.232;
   let showEmailNotification = false;
   let componentReference: HTMLElement;
   let currentChemical;
-  let currentUnit;
+  let currentUnit: string = "";
   let mostRecentUpdateDate;
   let mostRecentReviewDate;
   let showUnsubscribe = false;
+  let calculatedPACValues: any = {
+    PAC1: null,
+    PAC2: null,
+    PAC3: null
+  };
   //   TODO: update with endpoint
   let subscribed = false;
   let asterikCaption =
@@ -96,10 +101,71 @@
   });
 
   $: {
-    currentUnit = currentChemical?.originalUnit;
     mostRecentUpdateDate = new Date(currentChemical["Date"]).toDateString();
     mostRecentReviewDate = new Date(currentChemical["Last_Reviewed"]).toDateString();
   }
+
+  const ppmToMgm = localPACValues => {
+    let molecularWeight = parseFloat(currentChemical.molecularWeight);
+    for (const [key, value] of Object.entries(localPACValues)) {
+      let newItem = parseFloat(value as any);
+      let newValue = (newItem * molecularWeight) / 24.45;
+      localPACValues[key] = newValue.toFixed(2);
+    }
+    return localPACValues;
+    // Y mg/m3 = (X)(molecularWeight)/24.45
+  };
+  //   X ppm = (Y mg/m3)(24.45)/(molecular weight)
+  const mgmToPpm = localPACValues => {
+    let molecularWeight = parseFloat(currentChemical.molecularWeight);
+    for (const [key, value] of Object.entries(localPACValues)) {
+      let newItem = parseFloat(value as any);
+      let newValue = (newItem * 24.45) / molecularWeight;
+      localPACValues[key] = newValue.toFixed(2);
+    }
+    return localPACValues;
+  };
+
+  const convertUnit = ({ localPACValues }) => {
+    if (currentChemical?.molecularWeight.length > 0) {
+      let newValue = convertPACValue({
+        molecularWeight: currentChemical?.molecularWeight,
+        PACValues: localPACValues,
+        unit: currentUnit
+      });
+      calculatedPACValues = newValue;
+    } else {
+      calculatedPACValues = localPACValues;
+      currentUnit = currentChemical?.originalUnit;
+    }
+  };
+
+  $: {
+    if (currentUnit) {
+      let localPACValues = {
+        PAC1: currentChemical?.pac1,
+        PAC2: currentChemical?.pac2,
+        PAC3: currentChemical?.pac3
+      };
+      if (currentUnit !== currentChemical.originalUnit) {
+        convertUnit({ localPACValues });
+      } else {
+        calculatedPACValues = localPACValues;
+      }
+    }
+  }
+  onMount(() => {
+    for (const value of UNIT_OPTIONS) {
+      if (currentChemical?.originalUnit === value) {
+        currentUnit = value;
+        calculatedPACValues = {
+          PAC1: currentChemical?.pac1,
+          PAC2: currentChemical?.pac2,
+          PAC3: currentChemical?.pac3
+        };
+      }
+    }
+  });
 </script>
 
 <div class="panel-header">
@@ -154,12 +220,16 @@
     <div class="body-caption">Unit</div>
     <FormField>
       <!-- TODO: Reconnect when added calculation -->
-      <!-- {#each UNIT_OPTIONS as option} -->
-      <div class="radio-item">
-        <Radio bind:group={currentUnit} value={currentUnit} />
-        <span class="label">{currentUnit}</span>
-      </div>
-      <!-- {/each} -->
+      {#each UNIT_OPTIONS as option}
+        <div class="radio-item">
+          <Radio
+            bind:group={currentUnit}
+            value={option}
+            disabled={currentChemical.molecularWeight.length < 1}
+          />
+          <span class="label">{option}</span>
+        </div>
+      {/each}
     </FormField>
 
     <div class="body-caption">
@@ -170,27 +240,33 @@
       {:else}
         TEEL-1
       {/if}
-      </div>
+    </div>
 
     <div class="pac-item">
-      <h3>{currentChemical.pac1 || "N/A"}<span class="unit">{currentUnit}</span></h3>
+      <h3>
+        {calculatedPACValues?.PAC1 ? calculatedPACValues.PAC1 : "N/A"}
+        <span class="unit">{currentUnit}</span>
+      </h3>
       {#if featureFlags.pacLabel === true}
         <div class="caption">Corresponds to 60-minute AEGL values</div>
       {/if}
     </div>
 
     <div class="body-caption">
-    {#if currentChemical.aegl2 != ""}
-      AEGL-2
-    {:else if currentChemical.erpg2 != ""}
-      ERPG-2
-    {:else}
-      TEEL-2
-    {/if}
+      {#if currentChemical.aegl2 != ""}
+        AEGL-2
+      {:else if currentChemical.erpg2 != ""}
+        ERPG-2
+      {:else}
+        TEEL-2
+      {/if}
     </div>
 
     <div class="pac-item">
-      <h3>{currentChemical.pac2 || "N/A"} {currentUnit}</h3>
+      <h3>
+        {calculatedPACValues?.PAC2 !== null ? calculatedPACValues.PAC2 : "N/A"}
+        {currentUnit}
+      </h3>
       {#if featureFlags.pacLabel === true}
         <div class="caption">Corresponds to 60-minute AEGL values</div>
       {/if}
@@ -204,10 +280,13 @@
       {:else}
         TEEL-3
       {/if}
-      </div>
+    </div>
 
     <div class="pac-item">
-      <h3>{currentChemical.pac3 || "N/A"} {currentUnit}</h3>
+      <h3>
+        {calculatedPACValues?.PAC3 ? calculatedPACValues.PAC3 : "N/A"}
+        {currentUnit}
+      </h3>
       {#if featureFlags.pacLabel === true}
         <div class="caption">Corresponds to 60-minute AEGL values</div>
       {/if}
