@@ -11,6 +11,7 @@ export type CreatePACTEELDatabaseInput = {
   Last_Reviewed?: string | null;
   Status?: string | null;
   UN_Number?: string | null;
+  Approval_Date?: string | null;
   aegl1?: string | null;
   aegl2?: string | null;
   aegl3?: string | null;
@@ -79,6 +80,7 @@ export type PACTEELDatabase = {
   Last_Reviewed?: string | null;
   Status?: string | null;
   UN_Number?: string | null;
+  Approval_Date? : string | null;
   aegl1?: string | null;
   aegl2?: string | null;
   aegl3?: string | null;
@@ -151,6 +153,7 @@ export type UpdatePACTEELDatabaseInput = {
   Last_Reviewed?: string | null;
   Status?: string | null;
   UN_Number?: string | null;
+  Approval_Date? : string | null;
   aegl1?: string | null;
   aegl2?: string | null;
   aegl3?: string | null;
@@ -218,6 +221,7 @@ export type TablePACTEELDatabaseFilterInput = {
   Last_Reviewed?: TableStringFilterInput | null;
   Status?: TableStringFilterInput | null;
   UN_Number?: TableStringFilterInput | null;
+  Approval_Date? : TableStringFilterInput | null;
   aegl1?: string | null;
   aegl2?: string | null;
   aegl3?: string | null;
@@ -323,6 +327,7 @@ export type CreatePACTEELDatabaseMutation = {
     Last_Reviewed?: string | null;
     Status?: string | null;
     UN_Number?: string | null;
+    Approval_Date? : string | null;
     aegl1?: string | null;
     aegl2?: string | null;
     aegl3?: string | null;
@@ -398,6 +403,7 @@ export type DeletePACTEELDatabaseMutation = {
     Last_Reviewed?: string | null;
     Status?: string | null;
     UN_Number?: string | null;
+    Approval_Date? : string | null;
     aegl1?: string | null;
     aegl2?: string | null;
     aegl3?: string | null;
@@ -473,6 +479,7 @@ export type UpdatePACTEELDatabaseMutation = {
     Last_Reviewed?: string | null;
     Status?: string | null;
     UN_Number?: string | null;
+    Approval_Date? : string | null;
     aegl1?: string | null;
     aegl2?: string | null;
     aegl3?: string | null;
@@ -549,6 +556,7 @@ export type GetPACTEELDatabaseQuery = {
     Last_Reviewed?: string | null;
     Status?: string | null;
     UN_Number?: string | null;
+    Approval_Date? : string | null;
     aegl1?: string | null;
     aegl2?: string | null;
     aegl3?: string | null;
@@ -628,6 +636,7 @@ export type ListPACTEELDatabasesQuery = {
       Last_Reviewed?: string | null;
       Status?: string | null;
       UN_Number?: string | null;
+      Approval_Date? : string | null;
       aegl1?: string | null;
       aegl2?: string | null;
       aegl3?: string | null;
@@ -709,6 +718,7 @@ export type QueryPACTEELDatabasesByCASNumberIndexQuery = {
       Last_Reviewed?: string | null;
       Status?: string | null;
       UN_Number?: string | null;
+      Approval_Date? : string | null;
       aegl1?: string | null;
       aegl2?: string | null;
       aegl3?: string | null;
@@ -790,6 +800,7 @@ export type QueryPACTEELDatabasesByChemicalFormulaIndexQuery = {
       Last_Reviewed?: string | null;
       Status?: string | null;
       UN_Number?: string | null;
+      Approval_Date? : string | null;
       aegl1?: string | null;
       aegl2?: string | null;
       aegl3?: string | null;
@@ -871,6 +882,7 @@ export type QueryPACTEELDatabasesByChemicalNameIndexQuery = {
       Last_Reviewed?: string | null;
       Status?: string | null;
       UN_Number?: string | null;
+      Approval_Date? : string | null;
       aegl1?: string | null;
       aegl2?: string | null;
       aegl3?: string | null;
@@ -952,6 +964,7 @@ export type QueryPACTEELDatabasesByStatusIndexQuery = {
       Last_Reviewed?: string | null;
       Status?: string | null;
       UN_Number?: string | null;
+      Approval_Date? : string | null;
       aegl1?: string | null;
       aegl2?: string | null;
       aegl3?: string | null;
@@ -1033,6 +1046,7 @@ export type QueryPACTEELDatabasesByUNNumberIndexQuery = {
       Last_Reviewed?: string | null;
       Status?: string | null;
       UN_Number?: string | null;
+      Approval_Date? : string | null;
       aegl1?: string | null;
       aegl2?: string | null;
       aegl3?: string | null;
@@ -1114,6 +1128,7 @@ export type OnCreatePACTEELDatabaseSubscription = {
     Last_Reviewed?: string | null;
     Status?: string | null;
     UN_Number?: string | null;
+    Approval_Date? : string | null;
     aegl1?: string | null;
     aegl2?: string | null;
     aegl3?: string | null;
@@ -1193,6 +1208,7 @@ export type OnDeletePACTEELDatabaseSubscription = {
     Last_Reviewed?: string | null;
     Status?: string | null;
     UN_Number?: string | null;
+    Approval_Date? : string | null;
     aegl1?: string | null;
     aegl2?: string | null;
     aegl3?: string | null;
@@ -1272,6 +1288,7 @@ export type OnUpdatePACTEELDatabaseSubscription = {
     Last_Reviewed?: string | null;
     Status?: string | null;
     UN_Number?: string | null;
+    Approval_Date? : string | null;
     aegl1?: string | null;
     aegl2?: string | null;
     aegl3?: string | null;
