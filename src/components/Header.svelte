@@ -309,6 +309,9 @@
           <Button on:click={() => (showDisclaimer = true)} style={"margin-left: auto;"}>
             <Label>About</Label>
           </Button>
+          <Button on:click={() => push("/history")} style={"margin-left: auto;"}>
+            <Label>Update History</Label>
+          </Button>
           {#if featureFlags.feedback === true}
             <Button on:click={() => window.alert("Not Implemented")}>
               <Icon class="material-icons">feedback</Icon>

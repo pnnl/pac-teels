@@ -12,6 +12,7 @@ export const getPACTEELDatabase = /* GraphQL */ `
       Date
       Status
       UN_Number
+      Approval_Date
       aegl1
       aegl2
       aegl3
@@ -89,6 +90,7 @@ export const listPACTEELDatabases = /* GraphQL */ `
         Last_Reviewed
         Status
         UN_Number
+        Approval_Date
         aegl1
         aegl2
         aegl3
@@ -171,6 +173,7 @@ export const queryPACTEELDatabasesByCASNumberIndex = /* GraphQL */ `
         Last_Reviewed
         Status
         UN_Number
+        Approval_Date
         aegl1
         aegl2
         aegl3
@@ -253,6 +256,7 @@ export const queryPACTEELDatabasesByChemicalFormulaIndex = /* GraphQL */ `
         Last_Reviewed
         Status
         UN_Number
+        Approval_Date
         aegl1
         aegl2
         aegl3
@@ -335,6 +339,7 @@ export const queryPACTEELDatabasesByChemicalNameIndex = /* GraphQL */ `
         Last_Reviewed
         Status
         UN_Number
+        Approval_Date
         aegl1
         aegl2
         aegl3
@@ -417,6 +422,7 @@ export const queryPACTEELDatabasesByStatusIndex = /* GraphQL */ `
         Last_Reviewed
         Status
         UN_Number
+        Approval_Date
         aegl1
         aegl2
         aegl3
@@ -499,6 +505,7 @@ export const queryPACTEELDatabasesByUNNumberIndex = /* GraphQL */ `
         Last_Reviewed
         Status
         UN_Number
+        Approval_Date
         aegl1
         aegl2
         aegl3
