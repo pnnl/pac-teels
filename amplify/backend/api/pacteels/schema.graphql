@@ -7,6 +7,7 @@ type PACTEELDatabase {
 	Chemical_Name: String
 	Status: String
 	UN_Number: String
+	Approval_Date: String
 	pac1: String
 	pac2: String
 	pac3: String
