@@ -34,6 +34,11 @@
   --mdc-layout-grid-column-width-phone: 72px;
 }
 
+/* Svelte Material UI overrides */
+:root {
+  --mdc-dialog-z-index: 15;
+}
+
 /*For Responsive Design and Media Queries. */
 $smallest: 595px;
 $smaller: 600px;

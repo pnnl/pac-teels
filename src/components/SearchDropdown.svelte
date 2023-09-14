@@ -54,7 +54,7 @@
     margin-top: 0.5rem;
     width: -webkit-fill-available;
     overflow-y: auto;
-    max-height: 45vh;
+    max-height: 40vh;
   }
 
   ::-webkit-scrollbar {
@@ -70,11 +70,17 @@
 
   .search-bar-full-wrapper {
     position: relative;
+    z-index: 12;
   }
 
   .search-item {
     padding: 12px 20px;
     cursor: pointer;
+  }
+
+  .search-item-none {
+    padding: 12px 20px;
+    color: var(--caption);
   }
 
   .search-item:hover {
@@ -206,7 +212,12 @@
 </script>
 
 {#if searchDropDownVisible}
-  <div class="full-cover" />
+  <div
+    class="full-cover"
+    on:click={() => {
+      searchDropDownVisible = false;
+    }}
+  />
 {/if}
 <div class="search-bar-full-wrapper">
   <div class="search-bar-wrapper">
@@ -267,6 +278,8 @@
               {/if}
             </div>
           {/each}
+        {:else}
+          <div class="search-item-none">No Chemicals Found</div>
         {/if}
       {/each}
     </div>
