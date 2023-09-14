@@ -18,9 +18,11 @@ export const convertPACValue = ({ molecularWeight, PACValues, unit }) => {
 
 export const convertIndividualPACValue = ({molecularWeight, PACValue, unit}) => {
     let parsedValue = parseFloat(PACValue as string)
+    let returnValue;
     if (unit === "mg/m3") {
-        return (parsedValue * molecularWeight) / 24.45;
+        returnValue = (parsedValue * molecularWeight) / 24.45;
     } else if (unit === 'ppm') {
-        return (parsedValue * 24.45) / (molecularWeight);
+        returnValue = (parsedValue * 24.45) / (molecularWeight);
     }
+    return returnValue.toFixed(2).toString();
 }
