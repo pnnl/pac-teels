@@ -38,10 +38,13 @@ export const getPACTEELDatabase = /* GraphQL */ `
       molecularWeight
       originalUnit
       pac1
+      pac1_ppm
       pac1Source
       pac2
+      pac2_ppm
       pac2Source
       pac3
+      pac3_ppm
       pac3Source
       pelceiling
       pelstel
@@ -116,10 +119,13 @@ export const listPACTEELDatabases = /* GraphQL */ `
         molecularWeight
         originalUnit
         pac1
+        pac1_ppm
         pac1Source
         pac2
+        pac2_ppm
         pac2Source
         pac3
+        pac3_ppm
         pac3Source
         pelceiling
         pelstel
@@ -199,10 +205,13 @@ export const queryPACTEELDatabasesByCASNumberIndex = /* GraphQL */ `
         molecularWeight
         originalUnit
         pac1
+        pac1_ppm
         pac1Source
         pac2
+        pac2_ppm
         pac2Source
         pac3
+        pac3_ppm
         pac3Source
         pelceiling
         pelstel
@@ -282,10 +291,13 @@ export const queryPACTEELDatabasesByChemicalFormulaIndex = /* GraphQL */ `
         molecularWeight
         originalUnit
         pac1
+        pac1_ppm
         pac1Source
         pac2
+        pac2_ppm
         pac2Source
         pac3
+        pac3_ppm
         pac3Source
         pelceiling
         pelstel
@@ -365,10 +377,13 @@ export const queryPACTEELDatabasesByChemicalNameIndex = /* GraphQL */ `
         molecularWeight
         originalUnit
         pac1
+        pac1_ppm
         pac1Source
         pac2
+        pac2_ppm
         pac2Source
         pac3
+        pac3_ppm
         pac3Source
         pelceiling
         pelstel
@@ -448,10 +463,13 @@ export const queryPACTEELDatabasesByStatusIndex = /* GraphQL */ `
         molecularWeight
         originalUnit
         pac1
+        pac1_ppm
         pac1Source
         pac2
+        pac2_ppm
         pac2Source
         pac3
+        pac3_ppm
         pac3Source
         pelceiling
         pelstel
@@ -531,10 +549,13 @@ export const queryPACTEELDatabasesByUNNumberIndex = /* GraphQL */ `
         molecularWeight
         originalUnit
         pac1
+        pac1_ppm
         pac1Source
         pac2
+        pac2_ppm
         pac2Source
         pac3
+        pac3_ppm
         pac3Source
         pelceiling
         pelstel
