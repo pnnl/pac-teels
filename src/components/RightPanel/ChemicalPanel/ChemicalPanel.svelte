@@ -155,7 +155,7 @@
       if (currentUnit !== currentChemical.originalUnit) {       
         if (currentChemical?.molecularWeight.length > 0) {
           for (const [key, value] of Object.entries(altPACValues)) {
-            if (value == null) {
+            if (value == null || value == "") {
               altPACValues[key] = convertIndividualPACValue({
                 molecularWeight: currentChemical?.molecularWeight,
                 PACValue: localPACValues[key],
