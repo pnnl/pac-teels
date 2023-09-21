@@ -6,6 +6,9 @@
     width: 100%;
     align-items: flex-start;
   }
+  .button-wrapper {
+    padding-top: 0.5rem;
+  }
 </style>
 
 <script lang="ts">
@@ -24,6 +27,7 @@
   import { Label } from "@smui/common";
   import Select, { Option } from "@smui/select";
   import { chemicals, rightPanelOpened, selectedChemical } from "stores/stores";
+  import { downloadChemicalsToCSV } from "utilities/utilities";
 
   let rightPanelOpenedLocal = false;
   rightPanelOpened.subscribe(currRightPanelOpened => {
@@ -45,6 +49,7 @@
   let sortDirection: Lowercase<keyof typeof SortValue> = "ascending";
   let rowsPerPage = 10;
   let currentPage = 0;
+  let columns: any[] = [];
 
   chemicals.subscribe(currChemicals => {
     if (currChemicals) {
@@ -71,6 +76,11 @@
     7: "Last_Reviewed"
   };
 
+  for (const item of Object.values(columnEnum)) {
+    let newItem = item.replace("_", " ");
+    columns.push(newItem);
+  }
+
   $: start = currentPage * rowsPerPage;
   $: end = Math.min(start + rowsPerPage, items.length);
   $: slice = items.slice(start, end);
@@ -79,6 +89,25 @@
   $: if (currentPage > lastPage) {
     currentPage = lastPage;
   }
+
+  const handleDownloadClick = () => {
+    let filteredSlice: any[] = [];
+    for (const value of slice) {
+      let newItem: any = {};
+      for (const item of Object.values(columnEnum)) {
+        if (item === columnEnum[3]) {
+          if (value[item].includes(",")) {
+            newItem[item] = `"${value[item]}"`;
+          }
+        } else {
+          newItem[item] = value[item];
+        }
+      }
+      filteredSlice.push(newItem);
+    }
+
+    downloadChemicalsToCSV({ chemicals: filteredSlice, columns, type: "History" });
+  };
 
   function handleSort(e: any) {
     items.sort((a, b) => {
@@ -161,7 +190,9 @@
     <Body style={"overflow-x: auto"}>
       {#each slice as item (item.Chemical_ID)}
         <Row>
-          <Cell style="clip-path: inset(0rem 0rem 0rem 1rem);">{new Date(item.Approval_Date).toDateString()}</Cell>
+          <Cell style="clip-path: inset(0rem 0rem 0rem 1rem);"
+            >{new Date(item.Approval_Date).toDateString()}</Cell
+          >
           <Cell>{item.CAS_Number}</Cell>
           <Cell>{item.Chemical_Name}</Cell>
           <Cell>{item.Chemical_Formula}</Cell>
@@ -222,6 +253,9 @@
             disabled={currentPage === lastPage}>last_page</IconButton
           >
         </div>
+      </div>
+      <div class="button-wrapper">
+        <Button variant="raised" on:click={handleDownloadClick}>Download</Button>
       </div>
     </Pagination>
   </DataTable>

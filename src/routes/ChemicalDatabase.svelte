@@ -28,6 +28,9 @@
   * :global(.solo-fab) {
     flex-shrink: 0;
   }
+  .button-wrapper {
+    padding-top: 0.5rem;
+  }
 </style>
 
 <script lang="ts">
@@ -49,6 +52,7 @@
   import { chemicals } from "stores/stores";
   import MediaQuery from "components/MediaQuery.svelte";
   import themeStyle from "../theme.scss";
+  import { downloadChemicalsToCSV } from "utilities/utilities";
 
   type ChemDatabase = {
     Chemical_ID: string;
@@ -67,13 +71,13 @@
   let rowsPerPage = 10;
   let currentPage = 0;
   let search = "";
+  let columns: any[] = [];
 
   chemicals.subscribe(currChemicals => {
     if (currChemicals) {
       items = currChemicals;
     }
   });
-
   const columnEnum = {
     1: "CAS_Number",
     2: "Chemical_Name",
@@ -93,7 +97,27 @@
   $: if (currentPage > lastPage) {
     currentPage = lastPage;
   }
+  for (const item of Object.values(columnEnum)) {
+    let newItem = item.replace("_", " ");
+    columns.push(newItem);
+  }
 
+  const handleDownloadClick = () => {
+    let filteredSlice: any[] = [];
+    for (const value of slice) {
+      let newItem: any = {};
+      for (const item of Object.values(columnEnum)) {
+        newItem[item] = value[item];
+      }
+      filteredSlice.push(newItem);
+    }
+    console.log({ filteredSlice });
+    downloadChemicalsToCSV({
+      chemicals: filteredSlice,
+      columns,
+      type: "Chemical_Database"
+    });
+  };
   function handleSort(e: any) {
     items.sort((a, b) => {
       const [aVal, bVal] = [
@@ -269,6 +293,9 @@
           disabled={currentPage === lastPage}>last_page</IconButton
         >
       </div>
+    </div>
+    <div class="button-wrapper">
+      <Button variant="raised" on:click={handleDownloadClick}>Download</Button>
     </div>
   </Pagination>
 </DataTable>
