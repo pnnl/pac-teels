@@ -6,10 +6,10 @@ export const convertPACValue = ({ molecularWeight, PACValues, unit }) => {
         let parsedValue = parseFloat(value as string)
         if (unit === "mg/m3") {
             let mgm3 = (parsedValue * molecularWeight) / 24.45;
-            localPACValues[key] = mgm3?.toFixed(2).toString();
+            localPACValues[key] = parseFloat(mgm3?.toPrecision(2)).toString();
         } else if (unit === "ppm") {
-            let ppm = (parsedValue * 24.45) / (molecularWeight)
-            localPACValues[key] = ppm.toFixed(2).toString();
+            let ppm = (parsedValue * 24.45) / (molecularWeight);
+            localPACValues[key] = parseFloat(ppm.toPrecision(2)).toString();
         }
     }
 
@@ -57,4 +57,15 @@ export const downloadChemicalsToCSV = ({ chemicals, columns, type }) => {
 
     // Performing a download with click
     a.click()
+
+}
+export const convertIndividualPACValue = ({ molecularWeight, PACValue, unit }) => {
+    let parsedValue = parseFloat(PACValue as string)
+    let returnValue;
+    if (unit === "mg/m3") {
+        returnValue = (parsedValue * molecularWeight) / 24.45;
+    } else if (unit === 'ppm') {
+        returnValue = (parsedValue * 24.45) / (molecularWeight);
+    }
+    return parseFloat(returnValue.toPrecision(2)).toString();
 }
