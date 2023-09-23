@@ -75,7 +75,7 @@
   import UnsubscribeModal from "./UnsubscribeModal/UnsubscribeModal.svelte";
   import { selectedChemical } from "stores/stores";
   import { featureFlags } from "constants/featureFlags";
-  import { convertPACValue } from "utilities/utilities";
+  import { convertPACValue, convertIndividualPACValue } from "utilities/utilities";
   let calculation = 1.232;
   let showEmailNotification = false;
   let componentReference: HTMLElement;
@@ -143,12 +143,31 @@
   $: {
     if (currentUnit) {
       let localPACValues = {
-        PAC1: currentChemical?.pac1,
-        PAC2: currentChemical?.pac2,
-        PAC3: currentChemical?.pac3
+        PAC1: currentChemical?.originalUnit === 'ppm' ? currentChemical?.pac1_ppm : currentChemical?.pac1,
+        PAC2: currentChemical?.originalUnit === 'ppm' ? currentChemical?.pac2_ppm : currentChemical?.pac2,
+        PAC3: currentChemical?.originalUnit === 'ppm' ? currentChemical?.pac3_ppm : currentChemical?.pac3
       };
-      if (currentUnit !== currentChemical.originalUnit) {
-        convertUnit({ localPACValues });
+      let altPACValues = {
+        PAC1: currentChemical?.originalUnit === 'ppm' ? currentChemical?.pac1 : currentChemical?.pac1_ppm,
+        PAC2: currentChemical?.originalUnit === 'ppm' ? currentChemical?.pac2 : currentChemical?.pac2_ppm,
+        PAC3: currentChemical?.originalUnit === 'ppm' ? currentChemical?.pac3 : currentChemical?.pac3_ppm
+      }
+      if (currentUnit !== currentChemical.originalUnit) {       
+        if (currentChemical?.molecularWeight.length > 0) {
+          for (const [key, value] of Object.entries(altPACValues)) {
+            if (value == null || value == "") {
+              altPACValues[key] = convertIndividualPACValue({
+                molecularWeight: currentChemical?.molecularWeight,
+                PACValue: localPACValues[key],
+                unit: currentUnit
+              });
+            }
+          }
+          calculatedPACValues = altPACValues;
+        } else {
+          calculatedPACValues = localPACValues;
+          currentUnit = currentChemical?.originalUnit;
+        }
       } else {
         calculatedPACValues = localPACValues;
       }
@@ -159,9 +178,9 @@
       if (currentChemical?.originalUnit === value) {
         currentUnit = value;
         calculatedPACValues = {
-          PAC1: currentChemical?.pac1,
-          PAC2: currentChemical?.pac2,
-          PAC3: currentChemical?.pac3
+          PAC1: value === 'ppm' ? currentChemical?.pac1_ppm : currentChemical?.pac1,
+          PAC2: value === 'ppm' ? currentChemical?.pac2_ppm : currentChemical?.pac2,
+          PAC3: value === 'ppm' ? currentChemical?.pac3_ppm : currentChemical?.pac3
         };
       }
     }
