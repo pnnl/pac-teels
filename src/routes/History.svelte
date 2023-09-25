@@ -98,6 +98,19 @@
         if (item === columnEnum[3]) {
           if (value[item].includes(",")) {
             newItem[item] = `"${value[item]}"`;
+          } else {
+            newItem[item] = value[item];
+          }
+        } else if (item === columnEnum[5] || item === columnEnum[4]) {
+          if (
+            value[item] === "" ||
+            value[item] === null ||
+            value[item] === undefined ||
+            value[item] === "<BR>"
+          ) {
+            newItem[item] = "-";
+          } else {
+            newItem[item] = value[item];
           }
         } else {
           newItem[item] = value[item];

@@ -107,11 +107,33 @@
     for (const value of slice) {
       let newItem: any = {};
       for (const item of Object.values(columnEnum)) {
-        newItem[item] = value[item];
+        if (item === columnEnum[6] || item === columnEnum[7] || item === columnEnum[8]) {
+          if (item === columnEnum[6] && value[item] === null) {
+            newItem[item] = value["pac1_ppm"];
+          } else if (item === columnEnum[7] && value[item] === null) {
+            newItem[item] = value["pac2_ppm"];
+          } else if (item === columnEnum[8] && value[item] === null) {
+            newItem[item] = value["pac3_ppm"];
+          } else {
+            newItem[item] = value[item];
+          }
+        } else if (item === columnEnum[4]) {
+          if (
+            value[item] === "" ||
+            value[item] === null ||
+            value[item] === undefined ||
+            value[item] === "<BR>"
+          ) {
+            newItem[item] = "-";
+          } else {
+            newItem[item] = value[item];
+          }
+        } else {
+          newItem[item] = value[item];
+        }
       }
       filteredSlice.push(newItem);
     }
-    console.log({ filteredSlice });
     downloadChemicalsToCSV({
       chemicals: filteredSlice,
       columns,
