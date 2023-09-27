@@ -135,11 +135,6 @@
       path: `${process.env.SVELTE_APP_BASEURL}/#/admin/analystHome`
     },
     {
-      id: "chemicalDatabase",
-      name: "Chemical Database",
-      path: `${process.env.SVELTE_APP_BASEURL}/#/admin/chemicalDatabase`
-    },
-    {
       id: "userManagement",
       name: "User Management",
       path: `${process.env.SVELTE_APP_BASEURL}/#/admin/userManagement`
@@ -232,18 +227,6 @@
     <MediaQuery query={`(max-width: ${themeStyle.smallest})`} let:matches>
       {#if matches}
         <div class="right">
-          <!-- <Button on:click={() => window.alert("Not Implemented")}>
-            <Icon class="material-icons">feedback</Icon>
-            <Label>send feedback</Label>
-          </Button>
-          <Button
-            on:click={() => {
-              loginOpen = !loginOpen;
-            }}
-          >
-            <Icon class="material-icons">login</Icon>
-            <Label>Admin Login</Label>
-          </Button> -->
           <div
             class={Object.keys(responsiveAnchorClasses).join(" ")}
             use:Anchor={{
@@ -309,8 +292,11 @@
           <Button on:click={() => (showDisclaimer = true)} style={"margin-left: auto;"}>
             <Label>About</Label>
           </Button>
-          <Button on:click={() => push("/history")} style={"margin-left: auto;"}>
+          <Button on:click={() => push("/chemicalDatabase")} style={"margin-left: auto;"}>
             <Label>Update History</Label>
+          </Button>
+          <Button on:click={() => push("/history")} style={"margin-left: auto;"}>
+            <Label>Chemical Database</Label>
           </Button>
           {#if featureFlags.feedback === true}
             <Button on:click={() => window.alert("Not Implemented")}>
