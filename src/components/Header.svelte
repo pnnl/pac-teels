@@ -293,10 +293,10 @@
             <Label>About</Label>
           </Button>
           <Button on:click={() => push("/chemicalDatabase")} style={"margin-left: auto;"}>
-            <Label>Update History</Label>
+            <Label>Chemical Database</Label>
           </Button>
           <Button on:click={() => push("/history")} style={"margin-left: auto;"}>
-            <Label>Chemical Database</Label>
+            <Label>Update History</Label>
           </Button>
           {#if featureFlags.feedback === true}
             <Button on:click={() => window.alert("Not Implemented")}>
