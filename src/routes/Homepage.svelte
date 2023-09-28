@@ -165,7 +165,7 @@
 
   let localChemicals = [];
   let mostRecentUpdateDate = new Date("2000-01-01");
-  let date = "Fri September 22, 2023";
+  let date = "Thu September 28, 2023";
   $: {
     chemicals.subscribe(currChemicals => {
       if (currChemicals) {
