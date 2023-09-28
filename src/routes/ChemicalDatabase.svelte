@@ -31,6 +31,13 @@
   .button-wrapper {
     padding-top: 0.5rem;
   }
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    align-items: flex-start;
+  }
 </style>
 
 <script lang="ts">
@@ -59,11 +66,15 @@
     CAS_Number: string;
     Chemical_Name: string;
     Chemical_Formula: string;
-    UN_Number: number;
+    UN_Number: string;
     Date: string;
     pac1: string;
     pac2: string;
     pac3: string;
+    pac1_ppm: string;
+    pac2_ppm: string;
+    pac3_ppm: string;
+    originalUnit: string;
   };
   let items: ChemDatabase[] = [];
   let sort: keyof ChemDatabase = "CAS_Number";
@@ -184,169 +195,175 @@
   }
 </script>
 
-<DataTable
-  stickyHeader
-  sortable
-  bind:sort
-  bind:sortDirection
-  on:SMUIDataTable:sorted={handleSort}
-  table$aria-label="Chemical Database"
-  style="width: 100%;"
->
-  <Head
-    style="box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.07), 0px 4px 5px rgba(0, 0, 0, 0.06), 0px 1px 10px rgba(0, 0, 0, 0.1);"
+<div class="content">
+  <Button on:click={() => push("/")}
+    ><Icon class="material-icons">arrow_back</Icon><Label>Back</Label></Button
   >
-    <Row style="width: -webkit-fill-available;">
-      <Cell colspan={100} style="border-bottom: unset;">
-        <div style={"display: flex; align-items: center; "}>
-          <!-- <Paper
-            class="solo-paper"
-            style={"width: -webkit-fill-available; margin: 1rem; height: var(--mdc-outlined-button-container-height, 36px);"}
-          >
-            <Icon class="material-icons" style="font-size: 1.3rem; color: var(--caption)"
-              >search</Icon
+
+  <DataTable
+    stickyHeader
+    sortable
+    bind:sort
+    bind:sortDirection
+    on:SMUIDataTable:sorted={handleSort}
+    table$aria-label="Chemical Database"
+    style="width: 100%;"
+  >
+    <Head
+      style="box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.07), 0px 4px 5px rgba(0, 0, 0, 0.06), 0px 1px 10px rgba(0, 0, 0, 0.1);"
+    >
+      <Row style="width: -webkit-fill-available;">
+        <Cell colspan={100} style="border-bottom: unset;">
+          <div style={"display: flex; align-items: center; "}>
+            <!-- <Paper
+              class="solo-paper"
+              style={"width: -webkit-fill-available; margin: 1rem; height: var(--mdc-outlined-button-container-height, 36px);"}
             >
-            <Input
-              bind:search
-              on:keydown={() => {}}
-              placeholder="Search chemicals by CAS number, chemical name, chemical formula, or UN number"
-              class="solo-input"
-            />
-          </Paper>
-          <Button
-            variant="outlined"
-            defaultAction
-            on:click={() => {}}
-            style={"margin-bottom: 0;"}
-          >
-            <Icon class="material-icons">filter_list</Icon>
-            <Label>Filters</Label>
-          </Button> -->
-        </div>
-      </Cell>
-    </Row>
-    <Row>
-      <Cell>
-        <Label>CAS Number</Label>
-        <IconButton class="material-icons" size="button">sort</IconButton>
-      </Cell>
-      <Cell style="width: 100%;">
-        <Label>Chemical Name</Label>
-        <IconButton class="material-icons" size="button">sort</IconButton>
-      </Cell>
-      <Cell>
-        <Label>Chemical Formula</Label>
-        <IconButton class="material-icons" size="button">sort</IconButton>
-      </Cell>
-      <Cell numeric>
-        <Label>UN Number</Label>
-        <IconButton class="material-icons" size="button">sort</IconButton>
-      </Cell>
-      <Cell>
-        <Label>Last Updated</Label>
-        <IconButton class="material-icons" size="button">sort</IconButton>
-      </Cell>
-      <Cell style="width: 100%;">
-        <Label>PAC-1</Label>
-        <IconButton class="material-icons" size="button">sort</IconButton>
-      </Cell>
-      <Cell>
-        <Label>PAC-2</Label>
-        <IconButton class="material-icons" size="button">sort</IconButton>
-      </Cell>
-      <Cell>
-        <Label>PAC-3</Label>
-        <IconButton class="material-icons" size="button">sort</IconButton>
-      </Cell>
-    </Row>
-  </Head>
-  <Body style={"overflow-x: auto"}>
-    {#each slice as item (item.Chemical_ID)}
-      <Row>
-        <Cell style="clip-path: inset(0rem 0rem 0rem 1rem);">
-          {item.CAS_Number}</Cell
-        >
-        <Cell>{item.Chemical_Name}</Cell>
-        <Cell>{item.Chemical_Formula}</Cell>
-        <Cell>{item.UN_Number}</Cell>
-        <Cell>{item.Date}</Cell>
-        <Cell>{item.pac1}</Cell>
-        <Cell>{item.pac2}</Cell>
-        <Cell style="clip-path: inset(0rem 1rem 0rem 0rem);">{item.pac3}</Cell>
+              <Icon class="material-icons" style="font-size: 1.3rem; color: var(--caption)"
+                >search</Icon
+              >
+              <Input
+                bind:search
+                on:keydown={() => {}}
+                placeholder="Search chemicals by CAS number, chemical name, chemical formula, or UN number"
+                class="solo-input"
+              />
+            </Paper>
+            <Button
+              variant="outlined"
+              defaultAction
+              on:click={() => {}}
+              style={"margin-bottom: 0;"}
+            >
+              <Icon class="material-icons">filter_list</Icon>
+              <Label>Filters</Label>
+            </Button> -->
+          </div>
+        </Cell>
       </Row>
-    {/each}
-  </Body>
-  <Pagination slot="paginate" class="paginate-class">
-    <div style="display: flex; flex: 1;">
-      <div style="display: flex; flex: 1; align-items: center; margin-left: 2rem;">
-        <MediaQuery query={`(min-width: ${themeStyle.smallest})`} let:matches>
-          {#if matches}
-            <Button
-              variant="unelevated"
-              defaultAction
-              on:click={() => {}}
-              style={"margin-bottom: 0;"}
-            >
-              <Icon class="material-icons">add</Icon>
-              <Label>Add New Chemical</Label>
-            </Button>
-          {:else}
-            <Button
-              variant="unelevated"
-              defaultAction
-              on:click={() => {}}
-              style={"margin-bottom: 0;"}
-            >
-              <Icon class="material-icons">add</Icon>
-              <Label>Add</Label>
-            </Button>
-          {/if}
-        </MediaQuery>
+      <Row>
+        <Cell>
+          <Label>CAS Number</Label>
+          <IconButton class="material-icons" size="button">sort</IconButton>
+        </Cell>
+        <Cell style="width: 100%;">
+          <Label>Chemical Name</Label>
+          <IconButton class="material-icons" size="button">sort</IconButton>
+        </Cell>
+        <Cell>
+          <Label>Chemical Formula</Label>
+          <IconButton class="material-icons" size="button">sort</IconButton>
+        </Cell>
+        <Cell numeric>
+          <Label>UN Number</Label>
+          <IconButton class="material-icons" size="button">sort</IconButton>
+        </Cell>
+        <Cell>
+          <Label>Last Updated</Label>
+          <IconButton class="material-icons" size="button">sort</IconButton>
+        </Cell>
+        <Cell style="width: 100%;">
+          <Label>PAC-1</Label>
+          <IconButton class="material-icons" size="button">sort</IconButton>
+        </Cell>
+        <Cell>
+          <Label>PAC-2</Label>
+          <IconButton class="material-icons" size="button">sort</IconButton>
+        </Cell>
+        <Cell>
+          <Label>PAC-3</Label>
+          <IconButton class="material-icons" size="button">sort</IconButton>
+        </Cell>
+      </Row>
+    </Head>
+    <Body style={"overflow-x: auto"}>
+      {#each slice as item (item.Chemical_ID)}
+        <Row>
+          <Cell style="clip-path: inset(0rem 0rem 0rem 1rem);">
+            {item.CAS_Number}</Cell
+          >
+          <Cell>{item.Chemical_Name}</Cell>
+          <Cell>{item.Chemical_Formula}</Cell>
+          <Cell>{item.UN_Number != "<BR>" ?  + item.UN_Number : ""}</Cell>
+          <Cell>{new Date(item.Date).toDateString()}</Cell>
+          <Cell>{item.originalUnit === "mg/m3" ? item.pac1 + item.originalUnit : item.pac1_ppm + item.originalUnit}</Cell>
+          <Cell>{item.originalUnit === "mg/m3" ? item.pac2 + item.originalUnit : item.pac2_ppm + item.originalUnit}</Cell>
+          <Cell style="clip-path: inset(0rem 1rem 0rem 0rem);">{item.originalUnit === "mg/m3" ? item.pac3 + item.originalUnit : item.pac3_ppm + item.originalUnit}</Cell>
+        </Row>
+      {/each}
+    </Body>
+    <Pagination slot="paginate" class="paginate-class">
+      <div style="display: flex; flex: 1;">
+        <div style="display: flex; flex: 1; align-items: center; margin-left: 2rem;">
+          <!-- <MediaQuery query={`(min-width: ${themeStyle.smallest})`} let:matches>
+            {#if matches}
+              <Button
+                variant="unelevated"
+                defaultAction
+                on:click={() => {}}
+                style={"margin-bottom: 0;"}
+              >
+                <Icon class="material-icons">add</Icon>
+                <Label>Add New Chemical</Label>
+              </Button>
+            {:else}
+              <Button
+                variant="unelevated"
+                defaultAction
+                on:click={() => {}}
+                style={"margin-bottom: 0;"}
+              >
+                <Icon class="material-icons">add</Icon>
+                <Label>Add</Label>
+              </Button>
+            {/if}
+          </MediaQuery> -->
+        </div>
+        <div style="display: flex; align-items: center;">
+          <Label>Rows Per Page</Label>
+          <Select variant="outlined" bind:value={rowsPerPage} noLabel>
+            <Option value={10}>10</Option>
+            <Option value={25}>25</Option>
+            <Option value={100}>100</Option>
+          </Select>
+          {start + 1}-{end} of {items.length}
+          <IconButton
+            class="material-icons"
+            action="first-page"
+            title="First page"
+            style="margin: unset;"
+            on:click={() => (currentPage = 0)}
+            disabled={currentPage === 0}>first_page</IconButton
+          >
+          <IconButton
+            class="material-icons"
+            action="prev-page"
+            title="Prev page"
+            style="margin: unset;"
+            on:click={() => currentPage--}
+            disabled={currentPage === 0}>chevron_left</IconButton
+          >
+          <IconButton
+            class="material-icons"
+            action="next-page"
+            title="Next page"
+            style="margin: unset;"
+            on:click={() => currentPage++}
+            disabled={currentPage === lastPage}>chevron_right</IconButton
+          >
+          <IconButton
+            class="material-icons"
+            action="last-page"
+            title="Last page"
+            style="margin: unset;"
+            on:click={() => (currentPage = lastPage)}
+            disabled={currentPage === lastPage}>last_page</IconButton
+          >
+        </div>
       </div>
-      <div style="display: flex; align-items: center;">
-        <Label>Rows Per Page</Label>
-        <Select variant="outlined" bind:value={rowsPerPage} noLabel>
-          <Option value={10}>10</Option>
-          <Option value={25}>25</Option>
-          <Option value={100}>100</Option>
-        </Select>
-        {start + 1}-{end} of {items.length}
-        <IconButton
-          class="material-icons"
-          action="first-page"
-          title="First page"
-          style="margin: unset;"
-          on:click={() => (currentPage = 0)}
-          disabled={currentPage === 0}>first_page</IconButton
-        >
-        <IconButton
-          class="material-icons"
-          action="prev-page"
-          title="Prev page"
-          style="margin: unset;"
-          on:click={() => currentPage--}
-          disabled={currentPage === 0}>chevron_left</IconButton
-        >
-        <IconButton
-          class="material-icons"
-          action="next-page"
-          title="Next page"
-          style="margin: unset;"
-          on:click={() => currentPage++}
-          disabled={currentPage === lastPage}>chevron_right</IconButton
-        >
-        <IconButton
-          class="material-icons"
-          action="last-page"
-          title="Last page"
-          style="margin: unset;"
-          on:click={() => (currentPage = lastPage)}
-          disabled={currentPage === lastPage}>last_page</IconButton
-        >
+      <div class="button-wrapper">
+        <Button variant="raised" on:click={handleDownloadClick}>Download</Button>
       </div>
-    </div>
-    <div class="button-wrapper">
-      <Button variant="raised" on:click={handleDownloadClick}>Download</Button>
-    </div>
-  </Pagination>
-</DataTable>
+    </Pagination>
+  </DataTable>
+</div>
