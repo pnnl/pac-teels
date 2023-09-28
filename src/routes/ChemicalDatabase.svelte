@@ -89,6 +89,22 @@
     8: "pac3"
   };
 
+  const downloadColumnEnum = {
+    1: "CAS_Number",
+    2: "Chemical_Name",
+    3: "Chemical_Formula",
+    4: "UN_Number",
+    5: "Date",
+    6: "pac1",
+    7: "pac2",
+    8: "pac3",
+    9: "pac1Source",
+    10: "pac2Source",
+    11: "pac3Source",
+    12: "molecularWeight",
+    13: "state"
+  };
+
   $: start = currentPage * rowsPerPage;
   $: end = Math.min(start + rowsPerPage, items.length);
   $: slice = items.slice(start, end);
@@ -97,27 +113,40 @@
   $: if (currentPage > lastPage) {
     currentPage = lastPage;
   }
-  for (const item of Object.values(columnEnum)) {
+  for (const item of Object.values(downloadColumnEnum)) {
     let newItem = item.replace("_", " ");
     columns.push(newItem);
   }
 
   const handleDownloadClick = () => {
     let filteredSlice: any[] = [];
-    for (const value of slice) {
+    for (const value of items) {
       let newItem: any = {};
-      for (const item of Object.values(columnEnum)) {
-        if (item === columnEnum[6] || item === columnEnum[7] || item === columnEnum[8]) {
-          if (item === columnEnum[6] && value[item] === null) {
+      for (const item of Object.values(downloadColumnEnum)) {
+        if (
+          item === downloadColumnEnum[6] ||
+          item === downloadColumnEnum[7] ||
+          item === downloadColumnEnum[8]
+        ) {
+          if (item === downloadColumnEnum[6] && value[item] === null) {
             newItem[item] = value["pac1_ppm"];
-          } else if (item === columnEnum[7] && value[item] === null) {
+          } else if (item === downloadColumnEnum[7] && value[item] === null) {
             newItem[item] = value["pac2_ppm"];
-          } else if (item === columnEnum[8] && value[item] === null) {
+          } else if (item === downloadColumnEnum[8] && value[item] === null) {
             newItem[item] = value["pac3_ppm"];
           } else {
             newItem[item] = value[item];
           }
-        } else if (item === columnEnum[4]) {
+        } else if (
+          item === downloadColumnEnum[9] ||
+          item === downloadColumnEnum[10] ||
+          item === downloadColumnEnum[11]
+        ) {
+          if (value[item].includes(",")) newItem[item] === `"${value[item]}"`;
+          else {
+            newItem[item] = value[item];
+          }
+        } else if (item === downloadColumnEnum[4]) {
           if (
             value[item] === "" ||
             value[item] === null ||

@@ -92,7 +92,7 @@
 
   const handleDownloadClick = () => {
     let filteredSlice: any[] = [];
-    for (const value of slice) {
+    for (const value of items) {
       let newItem: any = {};
       for (const item of Object.values(columnEnum)) {
         if (item === columnEnum[3]) {
