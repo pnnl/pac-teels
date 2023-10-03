@@ -62,7 +62,7 @@
       component: History,
       userData: { route: "history" }
     }),
-    "/chemicalDatabase": wrap({
+    "/chemicalDownload": wrap({
       component: ChemicalDatabase,
       userData: { route: "chemicalDatabase" }
     })
