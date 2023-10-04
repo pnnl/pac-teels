@@ -292,8 +292,8 @@
           <Button on:click={() => (showDisclaimer = true)} style={"margin-left: auto;"}>
             <Label>About</Label>
           </Button>
-          <Button on:click={() => push("/chemicalDatabase")} style={"margin-left: auto;"}>
-            <Label>Chemical Database</Label>
+          <Button on:click={() => push("/chemicalDownload")} style={"margin-left: auto;"}>
+            <Label>Chemical Download</Label>
           </Button>
           <Button on:click={() => push("/history")} style={"margin-left: auto;"}>
             <Label>Update History</Label>
