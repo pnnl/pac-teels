@@ -109,11 +109,12 @@
     6: "pac1",
     7: "pac2",
     8: "pac3",
-    9: "pac1Source",
-    10: "pac2Source",
-    11: "pac3Source",
-    12: "molecularWeight",
-    13: "state"
+    9: "originalUnit",
+    10: "pac1Source",
+    11: "pac2Source",
+    12: "pac3Source",
+    13: "molecularWeight",
+    14: "state"
   };
 
   $: start = currentPage * rowsPerPage;
