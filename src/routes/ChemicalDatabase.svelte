@@ -52,6 +52,7 @@
   import IconButton from "@smui/icon-button";
   import { Label } from "@smui/common";
   import Select, { Option } from "@smui/select";
+  import { push } from "svelte-spa-router";
   import { Input } from "@smui/textfield";
   import Paper from "@smui/paper";
   import Button, { Icon } from "@smui/button";
