@@ -8,7 +8,7 @@
   import AccountDetails from "./routes/AccountDetails.svelte";
   import ChangeEmail from "./routes/ChangeEmail.svelte";
   import ChangePassword from "./routes/ChangePassword.svelte";
-  import AnalystHomepage from "./routes/AnalystHome.svelte"
+  import AnalystHomepage from "./routes/AnalystHome.svelte";
   import Definitions from "./routes/Definitions.svelte";
   import History from "./routes/History.svelte";
 
@@ -29,10 +29,7 @@
       // Add route pre conditions to ensure users are logged in https://github.com/ItalyPaleAle/svelte-spa-router/blob/master/Advanced%20Usage.md
       // conditions: []
     }),
-    "/admin/chemicalDatabase": wrap({
-      component: ChemicalDatabase,
-      userData: { route: "chemicalDatabase" }
-    }),
+
     "/admin/userManagement": wrap({
       component: UserManagement,
       userData: { route: "userManagement" }
@@ -64,6 +61,10 @@
     "/history": wrap({
       component: History,
       userData: { route: "history" }
+    }),
+    "/chemicalDownload": wrap({
+      component: ChemicalDatabase,
+      userData: { route: "chemicalDatabase" }
     })
 
     // Using named parameters, with last being optional

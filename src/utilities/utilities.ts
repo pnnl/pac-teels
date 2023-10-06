@@ -16,7 +16,50 @@ export const convertPACValue = ({ molecularWeight, PACValues, unit }) => {
     return localPACValues
 }
 
-export const convertIndividualPACValue = ({molecularWeight, PACValue, unit}) => {
+export const downloadChemicalsToCSV = ({ chemicals, columns, type }) => {
+    let csv: any = [];
+    let localChemicals: any[] = []
+    for (const item of chemicals) {
+        let localValues: any[] = []
+        for (let data of Object.values(item)) {
+            let handler = data
+            localValues.push(handler)
+        }
+        localChemicals.push(localValues)
+    }
+
+    columns.join(','),
+
+        csv.push(columns)
+    csv.push(...localChemicals)
+    let formattedCSV: any = []
+
+    for (const item of csv) {
+        formattedCSV += item + '\n'
+    }
+    let CSVFile = new Blob([formattedCSV], {
+        type: "text/csv"
+    });
+
+    const url = window.URL.createObjectURL(CSVFile)
+
+    // Creating an anchor(a) tag of HTML
+    const a = document.createElement('a')
+
+    // Passing the blob downloading url
+    a.setAttribute('href', url)
+
+    // Setting the anchor tag attribute for downloading
+    // and passing the download file name
+
+    let date = new Date()
+    a.setAttribute('download', `${type}_${date.getMonth()}-${date.getDay()}-${date.getFullYear()}.csv`);
+
+    // Performing a download with click
+    a.click()
+
+}
+export const convertIndividualPACValue = ({ molecularWeight, PACValue, unit }) => {
     let parsedValue = parseFloat(PACValue as string)
     let returnValue;
     if (unit === "mg/m3") {
