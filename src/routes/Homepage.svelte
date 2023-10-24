@@ -97,6 +97,8 @@
   import Snackbar, { Actions, SnackbarComponentDev } from "@smui/snackbar";
   import { dataset_dev } from "svelte/internal";
 
+  window.location.replace("https://edms3.energy.gov/pac");
+
   let rightPanelOpenedLocal = false;
   let recentlyViewedLocal;
 
