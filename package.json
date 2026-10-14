@@ -80,7 +80,7 @@
         "cross-env": "^7.0.3",
         "crypto-js": "^4.1.1",
         "css-loader": "^6.7.1",
-        "css-minimizer-webpack-plugin": "^3.4.1",
+        "css-minimizer-webpack-plugin": "^8.0.0",
         "dotenv": "^16.0.0",
         "dotenv-webpack": "^7.1.0",
         "env-cmd": "^10.1.0",
