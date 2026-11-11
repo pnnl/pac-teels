@@ -71,7 +71,7 @@
         "@types/mini-css-extract-plugin": "^2.5.1",
         "@types/redux": "^3.6.0",
         "autoprefixer": "^10.4.4",
-        "aws-amplify": "^4.3.21",
+        "aws-amplify": "^6.22.2",
         "aws-appsync": "^4.1.6",
         "babel-loader": "^8.2.4",
         "clean-webpack-plugin": "^4.0.0",
